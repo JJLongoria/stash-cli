@@ -1,12 +1,13 @@
 import { Flags } from "@oclif/core";
 import { BaseCommand, BuildCommands } from "../../libs/core/baseCommand";
-import { Instance } from "../../libs/core/config";
 import { StashCLIResponse } from "../../libs/core/stashResponse";
 import { InstanceColumns } from "../../libs/core/tables";
+import { UX } from "../../libs/core/ux";
+import { Instance } from "../../libs/types";
 
 export default class Login extends BaseCommand {
     static loginRequired = false;
-    static description = 'Login againts Stash instance.';
+    static description = 'Login againts Stash instance. Return the Stash Instance data. ' + UX.processDocumentation('<doc:Instance>');
     static examples = [
         `$ stash auth:login`,
     ];

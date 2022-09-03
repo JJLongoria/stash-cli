@@ -1,6 +1,6 @@
 import { CliUx } from "@oclif/core";
 import { ClusterNode, Group } from "stash-connector";
-import { Instance } from "./config";
+import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
     alias: {

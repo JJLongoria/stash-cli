@@ -1,13 +1,8 @@
 import { BasicAuth } from "stash-connector";
-import { FileChecker, FileReader, FileWriter, PathUtils } from "../fileSystem";
+import { FileChecker, FileReader, FileWriter } from "../fileSystem";
+import { Instance } from "../types";
 
 const INSTANCES_FILE = 'instances.json';
-
-export interface Instance {
-    alias: string;
-    host: string;
-    token: string;
-}
 
 export class Config {
 

@@ -4,3 +4,9 @@ export interface FileFilters {
     absolutePath?: boolean;
     extensions?: string[];
 }
+
+export interface Instance {
+    alias: string;
+    host: string;
+    token: string;
+}

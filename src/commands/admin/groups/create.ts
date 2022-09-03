@@ -3,9 +3,10 @@ import { Group, StashConnector } from "stash-connector";
 import { BaseCommand, BuildCommands } from "../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../libs/core/stashResponse";
 import { GroupColumns } from "../../../libs/core/tables";
+import { UX } from "../../../libs/core/ux";
 
 export default class Create extends BaseCommand {
-    static description = 'Create a new group.'
+    static description = 'Create a new group. ' + UX.processDocumentation('<doc:Group>');
     static examples = [
         `$ stash admin:groups:create -a MyStashAlias --name MyGroup --json`,
         `$ stash admin:groups:create -a MyStashAlias --name AnotherGroup --csv`,

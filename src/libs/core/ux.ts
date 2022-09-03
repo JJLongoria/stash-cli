@@ -1,5 +1,6 @@
 import { CliUx } from "@oclif/core";
 import * as notifier from 'node-notifier';
+import { StrUtils } from "../utils/strUtils";
 
 export class UX {
     startSpinner(message: string) {
@@ -23,5 +24,36 @@ export class UX {
             title: title,
             message: message
         });
+    }
+
+    static processDocumentation(desc?: string): string | undefined {
+        const readmeURL = 'https://github.com/JJLongoria/stash-cli/blob/main/README.md';
+        if (desc) {
+            if (StrUtils.containsIgnorecase(desc, '<doc:')) {
+                const docData = desc.substring(desc.indexOf('<doc:'), desc.indexOf('>') + 1);
+                let doctype = StrUtils.replace(docData, '<doc:', '');
+                doctype = StrUtils.replace(doctype, '>', '');
+                const message = 'See the JSON Schema on: ' + readmeURL + '#' + doctype.toLowerCase();
+                desc = StrUtils.replace(desc, docData, message);
+            }
+            return desc;
+        }
+        return undefined;
+    }
+
+    static cannotUseWith(flags: string[]) {
+        let convertedFlags = [];
+        for (const flag of flags) {
+            convertedFlags.push('--' + flag);
+        }
+        return 'Cannot use with ' + convertedFlags.join(', ') + ' flag' + (flags.length > 1 ? 's' : '');
+    }
+
+    static dependsOn(flags: string[]) {
+        let convertedFlags = [];
+        for (const flag of flags) {
+            convertedFlags.push('--' + flag);
+        }
+        return 'Depends on ' + convertedFlags.join(', ') + ' flag' + (flags.length > 1 ? 's' : '');
     }
 }

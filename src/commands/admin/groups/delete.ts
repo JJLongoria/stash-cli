@@ -3,9 +3,10 @@ import { Group, StashConnector } from "stash-connector";
 import { BaseCommand, BuildCommands } from "../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../libs/core/stashResponse";
 import { GroupColumns } from "../../../libs/core/tables";
+import { UX } from "../../../libs/core/ux";
 
 export default class Delete extends BaseCommand {
-    static description = 'Deletes the specified group, removing them from the system. This also removes any permissions that may have been granted to the group.'
+    static description = 'Deletes the specified group, removing them from the system. This also removes any permissions that may have been granted to the group. ' + UX.processDocumentation('<doc:Group>');
     static examples = [
         `$ stash admin:groups:delete -a MyStashAlias --name MyGroup --json`,
         `$ stash admin:groups:delete -a MyStashAlias --name AnotherGroup --csv`,

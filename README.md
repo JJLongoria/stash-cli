@@ -55,6 +55,14 @@ USAGE
   - [`oex plugins:link PLUGIN`](#oex-pluginslink-plugin)
   - [`oex plugins:uninstall PLUGIN...`](#oex-pluginsuninstall-plugin)
   - [`oex plugins update`](#oex-plugins-update)
+- [**JSON Objects Schemes**](#json-objects-schemes)
+  - [**AddUsersInput**](#addusersinput)
+  - [**ClusterOutput**](#clusteroutput)
+  - [**ClusterNode**](#clusternode)
+  - [- See `ClusterAddress` Definition](#--see-clusteraddress-definition)
+  - [**ClusterAddress**](#clusteraddress)
+  - [**Group**](#group)
+  - [**Instance**](#instance)
 
 ## `stash hello PERSON`
 
@@ -370,6 +378,14 @@ DESCRIPTION
   - [`oex plugins:link PLUGIN`](#oex-pluginslink-plugin)
   - [`oex plugins:uninstall PLUGIN...`](#oex-pluginsuninstall-plugin)
   - [`oex plugins update`](#oex-plugins-update)
+- [**JSON Objects Schemes**](#json-objects-schemes)
+  - [**AddUsersInput**](#addusersinput)
+  - [**ClusterOutput**](#clusteroutput)
+  - [**ClusterNode**](#clusternode)
+  - [- See `ClusterAddress` Definition](#--see-clusteraddress-definition)
+  - [**ClusterAddress**](#clusteraddress)
+  - [**Group**](#group)
+  - [**Instance**](#instance)
 
 ## `oex hello PERSON`
 
@@ -577,3 +593,72 @@ DESCRIPTION
   Update installed plugins.
 ```
 <!-- commandsstop -->
+
+# [**JSON Objects Schemes**]()
+
+All JSON Schemes used by the Stash CLI application as response or data input.
+
+Schema definition:
+```json
+{
+  "FieldName": "FieldType", // Required field
+  "FieldName?": "FieldType", // Optional field
+}
+```
+---
+## [**AddUsersInput**]()
+```json
+{
+    "group": "string",
+    "users": "string[]",
+}
+```
+---
+## [**ClusterOutput**]()
+```json
+{
+    "localNode": "ClusterNode",
+    "nodes": "ClusterNode[]",
+    "running": "boolean",
+}
+```
+- See [`ClusterNode`](#clusternode) Definition
+
+---
+## [**ClusterNode**]()
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "address": "ClusterAddress",
+    "local": "boolean",
+}
+```
+- See [`ClusterAddress`](#clusteraddress) Definition
+---
+## [**ClusterAddress**]()
+```json
+{
+    "hostName": "string",
+    "port": "number",
+}
+```
+---
+## [**Group**]()
+```json
+{
+    "name": "string",
+    "deletable": "boolean",
+}
+```
+---
+## [**Instance**]()
+```json
+{
+    "alias": "string",
+    "host": "string",
+    "token": "string",
+}
+```
+---

@@ -2,9 +2,10 @@ import { ClusterNode, ClusterOutput, StashConnector } from "stash-connector";
 import { BaseCommand, BuildCommands } from "../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../libs/core/stashResponse";
 import { ClusterNodeColumns } from "../../libs/core/tables";
+import { UX } from "../../libs/core/ux";
 
 export default class Cluster extends BaseCommand {
-    static description = 'Gets information about the nodes that currently make up the stash cluster'
+    static description = 'Gets information about the nodes that currently make up the stash cluster. ' + UX.processDocumentation('<doc:ClusterOutput>');
     static examples = [
         `$ stash admin:cluster`,
         `$ stash admin:cluster --json`,

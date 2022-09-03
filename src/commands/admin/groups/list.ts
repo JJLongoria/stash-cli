@@ -3,9 +3,10 @@ import { Page, Group, StashConnector } from "stash-connector";
 import { BaseCommand, BuildCommands } from "../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../libs/core/stashResponse";
 import { GroupColumns } from "../../../libs/core/tables";
+import { UX } from "../../../libs/core/ux";
 
 export default class List extends BaseCommand {
-    static description = 'Retrieve a page of groups.'
+    static description = 'Retrieve a page of groups. ' + UX.processDocumentation('<doc:Group>');
     static examples = [
         `$ stash admin:groups:list -a MyStashAlias --all`,
         `$ stash admin:groups:list -a MyStashAlias -l 100 -s 50`,

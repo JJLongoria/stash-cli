@@ -1,11 +1,17 @@
 import { Command, Flags } from "@oclif/core";
 import { OutputArgs, OutputFlags } from "@oclif/core/lib/interfaces";
 import { PageOptions, StashError } from "stash-connector";
+import { StrUtils } from "../utils/strUtils";
 import { Config } from "./config";
 import { StashCLIErrorData, StashCLIResponse } from "./stashResponse";
 import { UX } from "./ux";
 
 export class BuildCommands {
+
+    static async parseArray(str: string) {
+        const regex = new RegExp(`"(.*?)"|\'(.*?)\'|,`);
+        return str.split(regex).filter((i) => !!i).map((i) => i.trim());
+    }
     static alias = Flags.string({
         description: 'The Stash instance alias to identify user and instance on other operations',
         required: true,
@@ -18,6 +24,27 @@ export class BuildCommands {
         name: 'CSV',
         exclusive: ['json']
     });
+    static input = {
+        data: (doc: string, required?: boolean, exclusive?: string[]) => {
+            return Flags.string({
+                description: 'JSON Input data. ' + UX.processDocumentation(doc),
+                required: required,
+                name: 'Data',
+                char: 'd',
+                exclusive: exclusive || ['file'],
+                parse: (input, context) => {
+                    return eval('(' + input + ')');
+                }
+            });
+        },
+        file: (doc: string, required?: boolean) => {
+            return Flags.file({
+                description: 'JSON Input data file path. ' + UX.processDocumentation(doc),
+                required: required,
+                name: 'File',
+            });
+        },
+    }
     static pagination = {
         all: Flags.boolean({
             description: 'Return all records on the same page (instead paginate results)',
@@ -48,6 +75,7 @@ export class BuildCommands {
 
 
 export class BaseCommand extends Command {
+
 
     protected localConfig: Config = new Config(this.config.dataDir);
     protected flags!: OutputFlags<any>;
@@ -87,6 +115,14 @@ export class BaseCommand extends Command {
         return undefined;
     }
 
+    parseArray(str: string): string[] {
+        const regex = new RegExp(`"(.*?)"|\'(.*?)\'|,`);
+        return str
+            .split(regex)
+            .filter((i) => !!i)
+            .map((i) => i.trim());
+    }
+
     getRecordsFoundText(recordSize: number, recordName: string) {
         if (recordSize > 0) {
             return recordSize + ' ' + recordName + ' records found';
@@ -95,15 +131,15 @@ export class BaseCommand extends Command {
         }
     }
 
-    getRecordCreatedText(recordName: string){
+    getRecordCreatedText(recordName: string) {
         return recordName + ' created successfully';
     }
 
-    getRecordDeletedText(recordName: string){
+    getRecordDeletedText(recordName: string) {
         return recordName + ' deleted successfully';
     }
 
-    getRecordUpdatedText(recordName: string){
+    getRecordUpdatedText(recordName: string) {
         return recordName + ' updated successfully';
     }
 
