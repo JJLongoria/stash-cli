@@ -1,6 +1,6 @@
 import { Flags } from "@oclif/core";
 import { AddUsersInput, StashConnector } from "stash-connector";
-import { BaseCommand, BuildCommands } from "../../../../libs/core/baseCommand";
+import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../../libs/core/stashResponse";
 import { UX } from "../../../../libs/core/ux";
 
@@ -12,8 +12,8 @@ export default class Add extends BaseCommand {
     ];
     static flags = {
         ...BaseCommand.flags,
-        alias: BuildCommands.alias,
-        data: BuildCommands.input.data('<doc:AddUserInput>', false, ['group', 'users']),
+        alias: BuildFlags.alias,
+        data: BuildFlags.input.data('<doc:AddUserInput>', false, ['group', 'users']),
         group: Flags.string({
             description: 'The group name to add new members. ' + UX.cannotUseWith(['data']) + '. ' + UX.dependsOn(['users']),
             char: 'g',
@@ -26,7 +26,7 @@ export default class Add extends BaseCommand {
             name: 'Users',
             dependsOn: ['group'],
             parse: (input): any => {
-                return BuildCommands.parseArray(input);
+                return BuildFlags.parseArray(input);
             }
         }),
     };

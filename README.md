@@ -63,6 +63,7 @@ USAGE
   - [**ClusterAddress**](#clusteraddress)
   - [**Group**](#group)
   - [**Instance**](#instance)
+  - [**User**](#user)
 
 ## `stash hello PERSON`
 
@@ -386,6 +387,7 @@ DESCRIPTION
   - [**ClusterAddress**](#clusteraddress)
   - [**Group**](#group)
   - [**Instance**](#instance)
+  - [**User**](#user)
 
 ## `oex hello PERSON`
 
@@ -659,6 +661,24 @@ Schema definition:
     "alias": "string",
     "host": "string",
     "token": "string",
+}
+```
+---
+## [**User**]()
+```json
+{
+    "name": "string",
+    "emailAddress": "string",
+    "id": "number",
+    "displayName": "string",
+    "active": "boolean",
+    "slug": "string",
+    "type": "string",
+    "directoryName?": "string",
+    "deletable?": "boolean",
+    "lastAuthenticationTimestamp?": "number",
+    "mutableDetails?": "boolean",
+    "mutableGroups?": "boolean",
 }
 ```
 ---

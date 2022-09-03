@@ -6,7 +6,7 @@ import { Config } from "./config";
 import { StashCLIErrorData, StashCLIResponse } from "./stashResponse";
 import { UX } from "./ux";
 
-export class BuildCommands {
+export class BuildFlags {
 
     static async parseArray(str: string) {
         const regex = new RegExp(`"(.*?)"|\'(.*?)\'|,`);
@@ -24,6 +24,21 @@ export class BuildCommands {
         name: 'CSV',
         exclusive: ['json']
     });
+    static extended = Flags.boolean({ char: 'x', description: 'Show extra columns when format output as table. (Format by default)', name: 'Extended' });
+    static filter = (description: string) => {
+        return Flags.string({
+            description: description,
+            required: false,
+            name: 'Filter'
+        });
+    };
+    static context = (description: string) => {
+        return Flags.string({
+            description: description,
+            required: false,
+            name: 'Context'
+        })
+    };
     static input = {
         data: (doc: string, required?: boolean, exclusive?: string[]) => {
             return Flags.string({

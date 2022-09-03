@@ -1,6 +1,6 @@
 import { Flags } from "@oclif/core";
 import { Group, StashConnector } from "stash-connector";
-import { BaseCommand, BuildCommands } from "../../../libs/core/baseCommand";
+import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../libs/core/stashResponse";
 import { GroupColumns } from "../../../libs/core/tables";
 import { UX } from "../../../libs/core/ux";
@@ -13,8 +13,8 @@ export default class Create extends BaseCommand {
     ];
     static flags = {
         ...BaseCommand.flags,
-        csv: BuildCommands.csv,
-        alias: BuildCommands.alias,
+        csv: BuildFlags.csv,
+        alias: BuildFlags.alias,
         name: Flags.string({
             description: 'Name of the group to create',
             required: true,

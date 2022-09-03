@@ -1,5 +1,5 @@
 import { Flags } from "@oclif/core";
-import { BaseCommand, BuildCommands } from "../../libs/core/baseCommand";
+import { BaseCommand, BuildFlags } from "../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../libs/core/stashResponse";
 import { InstanceColumns } from "../../libs/core/tables";
 import { UX } from "../../libs/core/ux";
@@ -14,8 +14,8 @@ export default class Login extends BaseCommand {
 
     static flags = {
         ...BaseCommand.flags,
-        alias: BuildCommands.alias,
-        csv: BuildCommands.csv,
+        alias: BuildFlags.alias,
+        csv: BuildFlags.csv,
         username: Flags.string({
             description: 'The Stash username to login',
             required: true,

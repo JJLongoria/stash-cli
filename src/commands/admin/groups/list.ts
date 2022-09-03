@@ -1,6 +1,6 @@
 import { Flags } from "@oclif/core";
 import { Page, Group, StashConnector } from "stash-connector";
-import { BaseCommand, BuildCommands } from "../../../libs/core/baseCommand";
+import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../libs/core/stashResponse";
 import { GroupColumns } from "../../../libs/core/tables";
 import { UX } from "../../../libs/core/ux";
@@ -14,14 +14,10 @@ export default class List extends BaseCommand {
     ];
     static flags = {
         ...BaseCommand.flags,
-        csv: BuildCommands.csv,
-        alias: BuildCommands.alias,
-        ...BuildCommands.pagination,
-        filter: Flags.string({
-            description: 'If specified only group names containing the supplied string will be returned',
-            required: false,
-            name: 'Filter'
-        }),
+        csv: BuildFlags.csv,
+        alias: BuildFlags.alias,
+        ...BuildFlags.pagination,
+        filter: BuildFlags.filter('If specified only group names containing the supplied string will be returned'),
     };
     async run(): Promise<StashCLIResponse<Page<Group>>> {
         const response = new StashCLIResponse<Page<Group>>();

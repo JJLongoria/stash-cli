@@ -1,5 +1,5 @@
 import { ClusterNode, ClusterOutput, StashConnector } from "stash-connector";
-import { BaseCommand, BuildCommands } from "../../libs/core/baseCommand";
+import { BaseCommand, BuildFlags } from "../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../libs/core/stashResponse";
 import { ClusterNodeColumns } from "../../libs/core/tables";
 import { UX } from "../../libs/core/ux";
@@ -12,8 +12,8 @@ export default class Cluster extends BaseCommand {
     ];
     static flags = {
         ...BaseCommand.flags,
-        csv: BuildCommands.csv,
-        alias: BuildCommands.alias,
+        csv: BuildFlags.csv,
+        alias: BuildFlags.alias,
     };
     async run(): Promise<StashCLIResponse<ClusterOutput>> {
         const response = new StashCLIResponse<ClusterOutput>();
