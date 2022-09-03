@@ -4,18 +4,18 @@ import { BaseCommand, BuildCommands } from "../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../libs/core/stashResponse";
 import { GroupColumns } from "../../../libs/core/tables";
 
-export default class Create extends BaseCommand {
-    static description = 'Create a new group.'
+export default class Delete extends BaseCommand {
+    static description = 'Deletes the specified group, removing them from the system. This also removes any permissions that may have been granted to the group.'
     static examples = [
-        `$ stash admin:groups:create -a MyStashAlias --name MyGroup --json`,
-        `$ stash admin:groups:create -a MyStashAlias --name AnotherGroup --csv`,
+        `$ stash admin:groups:delete -a MyStashAlias --name MyGroup --json`,
+        `$ stash admin:groups:delete -a MyStashAlias --name AnotherGroup --csv`,
     ];
     static flags = {
         ...BaseCommand.flags,
         csv: BuildCommands.csv,
         alias: BuildCommands.alias,
         name: Flags.string({
-            description: 'Name of the group to create',
+            description: 'Name of the group to delete',
             required: true,
             name: 'Name'
         }),
@@ -24,7 +24,7 @@ export default class Create extends BaseCommand {
         const response = new StashCLIResponse<Group>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const group = await connector.admin.groups().create(this.flags.name);
+            const group = await connector.admin.groups().delete(this.flags.name);
             response.result = group;
             response.status = 0;
             response.message = this.getRecordDeletedText('Group');

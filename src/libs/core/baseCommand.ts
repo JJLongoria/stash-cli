@@ -87,6 +87,26 @@ export class BaseCommand extends Command {
         return undefined;
     }
 
+    getRecordsFoundText(recordSize: number, recordName: string) {
+        if (recordSize > 0) {
+            return recordSize + ' ' + recordName + ' records found';
+        } else {
+            return 'Not ' + recordName + ' records found';
+        }
+    }
+
+    getRecordCreatedText(recordName: string){
+        return recordName + ' created successfully';
+    }
+
+    getRecordDeletedText(recordName: string){
+        return recordName + ' deleted successfully';
+    }
+
+    getRecordUpdatedText(recordName: string){
+        return recordName + ' updated successfully';
+    }
+
     checkLogin() {
         if (this.flags.alias && this.localConfig.instances) {
             if (!this.localConfig.instances[this.flags.alias]) {
