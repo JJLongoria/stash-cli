@@ -61,6 +61,7 @@ USAGE
   - [**ClusterNode**](#clusternode)
   - [- See `ClusterAddress` Definition](#--see-clusteraddress-definition)
   - [**ClusterAddress**](#clusteraddress)
+  - [**CreateUserInput**](#createuserinput)
   - [**Group**](#group)
   - [**Instance**](#instance)
   - [**User**](#user)
@@ -385,6 +386,7 @@ DESCRIPTION
   - [**ClusterNode**](#clusternode)
   - [- See `ClusterAddress` Definition](#--see-clusteraddress-definition)
   - [**ClusterAddress**](#clusteraddress)
+  - [**CreateUserInput**](#createuserinput)
   - [**Group**](#group)
   - [**Instance**](#instance)
   - [**User**](#user)
@@ -644,6 +646,18 @@ Schema definition:
 {
     "hostName": "string",
     "port": "number",
+}
+```
+---
+## [**CreateUserInput**]()
+```json
+{
+    "name": "string",
+    "password": "string",
+    "displayName": "string",
+    "emailAddress": "string",
+    "addToDefaultGroup": "boolean",
+    "notify": "string",
 }
 ```
 ---

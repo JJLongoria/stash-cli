@@ -1,7 +1,7 @@
 import { Command, Flags } from "@oclif/core";
 import { OutputArgs, OutputFlags } from "@oclif/core/lib/interfaces";
 import { PageOptions, StashError } from "stash-connector";
-import { StrUtils } from "../utils/strUtils";
+import { FileReader } from "../fileSystem";
 import { Config } from "./config";
 import { StashCLIErrorData, StashCLIResponse } from "./stashResponse";
 import { UX } from "./ux";
@@ -13,7 +13,7 @@ export class BuildFlags {
         return str.split(regex).filter((i) => !!i).map((i) => i.trim());
     }
     static alias = Flags.string({
-        description: 'The Stash instance alias to identify user and instance on other operations',
+        description: 'The Stash instance alias to identify user and instance to connect with',
         required: true,
         char: 'a',
         name: 'Alias'
@@ -41,22 +41,32 @@ export class BuildFlags {
     };
     static input = {
         data: (doc: string, required?: boolean, exclusive?: string[]) => {
+            const exclusives = ['file'];
+            if (exclusive && exclusive.length) {
+                exclusives.push(...exclusive);
+            }
             return Flags.string({
-                description: 'JSON Input data. ' + UX.processDocumentation(doc),
+                description: 'JSON Input data. ' + (exclusives && exclusives.length ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
                 required: required,
                 name: 'Data',
                 char: 'd',
-                exclusive: exclusive || ['file'],
+                exclusive: exclusives,
                 parse: (input, context) => {
                     return eval('(' + input + ')');
                 }
             });
         },
-        file: (doc: string, required?: boolean) => {
+        inputFile: (doc: string, required?: boolean, exclusive?: string[]) => {
+            const exclusives = ['data'];
+            if (exclusive && exclusive.length) {
+                exclusives.push(...exclusive);
+            }
             return Flags.file({
-                description: 'JSON Input data file path. ' + UX.processDocumentation(doc),
+                description: 'JSON Input data file path. ' + (exclusives && exclusives.length ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
                 required: required,
+                exclusive: exclusives,
                 name: 'File',
+                char: 'f'
             });
         },
     }
@@ -128,6 +138,34 @@ export class BaseCommand extends Command {
             }
         }
         return undefined;
+    }
+
+    validateRequiredAndExclusives(flagsConfig: OutputFlags<any>) {
+        for (const flagName of Object.keys(flagsConfig)) {
+            const flagConfig = flagsConfig[flagName];
+            if (!this.flags[flagName] && flagConfig.exclusive && flagConfig.exclusive.length) {
+                let nExclusives = 0;
+                let flags = ['--' + flagName];
+                for (const exclusive of flagConfig.exclusive) {
+                    if (this.flags[exclusive]) {
+                        nExclusives++;
+                    } else {
+                        flags.push('--' + exclusive);
+                    }
+                }
+                if (nExclusives === 0) {
+                    throw new Error('Missing Required flags. Must indicate at least one of the following: ' + flags.join(', '));
+                }
+            }
+        }
+    }
+
+    hasInputData() {
+        return this.flags.data || this.flags.file;
+    }
+
+    getInputData() {
+        return this.flags.data || JSON.parse(FileReader.readFileSync(this.flags.file));
     }
 
     parseArray(str: string): string[] {
@@ -217,6 +255,7 @@ export class BaseCommand extends Command {
         if (this.statics.loginRequired) {
             this.checkLogin();
         }
+        this.validateRequiredAndExclusives(this.statics.flags);
     }
 
     processError(response: StashCLIResponse<any>, error: any) {

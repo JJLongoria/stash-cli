@@ -28,7 +28,7 @@ export default class Create extends BaseCommand {
             const group = await connector.admin.groups().create(this.flags.name);
             response.result = group;
             response.status = 0;
-            response.message = this.getRecordDeletedText('Group');
+            response.message = this.getRecordCreatedText('Group');
             this.ux.table<Group>([group], GroupColumns, {
                 csv: this.flags.csv
             });
