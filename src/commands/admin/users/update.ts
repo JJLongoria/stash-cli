@@ -6,7 +6,7 @@ import { GroupColumns, UserColumns } from "../../../libs/core/tables";
 import { UX } from "../../../libs/core/ux";
 
 export default class Update extends BaseCommand {
-    static description = 'Creates a new user. ' + UX.processDocumentation('<doc:User>');
+    static description = 'Update a user\'s details. ' + UX.processDocumentation('<doc:User>');
     static examples = [
         `$ stash admin:users:create -a MyStashAlias --data "{ 'name':'UserName', 'displayName':'Name', 'emailAddress':'user@email.com', 'addToDefaultGroup':false, 'notify':false }" --json`,
         `$ stash admin:users:create -a MyStashAlias --file "path/to/json/data/file"`,
@@ -27,7 +27,7 @@ export default class Update extends BaseCommand {
             const userInput = this.getInputData() as User;
             const user = await connector.admin.users().update(userInput);
             response.status = 0;
-            response.message = this.getRecordCreatedText('User');
+            response.message = this.getRecordUpdatedText('User');
             this.ux.table<User>([user], UserColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended && !this.flags.csv
