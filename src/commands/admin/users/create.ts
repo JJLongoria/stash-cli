@@ -15,7 +15,7 @@ export default class Create extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         data: BuildFlags.input.data('<doc:CreateUserInput>', false),
-        file: BuildFlags.input.inputFile('<doc:CreateUserInput>', false),
+        file: BuildFlags.input.inputfile('<doc:CreateUserInput>', false),
     };
     async run(): Promise<StashCLIResponse<User>> {
         const response = new StashCLIResponse<User>();

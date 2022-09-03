@@ -12,6 +12,18 @@ export class BuildFlags {
         const regex = new RegExp(`"(.*?)"|\'(.*?)\'|,`);
         return str.split(regex).filter((i) => !!i).map((i) => i.trim());
     }
+    static async parseKeyValue(str: string) {
+        console.log(str);
+        const obj: any = {};
+        const keyValueRegexp = new RegExp(`"(.*?)"|\'(.*?)\'|=`);
+        const arrayValues = await BuildFlags.parseArray(str);
+        console.log(arrayValues);
+        for(const value of arrayValues){
+            const keyValuePair = value.split(keyValueRegexp).filter((i) => !!i).map((i) => i.trim());
+            obj[keyValuePair[0]] = keyValuePair[1];
+        }
+        return obj;
+    }
     static alias = Flags.string({
         description: 'The Stash instance alias to identify user and instance to connect with',
         required: true,
@@ -40,8 +52,24 @@ export class BuildFlags {
         })
     };
     static input = {
+        keyvalue: (doc: string, required?: boolean, exclusive?: string[]) => {
+            const exclusives = ['file', 'data'];
+            if (exclusive && exclusive.length) {
+                exclusives.push(...exclusive);
+            }
+            return Flags.string({
+                description: 'Key-Value pair data. (key1=value1,key2=value2...). ' + (exclusives && exclusives.length ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
+                required: required,
+                name: 'Keyvalue',
+                char: 'k',
+                exclusive: exclusives,
+                parse: (input, context) => {
+                    return BuildFlags.parseKeyValue(input);
+                }
+            });
+        },
         data: (doc: string, required?: boolean, exclusive?: string[]) => {
-            const exclusives = ['file'];
+            const exclusives = ['file', 'keyvalue'];
             if (exclusive && exclusive.length) {
                 exclusives.push(...exclusive);
             }
@@ -56,8 +84,8 @@ export class BuildFlags {
                 }
             });
         },
-        inputFile: (doc: string, required?: boolean, exclusive?: string[]) => {
-            const exclusives = ['data'];
+        inputfile: (doc: string, required?: boolean, exclusive?: string[]) => {
+            const exclusives = ['data', 'keyvalue'];
             if (exclusive && exclusive.length) {
                 exclusives.push(...exclusive);
             }
@@ -161,11 +189,11 @@ export class BaseCommand extends Command {
     }
 
     hasInputData() {
-        return this.flags.data || this.flags.file;
+        return this.flags.data || this.flags.file || this.flags.keyvalue;
     }
 
     getInputData() {
-        return this.flags.data || JSON.parse(FileReader.readFileSync(this.flags.file));
+        return this.flags.data || (this.flags.file ? JSON.parse(FileReader.readFileSync(this.flags.file)) : undefined) || this.flags.keyvalue;
     }
 
     parseArray(str: string): string[] {

@@ -15,9 +15,10 @@ export default class Add extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         data: BuildFlags.input.data('<doc:AddUserInput>', false, ['group', 'users']),
-        file: BuildFlags.input.inputFile('<doc:AddUserInput>', false, ['group', 'users']),
+        file: BuildFlags.input.inputfile('<doc:AddUserInput>', false, ['group', 'users']),
+        //keyvalue: BuildFlags.input.keyvalue('<doc:AddUserInput>', false, ['group', 'users']),
         group: Flags.string({
-            description: 'The group name to add new members. ' + UX.cannotUseWith(['data', 'file']) + '. ' + UX.dependsOn(['users']),
+            description: 'The group name to add new members. ' + UX.cannotUseWith(['data', 'file', 'keyvalue']) + '. ' + UX.dependsOn(['users']),
             char: 'g',
             name: 'Group',
             dependsOn: ['users'],
@@ -36,13 +37,14 @@ export default class Add extends BaseCommand {
         const response = new StashCLIResponse<any>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
+            console.log(this.flags.keyvalue);
             const dataToCreate: AddUsersInput = this.hasInputData() ? this.getInputData() : {
                 group: this.flags.group,
                 users: this.flags.users
             };
             const message = 'Users added to the group successfully';
-            const group = await connector.admin.groups().addUsers(dataToCreate);
-            response.result = group;
+            /*const group = await connector.admin.groups().addUsers(dataToCreate);
+            response.result = group;*/
             response.status = 0;
             response.message = message
             /*this.ux.table<Group>([group], GroupColumns, {
