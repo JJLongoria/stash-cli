@@ -14,8 +14,8 @@ export default class Add extends BaseCommand {
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
-        data: BuildFlags.input.data('<doc:AddUserInput>', false, ['group', 'users']),
-        file: BuildFlags.input.inputfile('<doc:AddUserInput>', false, ['group', 'users']),
+        data: BuildFlags.input.jsonData('<doc:AddUserInput>', false, ['group', 'users']),
+        file: BuildFlags.input.jsonFile('<doc:AddUserInput>', false, ['group', 'users']),
         //keyvalue: BuildFlags.input.keyvalue('<doc:AddUserInput>', false, ['group', 'users']),
         group: Flags.string({
             description: 'The group name to add new members. ' + UX.cannotUseWith(['data', 'file', 'keyvalue']) + '. ' + UX.dependsOn(['users']),
@@ -37,7 +37,7 @@ export default class Add extends BaseCommand {
         const response = new StashCLIResponse<any>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const dataToCreate: AddUsersInput = this.hasInputData() ? this.getInputData() : {
+            const dataToCreate: AddUsersInput = this.hasInputData() ? this.getJSONInputData() : {
                 group: this.flags.group,
                 users: this.flags.users
             };

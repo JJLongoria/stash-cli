@@ -68,7 +68,7 @@ export class BuildFlags {
                 }
             });
         },
-        data: (doc: string, required?: boolean, exclusive?: string[]) => {
+        jsonData: (doc: string, required?: boolean, exclusive?: string[]) => {
             const exclusives = ['file', 'keyvalue'];
             if (exclusive && exclusive.length) {
                 exclusives.push(...exclusive);
@@ -84,7 +84,20 @@ export class BuildFlags {
                 }
             });
         },
-        inputfile: (doc: string, required?: boolean, exclusive?: string[]) => {
+        data: (doc: string, required?: boolean, exclusive?: string[]) => {
+            const exclusives = ['file', 'keyvalue'];
+            if (exclusive && exclusive.length) {
+                exclusives.push(...exclusive);
+            }
+            return Flags.string({
+                description: 'Input data. ' + (exclusives && exclusives.length ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
+                required: required,
+                name: 'Data',
+                char: 'd',
+                exclusive: exclusives,
+            });
+        },
+        jsonFile: (doc: string, required?: boolean, exclusive?: string[]) => {
             const exclusives = ['data', 'keyvalue'];
             if (exclusive && exclusive.length) {
                 exclusives.push(...exclusive);
@@ -97,6 +110,20 @@ export class BuildFlags {
                 char: 'f'
             });
         },
+        file: (doc: string, required?: boolean, exclusive?: string[]) => {
+            const exclusives = ['data', 'keyvalue'];
+            if (exclusive && exclusive.length) {
+                exclusives.push(...exclusive);
+            }
+            return Flags.file({
+                description: 'Input data file path. ' + (exclusives && exclusives.length ? UX.cannotUseWith(exclusives) + '. ' : '') + UX.processDocumentation(doc),
+                required: required,
+                exclusive: exclusives,
+                name: 'File',
+                char: 'f'
+            });
+        },
+        
     }
     static pagination = {
         all: Flags.boolean({
@@ -192,8 +219,12 @@ export class BaseCommand extends Command {
         return this.flags.data || this.flags.file || this.flags.keyvalue;
     }
 
-    getInputData() {
+    getJSONInputData() {
         return this.flags.data || (this.flags.file ? JSON.parse(FileReader.readFileSync(this.flags.file)) : undefined) || this.flags.keyvalue;
+    }
+
+    getInputData() {
+        return this.flags.data || (this.flags.file ? FileReader.readFileSync(this.flags.file) : undefined);
     }
 
     parseArray(str: string): string[] {

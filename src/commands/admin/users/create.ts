@@ -14,14 +14,14 @@ export default class Create extends BaseCommand {
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
-        data: BuildFlags.input.data('<doc:CreateUserInput>', false),
-        file: BuildFlags.input.inputfile('<doc:CreateUserInput>', false),
+        data: BuildFlags.input.jsonData('<doc:CreateUserInput>', false),
+        file: BuildFlags.input.jsonFile('<doc:CreateUserInput>', false),
     };
     async run(): Promise<StashCLIResponse<User>> {
         const response = new StashCLIResponse<User>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const userInput = this.getInputData() as CreateUserInput;
+            const userInput = this.getJSONInputData() as CreateUserInput;
             await connector.admin.users().create(userInput);
             response.status = 0;
             response.message = this.getRecordCreatedText('User');

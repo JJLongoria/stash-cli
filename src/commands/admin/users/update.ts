@@ -16,14 +16,14 @@ export default class Update extends BaseCommand {
         alias: BuildFlags.alias,
         csv: BuildFlags.csv,
         extended: BuildFlags.extended,
-        data: BuildFlags.input.data('<doc:User>', false),
-        file: BuildFlags.input.inputfile('<doc:User>', false),
+        data: BuildFlags.input.jsonData('<doc:User>', false),
+        file: BuildFlags.input.jsonFile('<doc:User>', false),
     };
     async run(): Promise<StashCLIResponse<User>> {
         const response = new StashCLIResponse<User>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const userInput = this.getInputData() as User;
+            const userInput = this.getJSONInputData() as User;
             const user = await connector.admin.users().update(userInput);
             response.status = 0;
             response.message = this.getRecordUpdatedText('User');
