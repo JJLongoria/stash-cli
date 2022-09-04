@@ -18,7 +18,7 @@ export default class List extends BaseCommand {
         alias: BuildFlags.alias,
         key: Flags.string({
             description: 'The Project key to retrieve',
-            required: false,
+            required: true,
             name: 'Key'
         }),
     };
