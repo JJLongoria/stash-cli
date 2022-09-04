@@ -25,7 +25,7 @@ export class FileWriter {
      * @param {string} path path to save the file
      * @param {string} content content to write into the file
      */
-    static createFileSync(path: string, content: string): void {
+    static createFileSync(path: string, content: string | any): void {
         fs.writeFileSync(path, content);
     }
 

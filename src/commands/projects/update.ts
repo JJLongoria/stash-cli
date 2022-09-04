@@ -39,6 +39,9 @@ export default class Update extends BaseCommand {
             if(input.avatarFile){
                 const extension = PathUtils.getFileExtension(input.avatarFile);
                 const absoluePath = PathUtils.getAbsolutePath(input.avatarFile);
+                if(!extension || extension.toLocaleLowerCase() !== 'png'){
+                    throw new Error('Not allowed format. Only PNG images are allowed');
+                }
                 if(FileChecker.isExists(absoluePath)){
                     data.avatar = new Avatar(extension, btoa(FileReader.readFileSync(absoluePath)));
                 } else {

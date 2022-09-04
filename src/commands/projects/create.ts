@@ -5,6 +5,7 @@ import { ProjectColumns } from "../../libs/core/tables";
 import { UX } from "../../libs/core/ux";
 import { FileChecker, FileReader, PathUtils } from "../../libs/fileSystem";
 import { CLIProjectInput } from "../../libs/types";
+import { StrUtils } from "../../libs/utils/strUtils";
 
 export default class Create extends BaseCommand {
     static description = 'Create a new project. ' + UX.processDocumentation('<doc:Project>');
@@ -33,6 +34,9 @@ export default class Create extends BaseCommand {
             if(input.avatarFile){
                 const extension = PathUtils.getFileExtension(input.avatarFile);
                 const absoluePath = PathUtils.getAbsolutePath(input.avatarFile);
+                if(!extension || extension.toLocaleLowerCase() !== 'png'){
+                    throw new Error('Not allowed format. Only PNG images are allowed');
+                }
                 if(FileChecker.isExists(absoluePath)){
                     data.avatar = new Avatar(extension, btoa(FileReader.readFileSync(absoluePath)));
                 } else {

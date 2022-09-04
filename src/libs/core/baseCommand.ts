@@ -18,7 +18,7 @@ export class BuildFlags {
         const keyValueRegexp = new RegExp(`"(.*?)"|\'(.*?)\'|=`);
         const arrayValues = await BuildFlags.parseArray(str);
         console.log(arrayValues);
-        for(const value of arrayValues){
+        for (const value of arrayValues) {
             const keyValuePair = value.split(keyValueRegexp).filter((i) => !!i).map((i) => i.trim());
             obj[keyValuePair[0]] = keyValuePair[1];
         }
@@ -123,7 +123,25 @@ export class BuildFlags {
                 char: 'f'
             });
         },
-        
+
+    }
+    static output = {
+        file: (doc: string, required?: boolean, exclusive?: string[]) => {
+            return Flags.file({
+                description: 'Output file path. ' + (exclusive && exclusive.length ? UX.cannotUseWith(exclusive) + '. ' : '') + UX.processDocumentation(doc),
+                required: required,
+                exclusive: exclusive,
+                name: 'Output File',
+            });
+        },
+        folder: (doc: string, required?: boolean, exclusive?: string[]) => {
+            return Flags.directory({
+                description: 'Output folder path. ' + (exclusive && exclusive.length ? UX.cannotUseWith(exclusive) + '. ' : '') + UX.processDocumentation(doc),
+                required: required,
+                exclusive: exclusive,
+                name: 'Output Folder',
+            });
+        },
     }
     static pagination = {
         all: Flags.boolean({
