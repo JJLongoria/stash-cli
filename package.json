@@ -63,7 +63,19 @@
         "description": "Topic with all Stash administration commands. (License, users and groups, permissions...)",
         "subtopics": {
           "groups": {
-            "description": "Topic with all groups administration commands"
+            "description": "Topic with all group administration commands"
+          },
+          "users": {
+            "description": "Topic with all user administration commands"
+          },
+          "license": {
+            "description": "Topic with all license administration commands"
+          },
+          "mail": {
+            "description": "Topic with all Mail Server administration commands"
+          },
+          "permissions": {
+            "description": "Topic with all permission administration commands"
           }
         }
       }
