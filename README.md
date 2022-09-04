@@ -584,7 +584,6 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "avatarFile": "string",
 }
 ```
-- See [`Avatar`](#avatar) Definition.
 
 ---
 ## [**User**]()
