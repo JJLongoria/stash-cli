@@ -21,6 +21,11 @@ export default class Recreate extends BaseCommand {
             required: true,
             name: 'Project'
         }),
+        slug: Flags.string({
+            description: 'The Repository slug to recreate',
+            required: true,
+            name: 'Slug'
+        }),
     };
     async run(): Promise<StashCLIResponse<Repository>> {
         const response = new StashCLIResponse<Repository>();
