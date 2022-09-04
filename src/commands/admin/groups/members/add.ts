@@ -37,7 +37,6 @@ export default class Add extends BaseCommand {
         const response = new StashCLIResponse<any>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            console.log(this.flags.keyvalue);
             const dataToCreate: AddUsersInput = this.hasInputData() ? this.getInputData() : {
                 group: this.flags.group,
                 users: this.flags.users
