@@ -66,6 +66,7 @@ USAGE
   - [**Instance**](#instance)
   - [**License**](#license)
   - [**LicenseStatus**](#licensestatus)
+  - [**MailHostConfiguration**](#mailhostconfiguration)
   - [**User**](#user)
 
 ## `stash hello PERSON`
@@ -171,7 +172,7 @@ DESCRIPTION
 
   Installation of a user-installed plugin will override a core plugin.
 
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
+  e.g. If you have a core plugin that has a "hello" command, installing a user-installed plugin with a "hello" command
   will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
   the CLI without the need to patch and update the whole CLI.
 
@@ -231,7 +232,7 @@ DESCRIPTION
 
   Installation of a user-installed plugin will override a core plugin.
 
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
+  e.g. If you have a core plugin that has a "hello" command, installing a user-installed plugin with a "hello" command
   will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
   the CLI without the need to patch and update the whole CLI.
 
@@ -266,7 +267,7 @@ DESCRIPTION
 
   Installation of a linked plugin will override a user-installed or core plugin.
 
-  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
+  e.g. If you have a user-installed or core plugin that has a "hello" command, installing a linked plugin with a "hello"
   command will override the user-installed or core plugin implementation. This is useful for development work.
 
 EXAMPLES
@@ -393,6 +394,7 @@ DESCRIPTION
   - [**Instance**](#instance)
   - [**License**](#license)
   - [**LicenseStatus**](#licensestatus)
+  - [**MailHostConfiguration**](#mailhostconfiguration)
   - [**User**](#user)
 
 ## `oex hello PERSON`
@@ -520,7 +522,7 @@ DESCRIPTION
 
   Installation of a user-installed plugin will override a core plugin.
 
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
+  e.g. If you have a core plugin that has a "hello" command, installing a user-installed plugin with a "hello" command
   will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
   the CLI without the need to patch and update the whole CLI.
 
@@ -555,7 +557,7 @@ DESCRIPTION
 
   Installation of a linked plugin will override a user-installed or core plugin.
 
-  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
+  e.g. If you have a user-installed or core plugin that has a "hello" command, installing a linked plugin with a "hello"
   command will override the user-installed or core plugin implementation. This is useful for development work.
 
 EXAMPLES
@@ -718,6 +720,19 @@ Schema definition:
 {
     "serverId": "string",
     "currentNumberOfUsers": "number",
+}
+```
+---
+## [**MailHostConfiguration**]()
+```json
+{
+    "hostname": "string",
+    "port": "number",
+    "protocol": "string",
+    "use-start-tls": "boolean",
+    "require-start-tls": "boolean",
+    "username": "string",
+    "sender-address": "string",
 }
 ```
 ---

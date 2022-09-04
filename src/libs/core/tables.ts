@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ClusterNode, Group, License, User } from "stash-connector";
+import { ClusterNode, Group, License, MailHostConfiguration, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -159,5 +159,29 @@ export const LicenseColumns: CliUx.Table.table.Columns<Record<string, License>> 
     supportEntitlementNumber: {
         header: 'Supporn Entitlement Number',
         extended: true,
+    },
+}
+
+export const MailHostColumns: CliUx.Table.table.Columns<Record<string, MailHostConfiguration>> = {
+    username: {
+        header: 'Username',
+    },
+    'sender-address': {
+        header: 'Sender Address',
+    },
+    hostname: {
+        header: 'Host',
+    },
+    port: {
+        header: 'Port',
+    },
+    protocol: {
+        header: 'Protocol',
+    },
+    'use-start-tls': {
+        header: 'User Start TLS',
+    },
+    'require-start-tls': {
+        header: 'Required Start TLS',
     },
 }

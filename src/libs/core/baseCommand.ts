@@ -243,6 +243,10 @@ export class BaseCommand extends Command {
         }
     }
 
+    getRecordRetrievedText(recordName: string) {
+        return recordName + ' retrieved successfully';
+    }
+
     getRecordCreatedText(recordName: string) {
         return recordName + ' created successfully';
     }

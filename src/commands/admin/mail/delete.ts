@@ -10,7 +10,6 @@ export default class Delete extends BaseCommand {
     ];
     static flags = {
         ...BaseCommand.flags,
-        csv: BuildFlags.csv,
         alias: BuildFlags.alias,
     };
     async run(): Promise<StashCLIResponse<any>> {
