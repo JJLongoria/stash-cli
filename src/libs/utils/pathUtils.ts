@@ -48,6 +48,10 @@ export class PathUtils {
         return file.split('.').slice(0, -1).join('.');
     }
 
+    static getFileExtension(file: string): string {
+        return path.extname(file);
+    }
+
     static homeDir(){
         return os.homedir();
     }

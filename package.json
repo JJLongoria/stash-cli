@@ -1,5 +1,5 @@
 {
-  "name": "stash-cli",
+  "name": "cli-stash",
   "version": "0.1.0",
   "description": "CLI application to manage and work with Atlassian Stash. Work with your Stash project and repositories from Command lines.",
   "author": "Juan José Longoria @JJLongoria",
@@ -78,6 +78,9 @@
             "description": "Topic with all permission administration commands"
           }
         }
+      },
+      "projects": {
+        "description": "Topic with all Stash projects commands. (Manage projects, repositories, pull requests...)"
       }
     }
   },

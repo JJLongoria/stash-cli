@@ -10,3 +10,10 @@ export interface Instance {
     host: string;
     token: string;
 }
+
+export interface CLIProjectInput {
+    key: string;
+    name: string;
+    description: string;
+    avatarFile: string;
+}

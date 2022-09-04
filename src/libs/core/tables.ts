@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ClusterNode, Group, License, MailHostConfiguration, PermissionGroups, User } from "stash-connector";
+import { ClusterNode, Group, License, MailHostConfiguration, PermissionGroups, Project, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -195,5 +195,28 @@ export const MailHostColumns: CliUx.Table.table.Columns<Record<string, MailHostC
     },
     'require-start-tls': {
         header: 'Required Start TLS',
+    },
+}
+
+export const ProjectColumns: CliUx.Table.table.Columns<Record<string, Project>> = {
+    id: {
+        header: 'ID',
+    },
+    key: {
+        header: 'Key',
+    },
+    name: {
+        header: 'Name',
+    },
+    description: {
+        header: 'Description',
+    },
+    public: {
+        header: 'Public',
+        extended: true,
+    },
+    type: {
+        header: 'Type',
+        extended: true
     },
 }
