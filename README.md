@@ -67,6 +67,7 @@ USAGE
   - [**License**](#license)
   - [**LicenseStatus**](#licensestatus)
   - [**MailHostConfiguration**](#mailhostconfiguration)
+  - [**PermissionGroups**](#permissiongroups)
   - [**PermissionUsersOutput**](#permissionusersoutput)
   - [**User**](#user)
 
@@ -396,6 +397,7 @@ DESCRIPTION
   - [**License**](#license)
   - [**LicenseStatus**](#licensestatus)
   - [**MailHostConfiguration**](#mailhostconfiguration)
+  - [**PermissionGroups**](#permissiongroups)
   - [**PermissionUsersOutput**](#permissionusersoutput)
   - [**User**](#user)
 
@@ -738,6 +740,16 @@ Schema definition:
 }
 ```
 ---
+## [**PermissionGroups**]()
+```json
+{
+    "group": "User",
+    "permission": "'LICENSED_USER' | 'PROJECT_CREATE' | 'ADMIN' | 'SYS_ADMIN'",
+}
+```
+- See [`Group`](#group) Definition
+
+---
 ## [**PermissionUsersOutput**]()
 ```json
 {
@@ -766,3 +778,5 @@ Schema definition:
 }
 ```
 ---
+
+

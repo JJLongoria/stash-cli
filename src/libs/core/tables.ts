@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ClusterNode, Group, License, MailHostConfiguration, User } from "stash-connector";
+import { ClusterNode, Group, License, MailHostConfiguration, PermissionGroups, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -23,6 +23,18 @@ export const GroupColumns: CliUx.Table.table.Columns<Record<string, Group>> = {
     },
     deletable: {
         header: 'Deletable',
+    },
+};
+
+export const GroupPermissionsColumns: CliUx.Table.table.Columns<Record<string, PermissionGroups>> = {
+    group: {
+        header: 'Name',
+        get: (row: any) => {
+            return row.group.name;
+        }
+    },
+    permission: {
+        header: 'Permission',
     },
 };
 

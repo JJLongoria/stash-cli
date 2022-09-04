@@ -8,9 +8,9 @@ import { UX } from "../../../../libs/core/ux";
 export default class List extends BaseCommand {
     static description = 'Retrieve a page of Users with at least one permission, or retrieve a page of users without any permission. ' + UX.processDocumentation('<doc:PermissionUsersOutput>');
     static examples = [
-        `$ stash admin:groups:list -a MyStashAlias --all`,
-        `$ stash admin:groups:list -a MyStashAlias -l 100 -s 50`,
-        `$ stash admin:groups:list -a MyStashAlias --filter "groupName" --limit 30`,
+        `$ stash admin:permissions:users:list -a MyStashAlias --all`,
+        `$ stash admin:permissions:users:list -a MyStashAlias -l 100 -s 50`,
+        `$ stash admin:permissions:users:list -a MyStashAlias --filter "groupName" --limit 30`,
     ];
     static flags = {
         ...BaseCommand.flags,
@@ -65,7 +65,7 @@ export default class List extends BaseCommand {
             }
             response.result = result;
             response.status = 0;
-            response.message = this.getRecordsFoundText(result.values.length, 'UserPermissions');
+            response.message = this.getRecordsFoundText(result.values.length, 'User Permissions');
             console.log(response.message);
             this.ux.table<User>(result.values, UserColumns, {
                 csv: this.flags.csv,

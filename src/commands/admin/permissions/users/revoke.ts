@@ -4,7 +4,7 @@ import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../../libs/core/stashResponse";
 
 export default class Revoke extends BaseCommand {
-    static description = 'Promote or demote the global permission level of a user.';
+    static description = 'Revoke all global permissions for a user.';
     static examples = [
         `$ stash admin:permissions:users:revoke -a MyStashAlias --name Username --json`,
         `$ stash admin:permissions:users:revoke -a MyStashAlias --name OtherUser`,
