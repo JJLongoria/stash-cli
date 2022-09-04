@@ -56,6 +56,7 @@ USAGE
   - [`oex plugins:uninstall PLUGIN...`](#oex-pluginsuninstall-plugin)
   - [`oex plugins update`](#oex-plugins-update)
 - [**JSON Objects Schemes**](#json-objects-schemes)
+  - [**AddGroupInput**](#addgroupinput)
   - [**AddUsersInput**](#addusersinput)
   - [**ClusterOutput**](#clusteroutput)
   - [**ClusterNode**](#clusternode)
@@ -381,6 +382,7 @@ DESCRIPTION
   - [`oex plugins:uninstall PLUGIN...`](#oex-pluginsuninstall-plugin)
   - [`oex plugins update`](#oex-plugins-update)
 - [**JSON Objects Schemes**](#json-objects-schemes)
+  - [**AddGroupInput**](#addgroupinput)
   - [**AddUsersInput**](#addusersinput)
   - [**ClusterOutput**](#clusteroutput)
   - [**ClusterNode**](#clusternode)
@@ -607,6 +609,14 @@ Schema definition:
 {
   "FieldName": "FieldType", // Required field
   "FieldName?": "FieldType", // Optional field
+}
+```
+---
+## [**AddGroupInput**]()
+```json
+{
+    "user": "string",
+    "groups": "string[]",
 }
 ```
 ---
