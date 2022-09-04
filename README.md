@@ -60,11 +60,12 @@ USAGE
   - [**AddUsersInput**](#addusersinput)
   - [**ClusterOutput**](#clusteroutput)
   - [**ClusterNode**](#clusternode)
-  - [- See `ClusterAddress` Definition](#--see-clusteraddress-definition)
   - [**ClusterAddress**](#clusteraddress)
   - [**CreateUserInput**](#createuserinput)
   - [**Group**](#group)
   - [**Instance**](#instance)
+  - [**License**](#license)
+  - [**LicenseStatus**](#licensestatus)
   - [**User**](#user)
 
 ## `stash hello PERSON`
@@ -386,11 +387,12 @@ DESCRIPTION
   - [**AddUsersInput**](#addusersinput)
   - [**ClusterOutput**](#clusteroutput)
   - [**ClusterNode**](#clusternode)
-  - [- See `ClusterAddress` Definition](#--see-clusteraddress-definition)
   - [**ClusterAddress**](#clusteraddress)
   - [**CreateUserInput**](#createuserinput)
   - [**Group**](#group)
   - [**Instance**](#instance)
+  - [**License**](#license)
+  - [**LicenseStatus**](#licensestatus)
   - [**User**](#user)
 
 ## `oex hello PERSON`
@@ -650,6 +652,7 @@ Schema definition:
 }
 ```
 - See [`ClusterAddress`](#clusteraddress) Definition
+
 ---
 ## [**ClusterAddress**]()
 ```json
@@ -685,6 +688,36 @@ Schema definition:
     "alias": "string",
     "host": "string",
     "token": "string",
+}
+```
+---
+## [**License**]()
+```json
+{
+    "creationDate": "number",
+    "purchaseDate": "number",
+    "expiryDate": "number",
+    "numberOfDaysBeforeExpiry": "number",
+    "maintenanceExpiryDate": "number",
+    "numberOfDaysBeforeMaintenanceExpiry": "number",
+    "gracePeriodEndDate": "number",
+    "numberOfDaysBeforeGracePeriodExpiry": "number",
+    "maximumNumberOfUsers": "number",
+    "unlimitedNumberOfUsers": "boolean",
+    "serverId": "string",
+    "supportEntitlementNumber": "string",
+    "license": "string",
+    "status": "LicenseStatus",
+}
+```
+- See [`LicenseStatus`](#licensestatus) Definition
+
+---
+## [**LicenseStatus**]()
+```json
+{
+    "serverId": "string",
+    "currentNumberOfUsers": "number",
 }
 ```
 ---

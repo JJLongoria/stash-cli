@@ -46,7 +46,7 @@ export default class List extends BaseCommand {
             console.log(response.message);
             this.ux.table<User>(result.values, UserColumns, {
                 csv: this.flags.csv,
-                extended: this.flags.extended && !this.flags.csv
+                extended: this.flags.extended || this.flags.csv
             });
         } catch (error) {
             this.processError(response, error);

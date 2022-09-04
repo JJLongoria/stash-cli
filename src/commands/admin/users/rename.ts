@@ -37,7 +37,7 @@ export default class Rename extends BaseCommand {
             console.log(response.message);
             this.ux.table<User>([user], UserColumns, {
                 csv: this.flags.csv,
-                extended: this.flags.extended && !this.flags.csv
+                extended: this.flags.extended || this.flags.csv
             });
         } catch (error) {
             this.processError(response, error);

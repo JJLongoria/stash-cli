@@ -9,6 +9,7 @@ export default class Logout extends BaseCommand {
     static loginRequired = false;
     static description = 'Logout againts Stash instance.';
     static examples = [
+        `$ stash auth:logout -a "Alias" --json`,
         `$ stash auth:logout -a "Alias"`,
     ];
 

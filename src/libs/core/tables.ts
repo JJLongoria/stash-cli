@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ClusterNode, Group, User } from "stash-connector";
+import { ClusterNode, Group, License, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -87,6 +87,77 @@ export const UserColumns: CliUx.Table.table.Columns<Record<string, User>> = {
     },
     mutableGroups: {
         header: 'Mutable Groups',
+        extended: true,
+    },
+}
+
+export const LicenseColumns: CliUx.Table.table.Columns<Record<string, License>> = {
+    license: {
+        header: 'License',
+    },
+    status: {
+        header: 'Status',
+        get: (row: any) => {
+            return row.status.serverId + ' (' + row.status.currentNumberOfUsers + ')';
+        }
+    },
+    serverId: {
+        header: 'Server Id',
+    },
+    creationDate: {
+        header: 'Creation Date',
+        get: (row: any) => {
+            return new Date(row.creationDate).toISOString();
+        }
+    },
+    purchaseDate: {
+        header: 'Purchase Date',
+        get: (row: any) => {
+            return new Date(row.purchaseDate).toISOString();
+        }
+    },
+    expiryDate: {
+        header: 'Expiry Date',
+        get: (row: any) => {
+            return new Date(row.expiryDate).toISOString();
+        }
+    },
+    numberOfDaysBeforeExpiry: {
+        header: 'Days before Expiry',
+        extended: true,
+    },
+    maintenanceExpiryDate: {
+        header: 'Maintenance Expiry Date',
+        extended: true,
+        get: (row: any) => {
+            return new Date(row.maintenanceExpiryDate).toISOString();
+        }
+    },
+    numberOfDaysBeforeMaintenanceExpiry: {
+        header: 'Days Before Maintenance Expiry',
+        extended: true,
+    },
+    gracePeriodEndDate: {
+        header: 'Grace Period End Date',
+        extended: true,
+        get: (row: any) => {
+            return new Date(row.gracePeriodEndDate).toISOString();
+        }
+    },
+    numberOfDaysBeforeGracePeriodExpiry: {
+        header: 'Days Before Grace Period Expiry',
+        extended: true,
+    },
+    maximumNumberOfUsers: {
+        header: 'Max Users',
+        extended: true,
+    },
+    unlimitedNumberOfUsers: {
+        header: 'Unlimited Users',
+        extended: true,
+    },
+    supportEntitlementNumber: {
+        header: 'Supporn Entitlement Number',
         extended: true,
     },
 }
