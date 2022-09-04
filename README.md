@@ -33,6 +33,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**AddGroupInput**](#addgroupinput)
   - [**AddUsersInput**](#addusersinput)
   - [**Avatar**](#avatar)
+  - [**Branch**](#branch)
   - [**ClusterOutput**](#clusteroutput)
   - [**ClusterNode**](#clusternode)
   - [**ClusterAddress**](#clusteraddress)
@@ -419,6 +420,17 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 {
     "type": "string",
     "content": "string",
+}
+```
+---
+## [**Branch**]()
+```json
+{
+    "id": "string",
+    "displayId": "string",
+    "latestChangeset": "string",
+    "latestCommit": "string",
+    "isDefault": "boolean",
 }
 ```
 ---

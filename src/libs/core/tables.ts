@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ClusterNode, Group, License, MailHostConfiguration, PermissionGroups, Project, Repository, User } from "stash-connector";
+import { Branch, ClusterNode, Group, License, MailHostConfiguration, PermissionGroups, Project, Repository, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -268,4 +268,22 @@ export const RepositoryColumns: CliUx.Table.table.Columns<Record<string, Reposit
         header: 'Clone URL',
         extended: true,
     },
+}
+
+export const BranchColumns: CliUx.Table.table.Columns<Record<string, Branch>> = {
+    id: {
+        header: 'ID',
+    },
+    displayId: {
+        header: 'Display Id',
+    },
+    latestChangeset: {
+        header: 'Latest Changeset',
+    },
+    latestCommit: {
+        header: 'Latest Commit',
+    },
+    isDefault: {
+        header: 'Default',
+    }
 }
