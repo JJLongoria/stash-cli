@@ -6,8 +6,8 @@ import { StashCLIResponse } from "../../../libs/core/stashResponse";
 export default class Delete extends BaseCommand {
     static description = 'Schedule the repository matching the supplied projectKey and repositorySlug to be deleted.';
     static examples = [
-        `$ stash projects:repos:delete -a MyStashAlias --project "ProjectKey" --name "MyRepo"`,
-        `$ stash projects:repos:delete -a MyStashAlias --project "ProjectKey" --name "MyRepo" --json`,
+        `$ stash projects:repos:delete -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug"`,
+        `$ stash projects:repos:delete -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --json`,
     ];
     static flags = {
         ...BaseCommand.flags,
