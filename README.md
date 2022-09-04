@@ -50,6 +50,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**Project**](#project)
   - [**ProjectInput**](#projectinput)
   - [**Repository**](#repository)
+  - [**UpdateRepoInput**](#updaterepoinput)
   - [**User**](#user)
 
 <!-- toc -->
@@ -621,6 +622,20 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 - See [`Link`](#link) Definition.
 - See [`LinkRef`](#linkref) Definition
 
+---
+## [**UpdateRepoInput**]()
+```json
+{
+    "slug?": "string",
+    "name?": "string",
+    "scmId?": "string",
+    "forkable?": "boolean",
+    "project?": {
+        "key": "string",
+    },
+    "public?": "boolean",
+}
+```
 ---
 ## [**User**]()
 ```json
