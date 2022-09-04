@@ -742,7 +742,7 @@ Schema definition:
 ```json
 {
     "user": "User",
-    "permission": "string",
+    "permission": "'LICENSED_USER' | 'PROJECT_CREATE' | 'ADMIN' | 'SYS_ADMIN'",
 }
 ```
 - See [`User`](#user) Definition
