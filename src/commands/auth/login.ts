@@ -9,7 +9,8 @@ export default class Login extends BaseCommand {
     static loginRequired = false;
     static description = 'Login againts Stash instance. Return the Stash Instance data. ' + UX.processDocumentation('<doc:Instance>');
     static examples = [
-        `$ stash auth:login`,
+        `$ stash auth:login -a "Alias" -u "username" -p "password" -h "http.//stash.example.com" --csv`,
+        `$ stash auth:login -a "Alias" -u "username" -p "password" -h "http.//stash.example.com" -o --json`,
     ];
 
     static flags = {
@@ -43,11 +44,11 @@ export default class Login extends BaseCommand {
     };
 
     async run(): Promise<StashCLIResponse<Instance>> {
-        const { host, alias, username, password, json } = this.flags;
+        const { host, alias, username, password } = this.flags;
         const response = new StashCLIResponse<Instance>();
-        if (this.localConfig.instances && this.localConfig.instances[this.flags.alias]) {
+        if (this.localConfig.instances && this.localConfig.instances[alias]) {
             if (this.flags.override) {
-                this.localConfig.instances[this.flags.alias] = {
+                this.localConfig.instances[alias] = {
                     host: host.href,
                     alias: alias,
                     token: Buffer.from(username + ':' + password).toString('base64'),
@@ -56,7 +57,7 @@ export default class Login extends BaseCommand {
                 throw new Error('An existing instance exists with the same alias. Use override flag if you want to override it');
             }
         } else {
-            this.localConfig.instances[this.flags.alias] = {
+            this.localConfig.instances[alias] = {
                 host: host.href,
                 alias: alias,
                 token: Buffer.from(username + ':' + password).toString('base64'),
@@ -66,7 +67,7 @@ export default class Login extends BaseCommand {
         const message = 'Instace with alias ' + alias + ' logged successfully';
         response.status = 0;
         response.message = message
-        response.result = this.localConfig.instances[this.flags.alias];
+        response.result = this.localConfig.instances[alias];
         this.ux.table<Instance>([response.result], InstanceColumns, {
             csv: this.flags.csv,
         });
