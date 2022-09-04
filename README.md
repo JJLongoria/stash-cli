@@ -67,6 +67,7 @@ USAGE
   - [**License**](#license)
   - [**LicenseStatus**](#licensestatus)
   - [**MailHostConfiguration**](#mailhostconfiguration)
+  - [**PermissionUsersOutput**](#permissionusersoutput)
   - [**User**](#user)
 
 ## `stash hello PERSON`
@@ -395,6 +396,7 @@ DESCRIPTION
   - [**License**](#license)
   - [**LicenseStatus**](#licensestatus)
   - [**MailHostConfiguration**](#mailhostconfiguration)
+  - [**PermissionUsersOutput**](#permissionusersoutput)
   - [**User**](#user)
 
 ## `oex hello PERSON`
@@ -735,6 +737,16 @@ Schema definition:
     "sender-address": "string",
 }
 ```
+---
+## [**PermissionUsersOutput**]()
+```json
+{
+    "user": "User",
+    "permission": "string",
+}
+```
+- See [`User`](#user) Definition
+
 ---
 ## [**User**]()
 ```json
