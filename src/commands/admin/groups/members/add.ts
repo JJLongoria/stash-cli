@@ -43,14 +43,10 @@ export default class Add extends BaseCommand {
                 users: this.flags.users
             };
             const message = 'Users added to the group successfully';
-            /*const group = await connector.admin.groups().addUsers(dataToCreate);
-            response.result = group;*/
+            await connector.admin.groups().addUsers(dataToCreate);
             response.status = 0;
             response.message = message
-            /*this.ux.table<Group>([group], GroupColumns, {
-                csv: this.flags.csv
-            });*/
-            console.log(message);
+            console.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

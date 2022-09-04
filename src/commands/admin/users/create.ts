@@ -25,10 +25,7 @@ export default class Create extends BaseCommand {
             await connector.admin.users().create(userInput);
             response.status = 0;
             response.message = this.getRecordCreatedText('User');
-            /*this.ux.table<User>([user], UserColumns, {
-                csv: this.flags.csv,
-                extended: this.flags.extended && !this.flags.csv
-            });*/
+            console.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

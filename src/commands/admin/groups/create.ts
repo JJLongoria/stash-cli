@@ -29,6 +29,7 @@ export default class Create extends BaseCommand {
             response.result = group;
             response.status = 0;
             response.message = this.getRecordCreatedText('Group');
+            console.log(response.message);
             this.ux.table<Group>([group], GroupColumns, {
                 csv: this.flags.csv
             });

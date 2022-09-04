@@ -83,12 +83,12 @@ export default class List extends BaseCommand {
             const message = this.getRecordsFoundText(result.values.length, 'User');
             response.result = result;
             response.status = 0;
-            response.message = message
+            response.message = message;
+            console.log(response.message);
             this.ux.table<User>(result.values, UserColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended && !this.flags.csv
             });
-            console.log(message);
         } catch (error) {
             this.processError(response, error);
         }
