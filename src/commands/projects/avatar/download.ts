@@ -23,7 +23,7 @@ export default class Download extends BaseCommand {
             required: false,
             name: 'Size'
         }),
-        outputFolder: BuildFlags.output.file('', false),
+        'output-folder': BuildFlags.output.file('', false),
     };
     async run(): Promise<StashCLIResponse<any> | any> {
         const response = new StashCLIResponse<any>();

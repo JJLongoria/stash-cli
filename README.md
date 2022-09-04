@@ -37,6 +37,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**ClusterNode**](#clusternode)
   - [**ClusterAddress**](#clusteraddress)
   - [**CreateUserInput**](#createuserinput)
+  - [**ForkRepoInput**](#forkrepoinput)
   - [**Group**](#group)
   - [**Instance**](#instance)
   - [**License**](#license)
@@ -461,6 +462,17 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "emailAddress": "string",
     "addToDefaultGroup": "boolean",
     "notify": "string",
+}
+```
+---
+## [**ForkRepoInput**]()
+```json
+{
+    "slug?": "string",
+    "name?": "string",
+    "project?": {
+        "key": "string",
+    },
 }
 ```
 ---
