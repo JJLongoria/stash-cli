@@ -80,7 +80,15 @@
         }
       },
       "projects": {
-        "description": "Topic with all Stash projects commands. (Manage projects, repositories, pull requests...)"
+        "description": "Topic with all Stash projects commands. (Manage projects, repositories, pull requests...)",
+        "subtopics": {
+          "avatar": {
+            "description": "Topic with commands to upload or download project avatar"
+          },
+          "repos": {
+            "description": "Topic with all commands related to the projects repositories like list, create, create and manage pull requests, all about commits..."
+          }
+        }
       }
     }
   },

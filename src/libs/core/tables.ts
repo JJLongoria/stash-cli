@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ClusterNode, Group, License, MailHostConfiguration, PermissionGroups, Project, User } from "stash-connector";
+import { ClusterNode, Group, License, MailHostConfiguration, PermissionGroups, Project, Repository, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -218,5 +218,54 @@ export const ProjectColumns: CliUx.Table.table.Columns<Record<string, Project>> 
     type: {
         header: 'Type',
         extended: true
+    },
+}
+
+export const RepositoryColumns: CliUx.Table.table.Columns<Record<string, Repository>> = {
+    id: {
+        header: 'ID',
+    },
+    slug: {
+        header: 'Slug',
+    },
+    name: {
+        header: 'Name',
+    },
+    state: {
+        header: 'State',
+    },
+    origin: {
+        header: 'Description',
+        extended: true,
+        get: (row: any) => {
+            return row.origin ? row.origin.slug : 'None';
+        }
+    },
+    scmId: {
+        header: 'SCM ID',
+        extended: true,
+    },
+    statusMessage: {
+        header: 'Status Message',
+        extended: true,
+    },
+    forkable: {
+        header: 'Forkable',
+        extended: true,
+    },
+    project: {
+        header: 'Project',
+        extended: true,
+        get: (row: any) => {
+            return row.project ? row.project.key : 'None';
+        }
+    },
+    public: {
+        header: 'Public',
+        extended: true,
+    },
+    cloneUrl: {
+        header: 'Clone URL',
+        extended: true,
     },
 }

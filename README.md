@@ -48,6 +48,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**PermissionUsersOutput**](#permissionusersoutput)
   - [**Project**](#project)
   - [**ProjectInput**](#projectinput)
+  - [**Repository**](#repository)
   - [**User**](#user)
 
 <!-- toc -->
@@ -584,6 +585,29 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "avatarFile": "string",
 }
 ```
+
+---
+## [**Repository**]()
+```json
+{
+    "slug": "string",
+    "id": "string",
+    "name": "string",
+    "origin?": "Repository",
+    "scmId": "string",
+    "state": "string",
+    "statusMessage": "string",
+    "forkable": "boolean",
+    "project": "Project",
+    "public": "boolean",
+    "cloneUr": "string",
+    "link": "Link",
+    "links": "{ [key: string]: LinkRef[] }",
+}
+```
+- See [`Project`](#project) Definition
+- See [`Link`](#link) Definition.
+- See [`LinkRef`](#linkref) Definition
 
 ---
 ## [**User**]()
