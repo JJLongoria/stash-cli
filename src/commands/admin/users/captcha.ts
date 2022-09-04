@@ -3,7 +3,7 @@ import { StashConnector, User } from "stash-connector";
 import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../libs/core/stashResponse";
 
-export default class Update extends BaseCommand {
+export default class Captcha extends BaseCommand {
     static description = 'Clears any CAPTCHA challenge that may constrain the user with the supplied username when they authenticate. Additionally any counter or metric that contributed towards the user being issued the CAPTCHA challenge (for instance too many consecutive failed logins) will also be reset.';
     static examples = [
         `$ stash admin:users:captcha -a MyStashAlias --name "UserName" --json`,
@@ -11,8 +11,6 @@ export default class Update extends BaseCommand {
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
-        csv: BuildFlags.csv,
-        extended: BuildFlags.extended,
         name: Flags.string({
             description: 'The name of the user',
             required: true,

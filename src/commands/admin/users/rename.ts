@@ -5,7 +5,7 @@ import { StashCLIResponse } from "../../../libs/core/stashResponse";
 import { UserColumns } from "../../../libs/core/tables";
 import { UX } from "../../../libs/core/ux";
 
-export default class Update extends BaseCommand {
+export default class Rename extends BaseCommand {
     static description = 'Rename a user. ' + UX.processDocumentation('<doc:User>');
     static examples = [
         `$ stash admin:users:rename -a MyStashAlias --old "OldUserName" --new "NewUserName" --json`,
