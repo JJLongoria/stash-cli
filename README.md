@@ -48,10 +48,14 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**Link**](#link)
   - [**LinkRef**](#linkref)
   - [**MailHostConfiguration**](#mailhostconfiguration)
+  - [**Participant**](#participant)
   - [**PermissionGroups**](#permissiongroups)
   - [**PermissionUsersOutput**](#permissionusersoutput)
   - [**Project**](#project)
   - [**ProjectInput**](#projectinput)
+  - [**PullRequest**](#pullrequest)
+  - [**PullRequestRef**](#pullrequestref)
+  - [**PullRequestVeto**](#pullrequestveto)
   - [**Repository**](#repository)
   - [**RepoChangesOutput**](#repochangesoutput)
   - [**UpdateRepoInput**](#updaterepoinput)
@@ -585,6 +589,17 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 }
 ```
 ---
+## [**Participant**]()
+```json
+{
+    "user": "User",
+    "role": "'AUTHOR' | 'REVIEWER' | 'PARTICIPANT'",
+    "approved": "boolean",
+}
+```
+- See [`User`](#user) Definition
+
+---
 ## [**PermissionGroups**]()
 ```json
 {
@@ -631,7 +646,52 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "avatarFile": "string",
 }
 ```
+---
+## [**PullRequest**]()
+```json
+{
+    "id": "number",
+    "version": "number",
+    "title": "string",
+    "description": "string",
+    "state": "'ALL' | 'OPEN' | 'DECLINED' | 'MERGED'",
+    "open": "boolean",
+    "closed": "boolean",
+    "canMerge": "boolean",
+    "conflicted": "boolean",
+    "vetoes": "PullRequestVeto[]",
+    "createdDate": "number",
+    "updatedDate": "number",
+    "fromRef": "PullRequestRef",
+    "toRef": "PullRequestRef",
+    "locked": "boolean",
+    "author": "Participant",
+    "reviewers": "Participant[]",
+    "participants": "Participant[]",
+}
+```
+- See [`PullRequestVeto`](#pullrequestveto) Definition.
+- See [`PullRequestRef`](#pullrequestref) Definition.
+- See [`Participant`](#participant) Definition.
 
+---
+## [**PullRequestRef**]()
+```json
+{
+    "id": "string",
+    "repository": "Repository",
+}
+```
+- See [`Repository`](#repository) Definition.
+
+---
+## [**PullRequestVeto**]()
+```json
+{
+    "summaryMessage": "string",
+    "detailedMessage": "string",
+}
+```
 ---
 ## [**Repository**]()
 ```json

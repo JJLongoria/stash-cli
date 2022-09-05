@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { Branch, ClusterNode, Group, License, Line, MailHostConfiguration, PermissionGroups, Project, RepoChangesOutput, Repository, User } from "stash-connector";
+import { Branch, ClusterNode, Group, License, Line, MailHostConfiguration, PermissionGroups, Project, PullRequest, RepoChangesOutput, Repository, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -331,5 +331,118 @@ export const RepoChangesColumns: CliUx.Table.table.Columns<Record<string, RepoCh
     srcExecutable: {
         header: 'Src Executable',
         extended: true
+    },
+}
+
+export const PullRequestColumns: CliUx.Table.table.Columns<Record<string, PullRequest>> = {
+    id: {
+        header: 'ID',
+    },
+    version: {
+        header: 'Version',
+    },
+    title: {
+        header: 'Title',
+    },
+    description: {
+        header: 'Description',
+    },
+    state: {
+        header: 'State',
+    },
+    open: {
+        header: 'Open',
+        extended: true,
+    },
+    closed: {
+        header: 'Closed',
+        extended: true,
+    },
+    canMerge: {
+        header: 'Can Merge',
+    },
+    conflicted: {
+        header: 'Conflicted',
+    },
+    createdDate: {
+        header: 'Created Date',
+        get: (row: any) => {
+            return new Date(row.createdDate).toISOString();
+        },
+        extended: true,
+    },
+    updatedDate: {
+        header: 'Updated Date',
+        get: (row: any) => {
+            return new Date(row.updatedDate).toISOString();
+        },
+        extended: true,
+    },
+    fromRef: {
+        header: 'From Ref',
+        get: (row: any) => {
+            return row.fromRef.id;
+        },
+    },
+    toRef: {
+        header: 'To Ref',
+        get: (row: any) => {
+            return row.fromRef.id;
+        },
+    },
+    locked: {
+        header: 'Locked',
+        extended: true,
+    },
+    author: {
+        header: 'Author',
+        get: (row: any) => {
+            return row.author.user.name;
+        },
+    },
+    vetoes: {
+        header: 'Vetoes',
+        get: (row: any) => {
+            if(row.vetoes && row.vetoes.length){
+                const result: string[] = [];
+                for(const veto of row.vetoes){
+                    result.push(veto.summaryMessage);
+                }
+                return result.join(', ');
+            } else {
+                return 'None';
+            }
+        },
+        extended: true,
+    },
+    reviewers: {
+        header: 'Reviewers',
+        get: (row: any) => {
+            if(row.reviewers && row.reviewers.length){
+                const result: string[] = [];
+                for(const participant of row.reviewers){
+                    result.push(participant.user.name);
+                }
+                return result.join(', ');
+            } else {
+                return 'None';
+            }
+        },
+        extended: true,
+    },
+    participants: {
+        header: 'Participants',
+        get: (row: any) => {
+            if(row.participants && row.participants.length){
+                const result: string[] = [];
+                for(const participant of row.participants){
+                    result.push(participant.user.name);
+                }
+                return result.join(', ');
+            } else {
+                return 'None';
+            }
+        },
+        extended: true,
     },
 }
