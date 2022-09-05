@@ -447,6 +447,29 @@ export const PullRequestColumns: CliUx.Table.table.Columns<Record<string, PullRe
     },
 }
 
+export const PullRequestMergeColumns: CliUx.Table.table.Columns<Record<string, PullRequest>> = {
+    canMerge: {
+        header: 'Can Merge',
+    },
+    conflicted: {
+        header: 'Conflicted',
+    },
+    vetoes: {
+        header: 'Vetoes',
+        get: (row: any) => {
+            if(row.vetoes && row.vetoes.length){
+                const result: string[] = [];
+                for(const veto of row.vetoes){
+                    result.push(veto.summaryMessage);
+                }
+                return result.join(', ');
+            } else {
+                return 'None';
+            }
+        },
+    },
+}
+
 export const PullRequestActivityColumns: CliUx.Table.table.Columns<Record<string, PullRequestActivity>> = {
     id: {
         header: 'ID',

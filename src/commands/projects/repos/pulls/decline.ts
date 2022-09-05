@@ -14,17 +14,17 @@ export default class Decline extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to retrieve the default branch',
+            description: 'The Project key to decline the pull request',
             required: true,
             name: 'Project'
         }),
         slug: Flags.string({
-            description: 'The Repository slug to retrieve the default branch',
+            description: 'The Repository slug to decline the pull request',
             required: true,
             name: 'Slug',
         }),
         pull: Flags.integer({
-            description: 'The Pull Request Id to retrieve',
+            description: 'The Pull Request Id to decline',
             required: true,
             name: 'Pull Request Id',
         }),
