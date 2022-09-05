@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { Branch, ClusterNode, Comment, Commit, CommitDiff, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, User } from "stash-connector";
+import { Branch, ClusterNode, Comment, Commit, CommitDiff, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, Task, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -613,5 +613,50 @@ export const CommitDiffColumns: CliUx.Table.table.Columns<Record<string, CommitD
     },
     truncated: {
         header: 'Truncated',
+    },
+}
+
+export const TaskColumns: CliUx.Table.table.Columns<Record<string, Task>> = {
+    id: {
+        header: 'ID',
+    },
+    text: {
+        header: 'Text',
+    },
+    createdDate: {
+        header: 'Created Date',
+        get: (row: any) => {
+            return new Date(row.createdDate).toISOString();
+        },
+    },
+    author: {
+        header: 'Author',
+        get: (row: any) => {
+            return row.author.name;
+        },
+    },
+    state: {
+        header: 'State',
+    },
+    deletable: {
+        header: 'Deletable',
+        get: (row: any) => {
+            return row.deletable;
+        },
+        extended: true,
+    },
+    editable: {
+        header: 'Editable',
+        get: (row: any) => {
+            return row.editable;
+        },
+        extended: true,
+    },
+    transitionable: {
+        header: 'Transitionable',
+        get: (row: any) => {
+            return row.transitionable;
+        },
+        extended: true,
     },
 }

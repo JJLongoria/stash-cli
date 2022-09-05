@@ -84,6 +84,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**Repository**](#repository)
   - [**RepoChangesOutput**](#repochangesoutput)
   - [**UpdateRepoInput**](#updaterepoinput)
+  - [**Task**](#task)
   - [**User**](#user-1)
 
 * [Usage](#usage)
@@ -935,6 +936,27 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "public?": "boolean",
 }
 ```
+---
+## [**Task**]()
+```json
+{
+    "id": "number",
+    "properties": "{ [key: string]: string }",
+    "anchor": "Comment",
+    "author": "User",
+    "createdDate": "number",
+    "permittedOperations": {
+        "deletable": "boolean",
+        "editable": "boolean",
+        "transitionable": "boolean",
+    },
+    "text": "string",
+    "state": "'OPEN' | 'RESOLVED'",
+}
+```
+- See [`Comment`](#comment) Definition
+- See [`User`](#user) Definition
+
 ---
 ## [**User**]()
 ```json
