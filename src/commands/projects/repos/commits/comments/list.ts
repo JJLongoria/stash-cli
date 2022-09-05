@@ -28,7 +28,7 @@ export default class List extends BaseCommand {
             required: true,
             name: 'Slug'
         }),
-        commit: Flags.integer({
+        commit: Flags.string({
             description: 'The commit Id to retrieve comments',
             required: false,
             name: 'Commit Id',

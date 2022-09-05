@@ -26,7 +26,7 @@ export default class Delete extends BaseCommand {
             required: true,
             name: 'Slug',
         }),
-        commit: Flags.integer({
+        commit: Flags.string({
             description: 'The commit Id to delete the comment',
             required: false,
             name: 'Commit Id',

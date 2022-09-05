@@ -35,7 +35,7 @@ export default class Create extends BaseCommand {
             required: true,
             name: 'Slug',
         }),
-        commit: Flags.integer({
+        commit: Flags.string({
             description: 'The commit Id to create the comment',
             required: false,
             name: 'Commit Id',
