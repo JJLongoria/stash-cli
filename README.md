@@ -4,15 +4,16 @@
 [![Version](https://img.shields.io/npm/v/cli-stash?logo=npm)](https://www.npmjs.com/package/cli-stash)
 [![Total Downloads](https://img.shields.io/npm/dt/cli-stash?logo=npm)](https://www.npmjs.com/package/cli-stash/core)
 [![Downloads/Month](https://img.shields.io/npm/dm/cli-stash?logo=npm)](https://www.npmjs.com/package/cli-stash)
-[![Issues](https://img.shields.io/github/issues/jjlongoria/cli-stash)](https://github.com/JJLongoria/cli-stash/issues)
+[![Issues](https://img.shields.io/github/issues/jjlongoria/stash-cli)](https://github.com/JJLongoria/stash-cli/issues)
 [![Known Vulnerabilities](https://snyk.io/test/github/JJLongoria/cli-stash/badge.svg)](https://snyk.io/test/github/JJLongoria/cli-stash)
-[![Code Size](https://img.shields.io/github/languages/code-size/jjlongoria/cli-stash)](https://github.com/JJLongoria/cli-stash)
-[![License](https://img.shields.io/github/license/jjlongoria/cli-stash?logo=github)](https://github.com/JJLongoria/cli-stash/blob/master/LICENSE)
+[![Code Size](https://img.shields.io/github/languages/code-size/jjlongoria/stash-cli)](https://github.com/JJLongoria/stash-cli)
+[![License](https://img.shields.io/github/license/jjlongoria/stash-cli?logo=github)](https://github.com/JJLongoria/stash-cli/blob/master/LICENSE)
 
 CLI application to manage and work with Atlassian Stash. Work with your Stash project and repositories from Command lines.
 
+To learn more or read a full documentation of the Stash CLI Application, go to the [**Official Documentation Site**](https://github.com/JJLongoria/stash-cli/wiki).
 
-This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria/stash-connector) library to work with stash. 
+This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria/stash-connector) library to connect and work with stash. 
 
 - [**Stash CLI Application**](#stash-cli-application)
 - [**Usage**](#usage)
@@ -23,12 +24,21 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**`stash plugins`**](#stash-plugins)
   - [**`stash plugins:install PLUGIN...`**](#stash-pluginsinstall-plugin)
   - [**`stash plugins:inspect PLUGIN...`**](#stash-pluginsinspect-plugin)
-  - [**`stash plugins:install PLUGIN...`**](#stash-pluginsinstall-plugin-1)
   - [**`stash plugins:link PLUGIN`**](#stash-pluginslink-plugin)
   - [**`stash plugins:uninstall PLUGIN...`**](#stash-pluginsuninstall-plugin)
-  - [**`stash plugins:uninstall PLUGIN...`**](#stash-pluginsuninstall-plugin-1)
-  - [**`stash plugins:uninstall PLUGIN...`**](#stash-pluginsuninstall-plugin-2)
-  - [**`stash plugins update`**](#stash-plugins-update)
+- [**CLI Main Topics**](#cli-main-topics)
+  - [**Auth**](#auth)
+  - [**Admin**](#admin)
+  - [**App**](#app)
+  - [**Groups**](#groups)
+  - [**Hooks**](#hooks)
+  - [**Logs**](#logs)
+  - [**Markup**](#markup)
+  - [**Profile**](#profile)
+  - [**Projects**](#projects)
+  - [**Repos**](#repos)
+  - [**Tasks**](#tasks)
+  - [**User**](#user)
 - [**JSON Objects Schemes**](#json-objects-schemes)
   - [**AddGroupInput**](#addgroupinput)
   - [**AddUsersInput**](#addusersinput)
@@ -67,21 +77,19 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**PullRequestActivity**](#pullrequestactivity)
   - [**PullRequestActivityChanges**](#pullrequestactivitychanges)
   - [**PullRequestInput**](#pullrequestinput)
-  - [**PullRequestUpdateInput**](#pullrequestupdateinput)
   - [**PullRequestRef**](#pullrequestref)
   - [**PullRequestRefInput**](#pullrequestrefinput)
   - [**PullRequestVeto**](#pullrequestveto)
+  - [**PullRequestUpdateInput**](#pullrequestupdateinput)
   - [**Repository**](#repository)
   - [**RepoChangesOutput**](#repochangesoutput)
   - [**UpdateRepoInput**](#updaterepoinput)
-  - [**User**](#user)
+  - [**User**](#user-1)
 
-<!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
-<!-- tocstop -->
+
 # [**Usage**]()
-<!-- usage -->
 ```sh-session
 $ npm install -g cli-stash
 $ stash COMMAND
@@ -94,8 +102,6 @@ USAGE
 ...
 ```
 # [**Core CLI Commands**]()
-<!-- commands -->
-
 
 ## **`stash help [COMMAND]`**
 
@@ -258,44 +264,6 @@ EXAMPLES
   $ stash plugins:inspect myplugin
 ```
 
-## **`stash plugins:install PLUGIN...`**
-
-Installs a plugin into the CLI.
-
-```
-USAGE
-  $ stash plugins:install PLUGIN...
-
-ARGUMENTS
-  PLUGIN  Plugin to install.
-
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Installs a plugin into the CLI.
-
-  Can be installed from npm or a git url.
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  e.g. If you have a core plugin that has a "hello" command, installing a user-installed plugin with a "hello" command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
-
-ALIASES
-  $ stash plugins add
-
-EXAMPLES
-  $ stash plugins:install myplugin 
-
-  $ stash plugins:install https://github.com/someuser/someplugin
-
-  $ stash plugins:install someuser/someplugin
-```
-
 ## **`stash plugins:link PLUGIN`**
 
 Links a plugin into the CLI for development.
@@ -346,8 +314,6 @@ ALIASES
   $ stash plugins remove
 ```
 
-## **`stash plugins:uninstall PLUGIN...`**
-
 Removes a plugin from the CLI.
 
 ```
@@ -369,45 +335,38 @@ ALIASES
   $ stash plugins remove
 ```
 
-## **`stash plugins:uninstall PLUGIN...`**
 
-Removes a plugin from the CLI.
+# [**CLI Main Topics**]()
 
-```
-USAGE
-  $ stash plugins:uninstall PLUGIN...
+The [**Stash CLI Application**]() has to many commands to handle all Stash features. All commands are grouped in **topics**, any many topics has **subtopics** to better organization of commands (and better to learn and understand).
 
-ARGUMENTS
-  PLUGIN  plugin to uninstall
+The main topics are listed below.
 
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
+## [**Auth**]()
 
-DESCRIPTION
-  Removes a plugin from the CLI.
+## [**Admin**]()
 
-ALIASES
-  $ stash plugins unlink
-  $ stash plugins remove
-```
+## [**App**]()
 
-## **`stash plugins update`**
+## [**Groups**]()
 
-Update installed plugins.
+## [**Hooks**]()
 
-```
-USAGE
-  $ stash plugins update [-h] [-v]
+## [**Logs**]()
 
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
+## [**Markup**]()
 
-DESCRIPTION
-  Update installed plugins.
-```
-<!-- commandsstop -->
+## [**Profile**]()
+
+## [**Projects**]()
+
+## [**Repos**]()
+
+## [**Tasks**]()
+
+## [**User**]()
+
+
 
 # [**JSON Objects Schemes**]()
 
@@ -874,19 +833,6 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 - See [`ParticipantInput`](#participantinput) Definition.
 
 ---
-## [**PullRequestUpdateInput**]()
-```json
-{
-    "title?": "string",
-    "description?": "string",
-    "toRef?": "PullRequestInputRef",
-    "reviewers?": "ParticipantInput[]",
-}
-```
-- See [`PullRequestInputRef`](#pullrequestrefinput) Definition.
-- See [`ParticipantInput`](#participantinput) Definition.
-
----
 ## [**PullRequestRef**]()
 ```json
 {
@@ -917,6 +863,19 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "detailedMessage": "string",
 }
 ```
+---
+## [**PullRequestUpdateInput**]()
+```json
+{
+    "title?": "string",
+    "description?": "string",
+    "toRef?": "PullRequestInputRef",
+    "reviewers?": "ParticipantInput[]",
+}
+```
+- See [`PullRequestInputRef`](#pullrequestrefinput) Definition.
+- See [`ParticipantInput`](#participantinput) Definition.
+
 ---
 ## [**Repository**]()
 ```json
