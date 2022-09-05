@@ -19,12 +19,12 @@ export default class List extends BaseCommand {
         alias: BuildFlags.alias,
         ...BuildFlags.pagination,
         project: Flags.string({
-            description: 'The Project key to retrieve forked repositories',
+            description: 'The Project key to retrieve commits',
             required: true,
             name: 'Project'
         }),
         slug: Flags.string({
-            description: 'The Repository slug to retrieve forked repositories from',
+            description: 'The Repository slug to retrieve commits',
             required: true,
             name: 'Slug'
         }),
