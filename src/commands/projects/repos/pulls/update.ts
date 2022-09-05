@@ -10,7 +10,7 @@ export default class Update extends BaseCommand {
     static examples = [
         `$ stash projects:repos:pulls:update -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --data "{'title':'<Title>','description':'<description>','toRef':{'id':'refs/heads/master','repository':{'slug':'MyRepoSlug','name':null,'project':{'key':'ProjectKey'}}},'reviewers':[{'user':{'name':'jonh.smith'}}]}" --json`,
         `$ stash projects:repos:pulls:update -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --file "path/to/json/data/file" --csv`,
-        `$ stash projects:repos:pulls:update -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --title "Title" --description "desc" --from "develop" --to "main" --reviewers "john.smith, jenny.smith"`,
+        `$ stash projects:repos:pulls:update -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --title "Title" --description "desc" --to "main" --reviewers "john.smith, jenny.smith"`,
     ];
     static flags = {
         ...BaseCommand.flags,

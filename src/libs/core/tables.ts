@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { Branch, ClusterNode, Group, License, Line, MailHostConfiguration, PermissionGroups, Project, PullRequest, RepoChangesOutput, Repository, User } from "stash-connector";
+import { Branch, ClusterNode, Group, License, Line, MailHostConfiguration, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -445,4 +445,49 @@ export const PullRequestColumns: CliUx.Table.table.Columns<Record<string, PullRe
         },
         extended: true,
     },
+}
+
+export const PullRequestActivityColumns: CliUx.Table.table.Columns<Record<string, PullRequestActivity>> = {
+    id: {
+        header: 'ID',
+    },
+    createdDate: {
+        header: 'Created Date',
+        get: (row: any) => {
+            return new Date(row.createdDate).toISOString();
+        },
+    },
+    user: {
+        header: 'User',
+        get: (row: any) => {
+            return row.user.name;
+        },
+    },
+    action: {
+        header: 'Action',
+    },
+    commentAction: {
+        header: 'Comment Action',
+        extended: true,
+    },
+    comment: {
+        header: 'Comment',
+        extended: true,
+    },
+    fromHash: {
+        header: 'From Hash',
+        extended: true,
+    },
+    previousFromHash: {
+        header: 'Previous From Hah',
+        extended: true,
+    },
+    previousToHash: {
+        header: 'Previous To Hast',
+        extended: true,
+    },
+    toHash: {
+        header: 'To Hash',
+        extended: true,
+    }
 }

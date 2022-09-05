@@ -37,6 +37,8 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**ClusterOutput**](#clusteroutput)
   - [**ClusterNode**](#clusternode)
   - [**ClusterAddress**](#clusteraddress)
+  - [**Comment**](#comment)
+  - [**Commit**](#commit)
   - [**CreateUserInput**](#createuserinput)
   - [**FilePath**](#filepath)
   - [**ForkRepoInput**](#forkrepoinput)
@@ -55,7 +57,8 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**Project**](#project)
   - [**ProjectInput**](#projectinput)
   - [**PullRequest**](#pullrequest)
-  - [- See `Participant` Definition.](#--see-participant-definition)
+  - [**PullRequestActivity**](#pullrequestactivity)
+  - [**PullRequestActivityChanges**](#pullrequestactivitychanges)
   - [**PullRequestInput**](#pullrequestinput)
   - [**PullRequestUpdateInput**](#pullrequestupdateinput)
   - [**PullRequestRef**](#pullrequestref)
@@ -478,6 +481,43 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 }
 ```
 ---
+## [**Comment**]()
+```json
+{
+    "properties": "{ [key: string]: string }",
+    "id": "number",
+    "version": "number",
+    "text": "string",
+    "author": "User",
+    "createdDate": "number",
+    "updatedDate": "number",
+    "comments": "Comment"[],
+    "attributes": "{ [key: string]: string }",
+    "tasks": "{ [key: string]: string }",
+    "permittedOperations": {
+        "editable": "boolean",
+        "deletable": "boolean",
+    }
+}
+```
+- See [`User`](#user) Definition
+
+---
+## [**Commit**]()
+```json
+{
+    "id": "string",
+    "displayId": "string",
+    "author": "User",
+    "authorTimestamp": "number",
+    "message": "string",
+    "parents": "Commit[]",
+    "attributes": "{ [key: string]: string }",
+}
+```
+- See [`User`](#user) Definition
+
+---
 ## [**CreateUserInput**]()
 ```json
 {
@@ -687,6 +727,42 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 - See [`PullRequestVeto`](#pullrequestveto) Definition.
 - See [`PullRequestRef`](#pullrequestref) Definition.
 - See [`Participant`](#participant) Definition.
+
+---
+## [**PullRequestActivity**]()
+```json
+{
+    "id": "number",
+    "createdDate": "number",
+    "user": "User",
+    "action": "string",
+    "commentAction?": "string",
+    "comment?": "Comment",
+    "commentAnchor?": "CommentAnchor",
+    "fromHash?": "string",
+    "previousFromHash?": "string",
+    "previousToHash?": "string",
+    "toHash?": "string",
+    "added?": "PullRequestActivityChanges",
+    "removed?": "PullRequestActivityChanges",
+}
+```
+- See [`User`](#user) Definition.
+- See [`Comment`](#comment) Definition.
+- See [`CommentAnchor`](#commentanchor) Definition.
+- See [`PullRequestActivityChanges`](#pullrequestactivitychanges) Definition.
+
+---
+## [**PullRequestActivityChanges**]()
+```json
+{
+    "changesets?": "Commit[]",
+    "commits?": "Commi[]",
+    "total": "number",
+}
+```
+- See [`Commit`](#commit) Definition.
+
 ---
 ## [**PullRequestInput**]()
 ```json
