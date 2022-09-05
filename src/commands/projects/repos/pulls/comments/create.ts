@@ -43,25 +43,25 @@ export default class Create extends BaseCommand {
         text: Flags.string({
             description: 'The Comment text to add',
             required: false,
-            name: 'Slug',
+            name: 'Text',
             exclusive: ['data', 'file']
         }),
         parent: Flags.string({
             description: 'The parent comment if the comment is a response',
             required: false,
-            name: 'Slug',
+            name: 'Parent Comment',
             dependsOn: ['text'],
         }),
         path: Flags.string({
             description: 'The file path if the comment is a general file comment',
             required: false,
-            name: 'Slug',
+            name: 'File Path',
             dependsOn: ['text'],
         }),
         line: Flags.integer({
             description: 'The file line if the comment is a file line comment',
             required: false,
-            name: 'Slug',
+            name: 'Line',
             dependsOn: ['text', 'path'],
         }),
     };

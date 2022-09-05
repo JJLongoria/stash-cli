@@ -35,7 +35,6 @@ export default class Delete extends BaseCommand {
             description: 'The Comment Id to delete',
             required: false,
             name: 'Comment Id',
-            exclusive: ['data', 'file']
         }),
     };
     async run(): Promise<StashCLIResponse<any>> {
