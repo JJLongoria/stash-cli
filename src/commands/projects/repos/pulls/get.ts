@@ -17,12 +17,12 @@ export default class Get extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to retrieve the default branch',
+            description: 'The Project key to retrieve the pull request',
             required: true,
             name: 'Project'
         }),
         slug: Flags.string({
-            description: 'The Repository slug to retrieve the default branch',
+            description: 'The Repository slug to retrieve the pull request',
             required: true,
             name: 'Slug',
         }),
