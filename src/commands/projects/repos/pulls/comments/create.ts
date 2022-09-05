@@ -26,17 +26,17 @@ export default class Create extends BaseCommand {
         data: BuildFlags.input.jsonData('<doc:CommentInput>', false, ['text']),
         file: BuildFlags.input.jsonFile('<doc:CommentInput>', false, ['text']),
         project: Flags.string({
-            description: 'The Project key to merge the pull request',
+            description: 'The Project key to create the pull request comment',
             required: true,
             name: 'Project'
         }),
         slug: Flags.string({
-            description: 'The Repository slug to merge the pull request',
+            description: 'The Repository slug to create the pull request comment',
             required: true,
             name: 'Slug',
         }),
         pull: Flags.integer({
-            description: 'The Pull Request Id to merge',
+            description: 'The Pull Request Id to create the pull request comment',
             required: true,
             name: 'Pull Request Id',
         }),

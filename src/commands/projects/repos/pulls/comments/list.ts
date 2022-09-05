@@ -19,17 +19,17 @@ export default class List extends BaseCommand {
         alias: BuildFlags.alias,
         ...BuildFlags.pagination,
         project: Flags.string({
-            description: 'The Project key to retrieve repository pull requests changes',
+            description: 'The Project key to retrieve repository pull requests comments',
             required: true,
             name: 'Project'
         }),
         slug: Flags.string({
-            description: 'The Repository slug to retrieve the pull requests changes',
+            description: 'The Repository slug to retrieve the pull requests comments',
             required: true,
             name: 'Slug'
         }),
         pull: Flags.integer({
-            description: 'The Pull Request Id to retrieve changes',
+            description: 'The Pull Request Id to retrieve comments',
             required: true,
             name: 'Pull Request Id',
         }),

@@ -8,9 +8,9 @@ import { UX } from "../../../../../libs/core/ux";
 export default class Create extends BaseCommand {
     static description = 'Retrieves a pull request comment. ' + UX.processDocumentation('<doc:Comment>');
     static examples = [
-        `$ stash projects:repos:pulls:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --csv`,
-        `$ stash projects:repos:pulls:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --json`,
-        `$ stash projects:repos:pulls:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 `,
+        `$ stash projects:repos:pulls:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --coment 4567 --csv`,
+        `$ stash projects:repos:pulls:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --coment 4567 --json`,
+        `$ stash projects:repos:pulls:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --coment 4567 `,
     ];
     static flags = {
         ...BaseCommand.flags,
@@ -18,17 +18,17 @@ export default class Create extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to merge the pull request',
+            description: 'The Project key to get the pull request comment',
             required: true,
             name: 'Project'
         }),
         slug: Flags.string({
-            description: 'The Repository slug to merge the pull request',
+            description: 'The Repository slug to get the pull request comment',
             required: true,
             name: 'Slug',
         }),
         pull: Flags.integer({
-            description: 'The Pull Request Id to merge',
+            description: 'The Pull Request Id to get the pull request comment',
             required: true,
             name: 'Pull Request Id',
         }),
