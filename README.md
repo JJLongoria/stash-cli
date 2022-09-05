@@ -41,6 +41,11 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**CommentAnchor**](#commentanchor)
   - [**CommentInput**](#commentinput)
   - [**Commit**](#commit)
+  - [**CommitDiff**](#commitdiff)
+  - [**CommitDiffHunk**](#commitdiffhunk)
+  - [**CommitDiffHunk**](#commitdiffhunk-1)
+  - [**CommitDiffLine**](#commitdiffline)
+  - [**CommitDiffOutput**](#commitdiffoutput)
   - [**CreateUserInput**](#createuserinput)
   - [**FilePath**](#filepath)
   - [**ForkRepoInput**](#forkrepoinput)
@@ -546,6 +551,63 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 }
 ```
 - See [`User`](#user) Definition
+
+---
+## [**CommitDiff**]()
+```json
+{
+    "source": "FilePath",
+    "destination": "FilePath",
+    "hunks": "CommitDiffHunk[]",
+    "truncated": "boolean",
+}
+```
+- See [`FilePath`](#filepath) Definition
+- See [`CommitDiffHunk`](#commitdiffhunk) Definition
+
+---
+## [**CommitDiffHunk**]()
+```json
+{
+    "sourceLine": "number",
+    "sourceSpan": "number",
+    "destinationLine": "number",
+    "destinationSpan": "number",
+    "segments": "CommitDiffHunkSegment[]",
+    "truncated": "boolean",
+}
+```
+- See [`CommitDiffHunkSegment`](#commitdiffhunksegment) Definition
+
+---
+## [**CommitDiffHunk**]()
+```json
+{
+    "type": "string",
+    "lines": "CommitDiffLine[]",
+    "truncated": "boolean",
+}
+```
+- See [`CommitDiffLine`](#commitdiffline) Definition
+
+## [**CommitDiffLine**]()
+```json
+{
+    "destination": "number",
+    "source": "number",
+    "line": "string",
+    "truncated": "boolean",
+}
+```
+
+---
+## [**CommitDiffOutput**]()
+```json
+{
+    "diffs": "CommitDiff[]",
+}
+```
+- See [`CommitDiff`](#commitdiff) Definition
 
 ---
 ## [**CreateUserInput**]()

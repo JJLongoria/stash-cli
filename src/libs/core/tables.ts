@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { Branch, ClusterNode, Comment, Commit, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, User } from "stash-connector";
+import { Branch, ClusterNode, Comment, Commit, CommitDiff, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -595,5 +595,23 @@ export const CommitColumns: CliUx.Table.table.Columns<Record<string, Commit>> = 
     },
     message: {
         header: 'Message',
+    },
+}
+
+export const CommitDiffColumns: CliUx.Table.table.Columns<Record<string, CommitDiff>> = {
+    source: {
+        header: 'Source',
+        get: (row: any) => {
+            return row.toString;
+        },
+    },
+    destination: {
+        header: 'Destination',
+        get: (row: any) => {
+            return row.toString;
+        },
+    },
+    truncated: {
+        header: 'Truncated',
     },
 }
