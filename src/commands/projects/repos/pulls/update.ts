@@ -98,7 +98,7 @@ export default class Update extends BaseCommand {
                     inputData.toRef.id = targetBranch.id;
                 }
             }
-            const pullRequest = await connector.projects.repos(this.flags.project).pullRequests(this.flags.slug).update(inputData);
+            const pullRequest = await connector.projects.repos(this.flags.project).pullRequests(this.flags.slug).update(this. flags.pull, inputData);
             response.result = pullRequest;
             response.status = 0;
             response.message = this.getRecordCreatedText('Pull Request');
