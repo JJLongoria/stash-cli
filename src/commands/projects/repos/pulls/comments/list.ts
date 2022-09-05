@@ -6,7 +6,7 @@ import { CommentColumns } from "../../../../../libs/core/tables";
 import { UX } from "../../../../../libs/core/ux";
 
 export default class List extends BaseCommand {
-    static description = 'Gets changes for the specified PullRequest. ' + UX.processDocumentation('<doc:Comment>');
+    static description = 'Retrieve a page of comments made in a specified pull request. ' + UX.processDocumentation('<doc:Comment>');
     static examples = [
         `$ stash projects:repost:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --all --csv`,
         `$ stash projects:repost:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --path "file/path/to/get/commands" -l 100 -s 50 --json`,

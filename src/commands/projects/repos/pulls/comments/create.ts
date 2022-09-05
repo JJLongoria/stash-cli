@@ -6,7 +6,7 @@ import { CommentColumns } from "../../../../../libs/core/tables";
 import { UX } from "../../../../../libs/core/ux";
 
 export default class Create extends BaseCommand {
-    static description = 'Test whether a pull request can be merged. ' + UX.processDocumentation('<doc:Comment>');
+    static description = 'Add a new comment. ' + UX.processDocumentation('<doc:Comment>');
     static examples = [
         `$ stash projects:repos:pulls:comments:create -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --data "{'text':'The comment text.'}" --csv`,
         `$ stash projects:repos:pulls:comments:create -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --data "{'text':'A Comment Reply.','parent':{'id':1}}" --json`,
