@@ -10,6 +10,7 @@ export default class Create extends BaseCommand {
     static examples = [
         `$ stash projects:repos:pulls:create -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --data "{'title':'<Title>','description':'<description>','state':'OPEN','open':true,'closed':false,'fromRef':{'id':'refs/heads/feature-ABC-123','repository':{'slug':'MyRepoSlug','name':null,'project':{'key':'ProjectKey'}}},'toRef':{'id':'refs/heads/master','repository':{'slug':'MyRepoSlug','name':null,'project':{'key':'ProjectKey'}}},'locked':false,'reviewers':[{'user':{'name':'jonh.smith'}}]}" --json`,
         `$ stash projects:repos:pulls:create -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --file "path/to/json/data/file" --csv`,
+        `$ stash projects:repos:pulls:create -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --title "Title" --description "desc" --from "develop" --to "main" --reviewers "john.smith, jenny.smith"`,
     ];
     static flags = {
         ...BaseCommand.flags,

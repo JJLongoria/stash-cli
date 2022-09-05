@@ -55,6 +55,9 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**Project**](#project)
   - [**ProjectInput**](#projectinput)
   - [**PullRequest**](#pullrequest)
+  - [- See `Participant` Definition.](#--see-participant-definition)
+  - [**PullRequestInput**](#pullrequestinput)
+  - [**PullRequestUpdateInput**](#pullrequestupdateinput)
   - [**PullRequestRef**](#pullrequestref)
   - [**PullRequestRefInput**](#pullrequestrefinput)
   - [**PullRequestVeto**](#pullrequestveto)
@@ -684,6 +687,36 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 - See [`PullRequestVeto`](#pullrequestveto) Definition.
 - See [`PullRequestRef`](#pullrequestref) Definition.
 - See [`Participant`](#participant) Definition.
+---
+## [**PullRequestInput**]()
+```json
+{
+    "title": "string",
+    "description": "string",
+    "state": "'ALL' | 'OPEN' | 'DECLINED' | 'MERGED'",
+    "open?": "boolean",
+    "closed?": "boolean",
+    "fromRef": "PullRequestInputRef",
+    "toRef": "PullRequestInputRef",
+    "locked?": "boolean",
+    "reviewers?": "ParticipantInput[]",
+}
+```
+- See [`PullRequestInputRef`](#pullrequestrefinput) Definition.
+- See [`ParticipantInput`](#participantinput) Definition.
+
+---
+## [**PullRequestUpdateInput**]()
+```json
+{
+    "title?": "string",
+    "description?": "string",
+    "toRef?": "PullRequestInputRef",
+    "reviewers?": "ParticipantInput[]",
+}
+```
+- See [`PullRequestInputRef`](#pullrequestrefinput) Definition.
+- See [`ParticipantInput`](#participantinput) Definition.
 
 ---
 ## [**PullRequestRef**]()

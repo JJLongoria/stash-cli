@@ -8,8 +8,8 @@ import { UX } from "../../../../libs/core/ux";
 export default class Get extends BaseCommand {
     static description = 'Retrieve a pull request. ' + UX.processDocumentation('<doc:PullRequest>');
     static examples = [
-        `$ stash projects:repos:pulls:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --csv`,
-        `$ stash projects:repos:pulls:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --json`,
+        `$ stash projects:repos:pulls:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --csv`,
+        `$ stash projects:repos:pulls:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --json`,
     ];
     static flags = {
         ...BaseCommand.flags,
