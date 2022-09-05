@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { Branch, ClusterNode, Comment, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, User } from "stash-connector";
+import { Branch, ClusterNode, Comment, Commit, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -571,5 +571,29 @@ export const CommentColumns: CliUx.Table.table.Columns<Record<string, Comment>> 
             return new Date(row.permittedOperations.deletable).toISOString();
         },
         extended: true,
+    },
+}
+
+export const CommitColumns: CliUx.Table.table.Columns<Record<string, Commit>> = {
+    id: {
+        header: 'ID',
+    },
+    displayId: {
+        header: 'Display ID',
+    },
+    author: {
+        header: 'Author',
+        get: (row: any) => {
+            return row.user.name;
+        },
+    },
+    authorTimestamp: {
+        header: 'Author Date',
+        get: (row: any) => {
+            return new Date(row.authorTimestamp).toISOString();
+        },
+    },
+    message: {
+        header: 'Message',
     },
 }
