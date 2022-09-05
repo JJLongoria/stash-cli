@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { Branch, ClusterNode, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, User } from "stash-connector";
+import { Branch, ClusterNode, Comment, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -403,9 +403,9 @@ export const PullRequestColumns: CliUx.Table.table.Columns<Record<string, PullRe
     vetoes: {
         header: 'Vetoes',
         get: (row: any) => {
-            if(row.vetoes && row.vetoes.length){
+            if (row.vetoes && row.vetoes.length) {
                 const result: string[] = [];
-                for(const veto of row.vetoes){
+                for (const veto of row.vetoes) {
                     result.push(veto.summaryMessage);
                 }
                 return result.join(', ');
@@ -418,9 +418,9 @@ export const PullRequestColumns: CliUx.Table.table.Columns<Record<string, PullRe
     reviewers: {
         header: 'Reviewers',
         get: (row: any) => {
-            if(row.reviewers && row.reviewers.length){
+            if (row.reviewers && row.reviewers.length) {
                 const result: string[] = [];
-                for(const participant of row.reviewers){
+                for (const participant of row.reviewers) {
                     result.push(participant.user.name);
                 }
                 return result.join(', ');
@@ -433,9 +433,9 @@ export const PullRequestColumns: CliUx.Table.table.Columns<Record<string, PullRe
     participants: {
         header: 'Participants',
         get: (row: any) => {
-            if(row.participants && row.participants.length){
+            if (row.participants && row.participants.length) {
                 const result: string[] = [];
-                for(const participant of row.participants){
+                for (const participant of row.participants) {
                     result.push(participant.user.name);
                 }
                 return result.join(', ');
@@ -457,9 +457,9 @@ export const PullRequestMergeColumns: CliUx.Table.table.Columns<Record<string, P
     vetoes: {
         header: 'Vetoes',
         get: (row: any) => {
-            if(row.vetoes && row.vetoes.length){
+            if (row.vetoes && row.vetoes.length) {
                 const result: string[] = [];
-                for(const veto of row.vetoes){
+                for (const veto of row.vetoes) {
                     result.push(veto.summaryMessage);
                 }
                 return result.join(', ');
@@ -527,5 +527,49 @@ export const ParticipantColumns: CliUx.Table.table.Columns<Record<string, Partic
     },
     approved: {
         header: 'Approved',
+    },
+}
+
+export const CommentColumns: CliUx.Table.table.Columns<Record<string, Comment>> = {
+    id: {
+        header: 'ID',
+    },
+    version: {
+        header: 'Version',
+    },
+    text: {
+        header: 'Text',
+    },
+    author: {
+        header: 'Author',
+        get: (row: any) => {
+            return row.user.name;
+        },
+    },
+    createdDate: {
+        header: 'Created Date',
+        get: (row: any) => {
+            return new Date(row.createdDate).toISOString();
+        },
+    },
+    updatedDate: {
+        header: 'Updated Date',
+        get: (row: any) => {
+            return new Date(row.createdDate).toISOString();
+        },
+    },
+    editable: {
+        header: 'Editable',
+        get: (row: any) => {
+            return new Date(row.permittedOperations.editable).toISOString();
+        },
+        extended: true,
+    },
+    deletable: {
+        header: 'Delerable',
+        get: (row: any) => {
+            return new Date(row.permittedOperations.deletable).toISOString();
+        },
+        extended: true,
     },
 }

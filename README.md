@@ -38,6 +38,8 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**ClusterNode**](#clusternode)
   - [**ClusterAddress**](#clusteraddress)
   - [**Comment**](#comment)
+  - [**CommentAnchor**](#commentanchor)
+  - [**CommentInput**](#commentinput)
   - [**Commit**](#commit)
   - [**CreateUserInput**](#createuserinput)
   - [**FilePath**](#filepath)
@@ -500,6 +502,34 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     }
 }
 ```
+- See [`User`](#user) Definition
+
+---
+## [**CommentAnchor**]()
+```json
+{
+    "fromHash?": "string",
+    "toHash?": "string",
+    "line?": "number",
+    "lineType?": "'ADDED' | 'REMOVED' | 'CONTEXT'",
+    "fileType?": "'FROM' | 'TO'",
+    "path?": "string",
+    "srcPath?": "string",
+    "orphaned?": "boolean",
+}
+```
+- See [`User`](#user) Definition
+
+---
+## [**CommentInput**]()
+```json
+{
+    "text": "string",
+    "parent?": "string",
+    "commentAnchor?": "CommentAnchor"
+}
+```
+- See [`commentAnchor`](#commentanchor) Definition
 - See [`User`](#user) Definition
 
 ---
