@@ -702,6 +702,7 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "user": {
       "name": "string",
     },
+    "role": "'AUTHOR' | 'REVIEWER' | 'PARTICIPANT'"
 }
 ```
 ---
