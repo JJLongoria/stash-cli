@@ -6,11 +6,11 @@ import { CommentColumns } from "../../../../../libs/core/tables";
 import { UX } from "../../../../../libs/core/ux";
 
 export default class List extends BaseCommand {
-    static description = 'Retrieve a page of comments made in a specified pull request. ' + UX.processDocumentation('<doc:Comment>');
+    static description = 'Retrieves a commit discussion comment. ' + UX.processDocumentation('<doc:Comment>');
     static examples = [
-        `$ stash projects:repost:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --all --csv`,
-        `$ stash projects:repost:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --path "file/path/to/get/comments" -l 100 -s 50 --json`,
-        `$ stash projects:repost:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --limit 30`,
+        `$ stash projects:repost:commits:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --all --csv`,
+        `$ stash projects:repost:commits:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --path "file/path/to/get/comments" -l 100 -s 50 --json`,
+        `$ stash projects:repost:commits:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --since "ahs6sd2" --limit 30`,
     ];
     static flags = {
         ...BaseCommand.flags,
@@ -19,22 +19,27 @@ export default class List extends BaseCommand {
         alias: BuildFlags.alias,
         ...BuildFlags.pagination,
         project: Flags.string({
-            description: 'The Project key to retrieve repository pull requests comments',
+            description: 'The Project key to retrieve repository commit comments',
             required: true,
             name: 'Project'
         }),
         slug: Flags.string({
-            description: 'The Repository slug to retrieve the pull requests comments',
+            description: 'The Repository slug to retrieve the commit comments',
             required: true,
             name: 'Slug'
         }),
-        pull: Flags.integer({
-            description: 'The Pull Request Id to retrieve comments',
-            required: true,
-            name: 'Pull Request Id',
+        commit: Flags.integer({
+            description: 'The commit Id to retrieve comments',
+            required: false,
+            name: 'Commit Id',
         }),
         path: Flags.string({
-            description: 'the file path to get comments from',
+            description: 'The file path to get comments from',
+            required: false,
+            name: 'Path',
+        }),
+        since: Flags.string({
+            description: 'The Since commit id',
             required: false,
             name: 'Path',
         }),
@@ -45,20 +50,32 @@ export default class List extends BaseCommand {
         try {
             let result: Page<Comment> = new Page();
             if (this.flags.all) {
-                let tmp = await connector.projects.repos(this.flags.project).pullRequests(this.flags.slug).comments(this.flags.pull).list(this.flags.path, this.allPageOptions);
+                let tmp = await connector.projects.repos(this.flags.project).commits(this.flags.slug).comments(this.flags.pull).list({
+                    path: this.flags.path,
+                    since: this.flags.since,
+                    pageOptions: this.allPageOptions,
+                });
                 result.values.push(...tmp.values);
                 result.isLastPage = true;
                 result.start = tmp.start;
                 while (!tmp.isLastPage) {
-                    tmp = await connector.projects.repos(this.flags.project).pullRequests(this.flags.slug).comments(this.flags.pull).list(this.flags.path, {
-                        start: tmp.nextPageStart,
-                        limit: 100,
+                    tmp = await connector.projects.repos(this.flags.project).commits(this.flags.slug).comments(this.flags.pull).list({
+                        path: this.flags.path,
+                        since: this.flags.since,
+                        pageOptions: {
+                            start: tmp.nextPageStart,
+                            limit: 100,
+                        }
                     });
                     result.values.push(...tmp.values);
                 }
                 result.size = result.values.length;
             } else {
-                result = await connector.projects.repos(this.flags.project).pullRequests(this.flags.slug).comments(this.flags.pull).list(this.flags.path, this.pageOptions);
+                result = await connector.projects.repos(this.flags.project).commits(this.flags.slug).comments(this.flags.pull).list({
+                    path: this.flags.path,
+                    since: this.flags.since,
+                    pageOptions: this.pageOptions
+                });
             }
             response.result = result;
             response.status = 0;

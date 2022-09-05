@@ -6,11 +6,11 @@ import { CommentColumns } from "../../../../../libs/core/tables";
 import { UX } from "../../../../../libs/core/ux";
 
 export default class Get extends BaseCommand {
-    static description = 'Retrieves a pull request comment. ' + UX.processDocumentation('<doc:Comment>');
+    static description = 'Retrieves a commit comment. ' + UX.processDocumentation('<doc:Comment>');
     static examples = [
-        `$ stash projects:repos:pulls:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --comment 4567 --csv`,
-        `$ stash projects:repos:pulls:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --comment 4567 --json`,
-        `$ stash projects:repos:pulls:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --comment 4567 `,
+        `$ stash projects:repos:commits:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --comment 4567 --csv`,
+        `$ stash projects:repos:commits:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --comment 4567 --json`,
+        `$ stash projects:repos:commits:comments:get -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --comment 4567 `,
     ];
     static flags = {
         ...BaseCommand.flags,
@@ -18,19 +18,19 @@ export default class Get extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to get the pull request comment',
+            description: 'The Project key to get the commit comment',
             required: true,
             name: 'Project'
         }),
         slug: Flags.string({
-            description: 'The Repository slug to get the pull request comment',
+            description: 'The Repository slug to get the commit comment',
             required: true,
             name: 'Slug',
         }),
-        pull: Flags.integer({
-            description: 'The Pull Request Id to get the pull request comment',
-            required: true,
-            name: 'Pull Request Id',
+        commit: Flags.integer({
+            description: 'The commit Id to get the comment',
+            required: false,
+            name: 'Commit Id',
         }),
         comment: Flags.integer({
             description: 'The Comment Id to get',
@@ -42,7 +42,7 @@ export default class Get extends BaseCommand {
         const response = new StashCLIResponse<Comment>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const comment = await connector.projects.repos(this.flags.project).pullRequests(this.flags.slug).comments(this.flags.pull).get(this.flags.comment);
+            const comment = await connector.projects.repos(this.flags.project).commits(this.flags.slug).comments(this.flags.commit).get(this.flags.comment);
             response.result = comment;
             response.status = 0;
             response.message = this.getRecordRetrievedText('Comment');
