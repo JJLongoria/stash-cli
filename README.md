@@ -861,9 +861,13 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "nodeType": "string",
     "srcPath": "FilePath",
     "srcExecutable": "boolean",
+    "link": "Link",
+    "links": "{ [key: string]: LinkRef[] }",
 }
 ```
 - See [`FilePath`](#filepath) Definition
+- See [`Link`](#link) Definition.
+- See [`LinkRef`](#linkref) Definition
 
 ---
 ## [**UpdateRepoInput**]()
