@@ -25,7 +25,7 @@ export default class Captcha extends BaseCommand {
             const message = 'Captcha Challenge cleared successfully';
             response.status = 0;
             response.message = message;
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

@@ -45,7 +45,7 @@ export default class Add extends BaseCommand {
             await connector.admin.groups().addUsers(dataToCreate);
             response.status = 0;
             response.message = message
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

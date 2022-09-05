@@ -22,14 +22,14 @@ export default class Cluster extends BaseCommand {
             const clusters = await connector.admin.cluster();
             response.result = clusters;
             response.status = 0;
-            console.log('RUNNING: ' + clusters.running);
-            console.log('\n------------------------------------\n');
-            console.log('LOCAL NODE:');
+            this.ux.log('RUNNING: ' + clusters.running);
+            this.ux.log('\n------------------------------------\n');
+            this.ux.log('LOCAL NODE:');
             this.ux.table<ClusterNode>([clusters.localNode], ClusterNodeColumns, {
                 csv: this.flags.csv
             });
-            console.log('\n------------------------------------\n');
-            console.log('NODES:');
+            this.ux.log('\n------------------------------------\n');
+            this.ux.log('NODES:');
             this.ux.table<ClusterNode>(clusters.nodes, ClusterNodeColumns, {
                 csv: this.flags.csv
             });

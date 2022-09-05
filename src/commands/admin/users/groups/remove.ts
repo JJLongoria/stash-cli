@@ -33,7 +33,7 @@ export default class Remove extends BaseCommand {
             await connector.admin.users().removeGroup(this.flags.user, this.flags.group);
             response.status = 0;
             response.message = message
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

@@ -116,7 +116,7 @@ export default class List extends BaseCommand {
             response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.values.length, 'Pull Request');
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<PullRequest>(result.values, PullRequestColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv

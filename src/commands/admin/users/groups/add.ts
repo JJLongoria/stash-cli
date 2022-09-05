@@ -37,7 +37,7 @@ export default class Add extends BaseCommand {
         const response = new StashCLIResponse<any>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            console.log(this.flags.keyvalue);
+            this.ux.log(this.flags.keyvalue);
             const dataToCreate: AddGroupInput = this.hasInputData() ? this.getJSONInputData() : {
                 groups: this.flags.groups,
                 user: this.flags.user
@@ -46,7 +46,7 @@ export default class Add extends BaseCommand {
             await connector.admin.users().addGroups(dataToCreate);
             response.status = 0;
             response.message = message
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

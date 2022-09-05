@@ -49,12 +49,14 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**LinkRef**](#linkref)
   - [**MailHostConfiguration**](#mailhostconfiguration)
   - [**Participant**](#participant)
+  - [**ParticipantInput**](#participantinput)
   - [**PermissionGroups**](#permissiongroups)
   - [**PermissionUsersOutput**](#permissionusersoutput)
   - [**Project**](#project)
   - [**ProjectInput**](#projectinput)
   - [**PullRequest**](#pullrequest)
   - [**PullRequestRef**](#pullrequestref)
+  - [**PullRequestRefInput**](#pullrequestrefinput)
   - [**PullRequestVeto**](#pullrequestveto)
   - [**Repository**](#repository)
   - [**RepoChangesOutput**](#repochangesoutput)
@@ -600,6 +602,15 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 - See [`User`](#user) Definition
 
 ---
+## [**ParticipantInput**]()
+```json
+{
+    "user": {
+      "name": "string",
+    },
+}
+```
+---
 ## [**PermissionGroups**]()
 ```json
 {
@@ -684,6 +695,19 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 ```
 - See [`Repository`](#repository) Definition.
 
+---
+## [**PullRequestRefInput**]()
+```json
+{
+    "id": "string",
+    "repository": {
+      "slug": "string",
+      "project": {
+          "key": "string",
+      }
+    },
+}
+```
 ---
 ## [**PullRequestVeto**]()
 ```json

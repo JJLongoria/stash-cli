@@ -84,7 +84,7 @@ export default class List extends BaseCommand {
             response.result = result;
             response.status = 0;
             response.message = message;
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<User>(result.values, UserColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv

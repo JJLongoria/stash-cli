@@ -30,7 +30,7 @@ export default class Delete extends BaseCommand {
             await connector.projects.repos(this.flags.project).delete(this.flags.slug)
             response.status = 0;
             response.message = this.getRecordDeletedText('Repository');
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

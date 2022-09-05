@@ -39,7 +39,7 @@ export default class Credentials extends BaseCommand {
             });
             response.status = 0;
             response.message = 'Password changes successfully';
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

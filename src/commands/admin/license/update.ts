@@ -26,7 +26,7 @@ export default class Update extends BaseCommand {
             response.result = group;
             response.status = 0;
             response.message = this.getRecordUpdatedText('License');
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<License>([group], LicenseColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv,

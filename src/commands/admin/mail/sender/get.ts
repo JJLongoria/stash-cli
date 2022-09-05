@@ -20,7 +20,7 @@ export default class Get extends BaseCommand {
             response.result = email;
             response.message = this.getRecordRetrievedText('Emai Address');
             response.status = 0;
-            console.log('Email Address: ' + email);
+            this.ux.log('Email Address: ' + email);
         } catch (error) {
             this.processError(response, error);
         }

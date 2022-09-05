@@ -19,7 +19,7 @@ export default class Delete extends BaseCommand {
             await connector.admin.mailServer().senderAddress().delete();
             response.message = this.getRecordDeletedText('Emai Address');
             response.status = 0;
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

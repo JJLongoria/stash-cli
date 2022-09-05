@@ -34,7 +34,7 @@ export default class Get extends BaseCommand {
             response.result = result;
             response.status = 0;
             response.message = this.getRecordRetrievedText('Branch');
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<Branch>([result], BranchColumns, {
                 csv: this.flags.csv,
             });

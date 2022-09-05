@@ -9,15 +9,16 @@ import { UX } from "./ux";
 export class BuildFlags {
 
     static async parseArray(str: string) {
+        if (!str || str.length === 0) {
+            return [];
+        }
         const regex = new RegExp(`"(.*?)"|\'(.*?)\'|,`);
         return str.split(regex).filter((i) => !!i).map((i) => i.trim());
     }
     static async parseKeyValue(str: string) {
-        console.log(str);
         const obj: any = {};
         const keyValueRegexp = new RegExp(`"(.*?)"|\'(.*?)\'|=`);
         const arrayValues = await BuildFlags.parseArray(str);
-        console.log(arrayValues);
         for (const value of arrayValues) {
             const keyValuePair = value.split(keyValueRegexp).filter((i) => !!i).map((i) => i.trim());
             obj[keyValuePair[0]] = keyValuePair[1];
@@ -215,6 +216,8 @@ export class BaseCommand extends Command {
 
     validateRequiredAndExclusives(flagsConfig: OutputFlags<any>) {
         for (const flagName of Object.keys(flagsConfig)) {
+            if(flagName === 'csv' || flagName === 'json')
+                continue;
             const flagConfig = flagsConfig[flagName];
             if (!this.flags[flagName] && flagConfig.exclusive && flagConfig.exclusive.length) {
                 let nExclusives = 0;
@@ -294,7 +297,7 @@ export class BaseCommand extends Command {
                 break;
             case 'debug':
                 if (level === 'debug') {
-                    console.log(message);
+                    this.ux.log(message);
                 }
                 break;
             case 'warn':
@@ -333,6 +336,7 @@ export class BaseCommand extends Command {
         const { args, flags } = await this.parse(this.statics);
         this.flags = flags;
         this.args = args;
+        this.ux = new UX(this.flags);
         if (this.statics.loginRequired) {
             this.checkLogin();
         }

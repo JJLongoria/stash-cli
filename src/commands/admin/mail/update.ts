@@ -24,7 +24,7 @@ export default class Update extends BaseCommand {
             const mailConfig = await connector.admin.mailServer().update(this.getJSONInputData());
             response.message = this.getRecordUpdatedText('Mail Configuration');
             response.status = 0;
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<MailHostConfiguration>([mailConfig], MailHostColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv

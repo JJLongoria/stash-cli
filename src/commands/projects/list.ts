@@ -53,7 +53,7 @@ export default class List extends BaseCommand {
             response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.values.length, 'Project');
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<Project>(result.values, ProjectColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv

@@ -22,7 +22,7 @@ export default class Get extends BaseCommand {
             response.result = mailConfig;
             response.message = this.getRecordRetrievedText('Mail Configuration');
             response.status = 0;
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<MailHostConfiguration>([mailConfig], MailHostColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv

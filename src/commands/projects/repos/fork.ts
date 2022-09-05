@@ -49,7 +49,7 @@ export default class Fork extends BaseCommand {
             response.result = result;
             response.status = 0;
             response.message = 'The Repository forked successfully';
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<Repository>([result], RepositoryColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv

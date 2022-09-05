@@ -30,7 +30,7 @@ export default class Delete extends BaseCommand {
             response.result = user;
             response.status = 0;
             response.message = this.getRecordDeletedText('User');
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<User>([user], UserColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv

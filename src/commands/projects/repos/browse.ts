@@ -95,7 +95,7 @@ export default class Browse extends BaseCommand {
             response.result = result;
             response.status = 0;
             response.message = result.values.length + ' Lines found';
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<Line>(result.values, LineColumns, {
                 csv: this.flags.csv,
             });

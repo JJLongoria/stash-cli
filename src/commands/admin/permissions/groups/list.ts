@@ -67,13 +67,13 @@ export default class List extends BaseCommand {
             response.status = 0;
             if (this.flags.none) {
                 response.message = this.getRecordsFoundText(result.values.length, 'Groups');
-                console.log(response.message);
+                this.ux.log(response.message);
                 this.ux.table<Group>(result.values, GroupColumns, {
                     csv: this.flags.csv,
                 });
             } else {
                 response.message = this.getRecordsFoundText(result.values.length, 'Group Permissions');
-                console.log(response.message);
+                this.ux.log(response.message);
                 this.ux.table<PermissionGroups>(result.values, GroupPermissionsColumns, {
                     csv: this.flags.csv,
                 });

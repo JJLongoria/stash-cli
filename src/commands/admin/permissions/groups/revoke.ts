@@ -25,7 +25,7 @@ export default class Revoke extends BaseCommand {
             await connector.admin.permissions().groups().revoke(this.flags.name);
             response.status = 0;
             response.message = 'Group Permissions Revoked successfully';
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

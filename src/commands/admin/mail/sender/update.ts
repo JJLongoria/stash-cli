@@ -26,7 +26,7 @@ export default class Update extends BaseCommand {
             response.result = email;
             response.message = this.getRecordUpdatedText('Emai Address');
             response.status = 0;
-            console.log('New Email Address: ' + email);
+            this.ux.log('New Email Address: ' + email);
         } catch (error) {
             this.processError(response, error);
         }

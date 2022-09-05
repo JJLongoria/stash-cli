@@ -29,7 +29,7 @@ export default class Delete extends BaseCommand {
             response.result = group;
             response.status = 0;
             response.message = this.getRecordDeletedText('Group');
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<Group>([group], GroupColumns, {
                 csv: this.flags.csv
             });

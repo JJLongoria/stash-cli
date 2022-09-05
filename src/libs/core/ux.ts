@@ -1,8 +1,16 @@
 import { CliUx } from "@oclif/core";
+import { OutputFlags } from "@oclif/core/lib/interfaces";
 import * as notifier from 'node-notifier';
 import { StrUtils } from "../utils/strUtils";
 
 export class UX {
+
+    flags: OutputFlags<any>;
+
+    constructor(flags?: OutputFlags<any>) {
+        this.flags = flags || {};
+    }
+
     startSpinner(message: string) {
         CliUx.ux.action.start(message);
     }
@@ -11,8 +19,16 @@ export class UX {
         CliUx.ux.action.stop(message);
     }
 
+    log(message: string) {
+        if (!this.flags.json) {
+            console.log(message);
+        }
+    }
+
     table<T>(data: any[], columns: CliUx.Table.table.Columns<Record<string, T>>, options: CliUx.Table.table.Options = {}) {
-        CliUx.ux.table(data, columns, options);
+        if (!this.flags.json) {
+            CliUx.ux.table(data, columns, options);
+        }
     }
 
     prompt(text: string, options?: CliUx.IPromptOptions) {

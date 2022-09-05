@@ -5,7 +5,6 @@ import { ProjectColumns } from "../../libs/core/tables";
 import { UX } from "../../libs/core/ux";
 import { FileChecker, FileReader, PathUtils } from "../../libs/fileSystem";
 import { CLIProjectInput } from "../../libs/types";
-import { StrUtils } from "../../libs/utils/strUtils";
 
 export default class Create extends BaseCommand {
     static description = 'Create a new project. ' + UX.processDocumentation('<doc:Project>');
@@ -47,7 +46,7 @@ export default class Create extends BaseCommand {
             response.result = project;
             response.status = 0;
             response.message = this.getRecordCreatedText('Project');
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<Project>([project], ProjectColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv

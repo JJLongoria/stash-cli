@@ -35,7 +35,7 @@ export default class Update extends BaseCommand {
             await connector.projects.repos(this.flags.project).branches(this.flags.slug).default().update(this.flags.branch);
             response.status = 0;
             response.message = this.getRecordUpdatedText('Default Branch');
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

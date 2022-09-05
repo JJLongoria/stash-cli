@@ -24,7 +24,7 @@ export default class Get extends BaseCommand {
             response.result = group;
             response.status = 0;
             response.message = 'License retrieved succesffully';
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<License>([group], LicenseColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv,

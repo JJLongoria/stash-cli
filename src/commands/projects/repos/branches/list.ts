@@ -92,7 +92,7 @@ export default class List extends BaseCommand {
             response.result = result;
             response.status = 0;
             response.message = this.getRecordsFoundText(result.values.length, 'Branch');
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<Branch>(result.values, BranchColumns, {
                 csv: this.flags.csv,
             });

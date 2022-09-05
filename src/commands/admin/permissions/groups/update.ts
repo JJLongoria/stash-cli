@@ -32,7 +32,7 @@ export default class Update extends BaseCommand {
             await connector.admin.permissions().groups().update(this.flags.name, this.flags.permission);
             response.status = 0;
             response.message = this.getRecordUpdatedText('Group Permissions');
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

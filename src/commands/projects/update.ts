@@ -52,7 +52,7 @@ export default class Update extends BaseCommand {
             response.result = project;
             response.status = 0;
             response.message = this.getRecordCreatedText('Project');
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<Project>([project], ProjectColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv

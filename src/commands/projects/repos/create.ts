@@ -45,7 +45,7 @@ export default class Create extends BaseCommand {
             response.result = result;
             response.status = 0;
             response.message = this.getRecordCreatedText('Repository');
-            console.log(response.message);
+            this.ux.log(response.message);
             this.ux.table<Repository>([result], RepositoryColumns, {
                 csv: this.flags.csv,
                 extended: this.flags.extended || this.flags.csv

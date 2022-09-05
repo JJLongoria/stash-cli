@@ -34,7 +34,7 @@ export default class Download extends BaseCommand {
             response.status = 0;
             response.message = this.getRecordRetrievedText('Project Avatar');
             if(!this.flags.outputFolder){
-                console.log(avatar);
+                this.ux.log(avatar);
             } else {
                 const absolutePath = PathUtils.getAbsolutePath(this.flags.outputFolder);
                 if(!FileChecker.isExists(absolutePath)){

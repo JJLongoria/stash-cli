@@ -25,7 +25,7 @@ export default class List extends BaseCommand {
             await connector.projects.delete(this.flags.key);
             response.status = 0;
             response.message = this.getRecordDeletedText('Project');
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }

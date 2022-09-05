@@ -37,7 +37,7 @@ export default class Download extends BaseCommand {
             await connector.projects.avatar(this.flags.key).update(this.flags.file);
             response.status = 0;
             response.message = 'Project Avatar Uploaded successfully';
-            console.log(response.message);
+            this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
         }
