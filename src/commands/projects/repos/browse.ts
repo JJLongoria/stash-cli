@@ -47,6 +47,11 @@ export default class Browse extends BaseCommand {
             required: false,
             name: 'No Content'
         }),
+        path: Flags.string({
+            description: 'Retrieve a page of content for a file path at a specified revision.',
+            required: false,
+            name: 'Path'
+        }),
     };
     async run(): Promise<StashCLIResponse<Page<Line>>> {
         const response = new StashCLIResponse<Page<Line>>();
@@ -60,7 +65,7 @@ export default class Browse extends BaseCommand {
                     blame: this.flags.blame,
                     noContent: this.flags['no-content'],
                     pageOptions: this.allPageOptions
-                });
+                }, this.flags.path);
                 result.values.push(...tmp.values);
                 result.isLastPage = true;
                 result.start = tmp.start;
@@ -74,7 +79,7 @@ export default class Browse extends BaseCommand {
                             start: tmp.nextPageStart,
                             limit: 100,
                         }
-                    });
+                    }, this.flags.path);
                     result.values.push(...tmp.values);
                 }
                 result.size = result.values.length;
@@ -85,7 +90,7 @@ export default class Browse extends BaseCommand {
                     blame: this.flags.blame,
                     noContent: this.flags['no-content'],
                     pageOptions: this.pageOptions
-                });
+                }, this.flags.path);
             }
             response.result = result;
             response.status = 0;

@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { Branch, ClusterNode, Group, License, Line, MailHostConfiguration, PermissionGroups, Project, Repository, User } from "stash-connector";
+import { Branch, ClusterNode, Group, License, Line, MailHostConfiguration, PermissionGroups, Project, RepoChangesOutput, Repository, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -291,5 +291,45 @@ export const BranchColumns: CliUx.Table.table.Columns<Record<string, Branch>> = 
 export const LineColumns: CliUx.Table.table.Columns<Record<string, Line>> = {
     text: {
         header: 'Text',
+    },
+}
+
+export const RepoChangesColumns: CliUx.Table.table.Columns<Record<string, RepoChangesOutput>> = {
+    contentId: {
+        header: 'Content ID',
+    },
+    fromContentId: {
+        header: 'From Content ID',
+        extended: true,
+    },
+    path: {
+        header: 'Path',
+        get: (row: any) => {
+            return row.path.toString;
+        }
+    },
+    executable: {
+        header: 'Executable',
+        extended: true,
+    },
+    percentUnchanged: {
+        header: 'Percent Unchanged',
+    },
+    type: {
+        header: 'Type',
+    },
+    nodeType: {
+        header: 'Node Type',
+        extended: true,
+    },
+    srcPath: {
+        header: 'Src path',
+        get: (row: any) => {
+            return row.path.toString;
+        }
+    },
+    srcExecutable: {
+        header: 'Src Executable',
+        extended: true
     },
 }

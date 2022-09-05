@@ -38,6 +38,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**ClusterNode**](#clusternode)
   - [**ClusterAddress**](#clusteraddress)
   - [**CreateUserInput**](#createuserinput)
+  - [**FilePath**](#filepath)
   - [**ForkRepoInput**](#forkrepoinput)
   - [**Group**](#group)
   - [**Instance**](#instance)
@@ -52,6 +53,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**Project**](#project)
   - [**ProjectInput**](#projectinput)
   - [**Repository**](#repository)
+  - [**RepoChangesOutput**](#repochangesoutput)
   - [**UpdateRepoInput**](#updaterepoinput)
   - [**User**](#user)
 
@@ -479,6 +481,17 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 }
 ```
 ---
+## [**FilePath**]()
+```json
+{
+    "components": "string[]",
+    "parent": "string",
+    "name": "string",
+    "extension": "string",
+    "toString": "string",
+}
+```
+---
 ## [**ForkRepoInput**]()
 ```json
 {
@@ -641,6 +654,23 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 - See [`Project`](#project) Definition
 - See [`Link`](#link) Definition.
 - See [`LinkRef`](#linkref) Definition
+
+---
+## [**RepoChangesOutput**]()
+```json
+{
+    "contentId": "string",
+    "fromContentId": "string",
+    "path": "FilePath",
+    "executable": "boolean",
+    "percentUnchanged":" number",
+    "type": "string",
+    "nodeType": "string",
+    "srcPath": "FilePath",
+    "srcExecutable": "boolean",
+}
+```
+- See [`FilePath`](#filepath) Definition
 
 ---
 ## [**UpdateRepoInput**]()
