@@ -17,17 +17,17 @@ export default class Assign extends BaseCommand {
         csv: BuildFlags.csv,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to create the pull request comment',
+            description: 'The Project key to assign participant to the pull request',
             required: true,
             name: 'Project'
         }),
         slug: Flags.string({
-            description: 'The Repository slug to create the pull request comment',
+            description: 'The Repository slug to assign participant to the pull request',
             required: true,
             name: 'Slug',
         }),
         pull: Flags.integer({
-            description: 'The Pull Request Id to create the pull request comment',
+            description: 'The Pull Request Id to assign participant to the pull request',
             required: true,
             name: 'Pull Request Id',
         }),
@@ -57,7 +57,7 @@ export default class Assign extends BaseCommand {
             const comment = await connector.projects.repos(this.flags.project).pullRequests(this.flags.slug).participants(this.flags.pull).assign(inputData);
             response.result = comment;
             response.status = 0;
-            response.message = this.getRecordCreatedText('Comment');
+            response.message = 'Participant assigned successfuly';
             this.ux.log(response.message);
             this.ux.table<Participant>([comment], ParticipantColumns, {
                 csv: this.flags.csv
