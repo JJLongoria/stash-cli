@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { Branch, ClusterNode, Group, License, MailHostConfiguration, PermissionGroups, Project, Repository, User } from "stash-connector";
+import { Branch, ClusterNode, Group, License, Line, MailHostConfiguration, PermissionGroups, Project, Repository, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -286,4 +286,10 @@ export const BranchColumns: CliUx.Table.table.Columns<Record<string, Branch>> = 
     isDefault: {
         header: 'Default',
     }
+}
+
+export const LineColumns: CliUx.Table.table.Columns<Record<string, Line>> = {
+    text: {
+        header: 'Text',
+    },
 }

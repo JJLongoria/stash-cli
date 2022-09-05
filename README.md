@@ -43,6 +43,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**Instance**](#instance)
   - [**License**](#license)
   - [**LicenseStatus**](#licensestatus)
+  - [**Line**](#line)
   - [**Link**](#link)
   - [**LinkRef**](#linkref)
   - [**MailHostConfiguration**](#mailhostconfiguration)
@@ -533,6 +534,13 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 {
     "serverId": "string",
     "currentNumberOfUsers": "number",
+}
+```
+---
+## [**Line**]()
+```json
+{
+    "text": "string",
 }
 ```
 ---
