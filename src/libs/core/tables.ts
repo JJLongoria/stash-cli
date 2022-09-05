@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { Branch, ClusterNode, Group, License, Line, MailHostConfiguration, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, User } from "stash-connector";
+import { Branch, ClusterNode, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -513,4 +513,19 @@ export const PullRequestActivityColumns: CliUx.Table.table.Columns<Record<string
         header: 'To Hash',
         extended: true,
     }
+}
+
+export const ParticipantColumns: CliUx.Table.table.Columns<Record<string, Participant>> = {
+    user: {
+        header: 'User',
+        get: (row: any) => {
+            return row.user.name;
+        },
+    },
+    role: {
+        header: 'Role',
+    },
+    approved: {
+        header: 'Approved',
+    },
 }
