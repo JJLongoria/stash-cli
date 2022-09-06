@@ -731,7 +731,7 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 ```json
 {
     "group": "User",
-    "permission": "'LICENSED_USER' | 'PROJECT_CREATE' | 'ADMIN' | 'SYS_ADMIN'",
+    "permission": "'LICENSED_USER' | 'PROJECT_CREATE' | 'ADMIN' | 'SYS_ADMIN' | 'PROJECT_READ' | 'PROJECT_WRITE",
 }
 ```
 - See [`Group`](#group) Definition
@@ -741,7 +741,7 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 ```json
 {
     "user": "User",
-    "permission": "'LICENSED_USER' | 'PROJECT_CREATE' | 'ADMIN' | 'SYS_ADMIN'",
+    "permission": "'LICENSED_USER' | 'PROJECT_CREATE' | 'ADMIN' | 'SYS_ADMIN' | 'PROJECT_READ' | 'PROJECT_WRITE",
 }
 ```
 - See [`User`](#user) Definition
