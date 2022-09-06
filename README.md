@@ -60,8 +60,9 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**CreateUserInput**](#createuserinput)
   - [**FilePath**](#filepath)
   - [**ForkRepoInput**](#forkrepoinput)
-  - [**HookOutput**](#hookoutput)
   - [**HookDetails**](#hookdetails)
+  - [**HookInput**](#hookinput)
+  - [**HookOutput**](#hookoutput)
   - [**Group**](#group)
   - [**Instance**](#instance)
   - [**License**](#license)
@@ -621,17 +622,6 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 }
 ```
 ---
-## [**HookOutput**]()
-```json
-{
-    "details": "HookDetails",
-    "enabled": "boolean",
-    "configured": "boolean",
-}
-```
-- See [`HookDetails`](#hookdetails) Definition
-
----
 ## [**HookDetails**]()
 ```json
 {
@@ -643,6 +633,28 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "configFormKey?": "string",
 }
 ```
+---
+## [**HookInput**]()
+```json
+{
+    "details": "HookDetails",
+    "enabled": "boolean",
+    "configured": "boolean",
+}
+```
+- See [`HookDetails`](#hookdetails) Definition
+
+---
+## [**HookOutput**]()
+```json
+{
+    "details": "HookDetails",
+    "enabled": "boolean",
+    "configured": "boolean",
+}
+```
+- See [`HookDetails`](#hookdetails) Definition
+
 ---
 ## [**Group**]()
 ```json
