@@ -23,7 +23,7 @@ export default class Download extends BaseCommand {
             required: false,
             name: 'Size'
         }),
-        'output-folder': BuildFlags.output.file('', false),
+        'output-folder': BuildFlags.output.folder('', false),
     };
     async run(): Promise<StashCLIResponse<any> | any> {
         const response = new StashCLIResponse<any>();
@@ -33,11 +33,11 @@ export default class Download extends BaseCommand {
             response.result = avatar;
             response.status = 0;
             response.message = this.getRecordRetrievedText('Project Avatar');
-            if(!this.flags.outputFolder){
-                this.flags.json = false;
+            if(!this.flags['output-folder']){
+                
                 this.ux.log(avatar);
             } else {
-                const absolutePath = PathUtils.getAbsolutePath(this.flags.outputFolder);
+                const absolutePath = PathUtils.getAbsolutePath(this.flags['output-folder']);
                 if(!FileChecker.isExists(absolutePath)){
                     FileWriter.createFolderSync(absolutePath);
                 }

@@ -19,7 +19,7 @@ export class UX {
         CliUx.ux.action.stop(message);
     }
 
-    log(message: string) {
+    log(message: string | any) {
         if (!this.flags.json) {
             console.log(message);
         }
