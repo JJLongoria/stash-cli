@@ -8,9 +8,9 @@ import { UX } from "../../../../../libs/core/ux";
 export default class List extends BaseCommand {
     static description = 'Retrieves a commit discussion comment. ' + UX.processDocumentation('<doc:Comment>');
     static examples = [
-        `$ stash projects:repost:commits:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --all --csv`,
-        `$ stash projects:repost:commits:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --path "file/path/to/get/comments" -l 100 -s 50 --json`,
-        `$ stash projects:repost:commits:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --since "ahs6sd2" --limit 30`,
+        `$ stash projects:repos:commits:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --all --csv`,
+        `$ stash projects:repos:commits:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --path "file/path/to/get/comments" -l 100 -s 50 --json`,
+        `$ stash projects:repos:commits:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --commit "a62ajdu128" --since "ahs6sd2" --limit 30`,
     ];
     static flags = {
         ...BaseCommand.flags,

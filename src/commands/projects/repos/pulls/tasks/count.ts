@@ -8,9 +8,9 @@ import { UX } from "../../../../../libs/core/ux";
 export default class Count extends BaseCommand {
     static description = 'Retrieve the total number of open and resolved tasks associated with a pull request. ' + UX.processDocumentation('<doc:TaskCountOutput>');
     static examples = [
-        `$ stash projects:repost:pulls:tasks:count -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --csv`,
-        `$ stash projects:repost:pulls:tasks:count -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --json`,
-        `$ stash projects:repost:pulls:tasks:count -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234`,
+        `$ stash projects:repos:pulls:tasks:count -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --csv`,
+        `$ stash projects:repos:pulls:tasks:count -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --json`,
+        `$ stash projects:repos:pulls:tasks:count -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234`,
     ];
     static flags = {
         ...BaseCommand.flags,

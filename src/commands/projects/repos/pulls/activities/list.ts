@@ -8,9 +8,9 @@ import { UX } from "../../../../../libs/core/ux";
 export default class List extends BaseCommand {
     static description = 'Retrieve a page of activity associated with a pull request. ' + UX.processDocumentation('<doc:PullRequestActivity>');
     static examples = [
-        `$ stash projects:repost:pulls:activities:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --all --csv`,
-        `$ stash projects:repost:pulls:activities:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --type COMMENT -l 100 -s 50 --json`,
-        `$ stash projects:repost:pulls:activities:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --from 5678 --type ACTIVITY --limit 30`,
+        `$ stash projects:repos:pulls:activities:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --all --csv`,
+        `$ stash projects:repos:pulls:activities:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --type COMMENT -l 100 -s 50 --json`,
+        `$ stash projects:repos:pulls:activities:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --from 5678 --type ACTIVITY --limit 30`,
     ];
     static flags = {
         ...BaseCommand.flags,

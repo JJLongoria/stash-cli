@@ -8,9 +8,9 @@ import { UX } from "../../../../../libs/core/ux";
 export default class List extends BaseCommand {
     static description = 'Gets changes for the specified PullRequest. ' + UX.processDocumentation('<doc:RepoChangesOutput>');
     static examples = [
-        `$ stash projects:repost:pulls:changes:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --all --csv`,
-        `$ stash projects:repost:pulls:changes:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 -l 100 -s 50 --json`,
-        `$ stash projects:repost:pulls:changes:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --from 5678 --limit 30`,
+        `$ stash projects:repos:pulls:changes:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --all --csv`,
+        `$ stash projects:repos:pulls:changes:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 -l 100 -s 50 --json`,
+        `$ stash projects:repos:pulls:changes:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --from 5678 --limit 30`,
     ];
     static flags = {
         ...BaseCommand.flags,

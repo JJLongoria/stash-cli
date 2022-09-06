@@ -8,9 +8,9 @@ import { UX } from "../../../../libs/core/ux";
 export default class Diffs extends BaseCommand {
     static description = 'Retrieve changesets for the specified pull request. ' + UX.processDocumentation('<doc:CommitDiffOutput>');
     static examples = [
-        `$ stash projects:repost:compare:diffs -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --context-lines 5 --csv`,
-        `$ stash projects:repost:compare:diffs -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --src "path/to/src/path" --'without-comments' --json`,
-        `$ stash projects:repost:compare:diffs -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --path "path/to/file" --limit 30`,
+        `$ stash projects:repos:compare:diffs -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --context-lines 5 --csv`,
+        `$ stash projects:repos:compare:diffs -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --src "path/to/src/path" --'without-comments' --json`,
+        `$ stash projects:repos:compare:diffs -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --path "path/to/file" --limit 30`,
     ];
     static flags = {
         ...BaseCommand.flags,

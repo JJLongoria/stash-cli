@@ -8,9 +8,9 @@ import { UX } from "../../../../../libs/core/ux";
 export default class List extends BaseCommand {
     static description = 'Retrieve changesets for the specified pull request. ' + UX.processDocumentation('<doc:CommitDiffOutput>');
     static examples = [
-        `$ stash projects:repost:pulls:diffs:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --context-lines 5 --csv`,
-        `$ stash projects:repost:pulls:diffs:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --src "path/to/src/path" --'without-comments' --json`,
-        `$ stash projects:repost:pulls:diffs:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --path "path/to/file" --limit 30`,
+        `$ stash projects:repos:pulls:diffs:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --context-lines 5 --csv`,
+        `$ stash projects:repos:pulls:diffs:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --src "path/to/src/path" --'without-comments' --json`,
+        `$ stash projects:repos:pulls:diffs:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --path "path/to/file" --limit 30`,
     ];
     static flags = {
         ...BaseCommand.flags,

@@ -8,9 +8,9 @@ import { UX } from "../../../../../libs/core/ux";
 export default class List extends BaseCommand {
     static description = 'Retrieve a page of comments made in a specified pull request. ' + UX.processDocumentation('<doc:Comment>');
     static examples = [
-        `$ stash projects:repost:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --all --csv`,
-        `$ stash projects:repost:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --path "file/path/to/get/comments" -l 100 -s 50 --json`,
-        `$ stash projects:repost:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --limit 30`,
+        `$ stash projects:repos:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --all --csv`,
+        `$ stash projects:repos:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --path "file/path/to/get/comments" -l 100 -s 50 --json`,
+        `$ stash projects:repos:pulls:comments:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --pull 1234 --limit 30`,
     ];
     static flags = {
         ...BaseCommand.flags,

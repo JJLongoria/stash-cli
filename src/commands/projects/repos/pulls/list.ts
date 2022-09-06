@@ -8,9 +8,9 @@ import { UX } from "../../../../libs/core/ux";
 export default class List extends BaseCommand {
     static description = 'Retrieve a page of pull requests to or from the specified repository. ' + UX.processDocumentation('<doc:PullRequest>');
     static examples = [
-        `$ stash projects:repost:pulls:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --all --csv`,
-        `$ stash projects:repost:pulls:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --direction OUTGOING -l 100 -s 50 --json`,
-        `$ stash projects:repost:pulls:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --state OPEN --order OLDEST --limit 30`,
+        `$ stash projects:repos:pulls:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --all --csv`,
+        `$ stash projects:repos:pulls:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --direction OUTGOING -l 100 -s 50 --json`,
+        `$ stash projects:repos:pulls:list -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --state OPEN --order OLDEST --limit 30`,
     ];
     static flags = {
         ...BaseCommand.flags,
