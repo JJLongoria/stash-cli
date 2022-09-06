@@ -6,9 +6,9 @@ import { StashCLIResponse } from "../../../../libs/core/stashResponse";
 export default class Revoke extends BaseCommand {
     static description = 'Revoke all permissions for the specified project for a group.';
     static examples = [
-        `$ stash projects:permissions:groups:revoke --project "ProjectKey" -a MyStashAlias --name groupName --csv`,
-        `$ stash projects:permissions:groups:revoke --project "ProjectKey" -a MyStashAlias --name groupName --json`,
-        `$ stash projects:permissions:groups:revoke --project "ProjectKey" -a MyStashAlias --name otherGroup`,
+        `$ stash projects:permissions:groups:revoke -a MyStashAlias --project "ProjectKey" --name groupName --csv`,
+        `$ stash projects:permissions:groups:revoke -a MyStashAlias --project "ProjectKey" --name groupName --json`,
+        `$ stash projects:permissions:groups:revoke -a MyStashAlias --project "ProjectKey" --name otherGroup`,
     ];
     static flags = {
         ...BaseCommand.flags,

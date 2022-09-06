@@ -6,11 +6,11 @@ import { PermittedColumns } from "../../../../libs/core/tables";
 import { UX } from "../../../../libs/core/ux";
 
 export default class Check extends BaseCommand {
-    static description = 'Check whether the specified permission is the default permission (granted to all users) for a project. ' + UX.processDocumentation('<doc:PermittedOutput>');
+    static description = 'Grant a project permission to all users. ' + UX.processDocumentation('<doc:PermittedOutput>');
     static examples = [
-        `$ stash projects:permissions:all:check -a MyStashAlias --project "ProjectKey" --permission PROJECT_READ`,
-        `$ stash projects:permissions:all:check -a MyStashAlias --project "ProjectKey" --permission PROJECT_WRITE --json`,
-        `$ stash projects:permissions:all:check -a MyStashAlias --project "ProjectKey" --permission PROJECT_ADMIN --csv`,
+        `$ stash projects:permissions:all:grant -a MyStashAlias --project "ProjectKey" --permission PROJECT_READ`,
+        `$ stash projects:permissions:all:grant -a MyStashAlias --project "ProjectKey" --permission PROJECT_WRITE --json`,
+        `$ stash projects:permissions:all:grant -a MyStashAlias --project "ProjectKey" --permission PROJECT_ADMIN --csv`,
     ];
     static flags = {
         ...BaseCommand.flags,
@@ -18,12 +18,12 @@ export default class Check extends BaseCommand {
         alias: BuildFlags.alias,
         ...BuildFlags.pagination,
         project: Flags.string({
-            description: 'The Project key to check the permissions',
+            description: 'The Project key to grant permissions',
             required: true,
             name: 'Project'
         }),
         permission: Flags.string({
-            description: 'The permission to check',
+            description: 'The permission to grant',
             type: "option",
             options: ['PROJECT_READ', 'PROJECT_WRITE', 'PROJECT_ADMIN'],
             required: true,
@@ -34,10 +34,10 @@ export default class Check extends BaseCommand {
         const response = new StashCLIResponse<PermittedOutput>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const result = await connector.projects.permissions(this.flags.project).all(this.flags.permission).check()
+            const result = await connector.projects.permissions(this.flags.project).all(this.flags.permission).update(true)
             response.result = result;
             response.status = 0;
-            response.message = 'Permissions Checked successffully';
+            response.message = 'Permissions Grantted successffully';
             this.ux.log(response.message);
             this.ux.table<PermittedOutput>([result], PermittedColumns, {
                 csv: this.flags.csv,

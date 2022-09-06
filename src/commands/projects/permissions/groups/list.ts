@@ -8,9 +8,9 @@ import { UX } from "../../../../libs/core/ux";
 export default class List extends BaseCommand {
     static description = 'Retrieve a page of groups that have been granted at least one permission for the specified project, or retrieve a page of Groups without any permission for the specified project. ' + UX.processDocumentation('<doc:PermissionGroups>');
     static examples = [
-        `$ stash projects:permissions:groups:list --project "ProjectKey" -a MyStashAlias --all`,
-        `$ stash projects:permissions:groups:list --project "ProjectKey" --none -a MyStashAlias -l 100 -s 50`,
-        `$ stash projects:permissions:groups:list --project "ProjectKey" -a MyStashAlias --filter "groupName" --limit 30`,
+        `$ stash projects:permissions:groups:list -a MyStashAlias --project "ProjectKey" --all`,
+        `$ stash projects:permissions:groups:list -a MyStashAlias --project "ProjectKey" --none -l 100 -s 50`,
+        `$ stash projects:permissions:groups:list -a MyStashAlias --project "ProjectKey" --filter "groupName" --limit 30`,
     ];
     static flags = {
         ...BaseCommand.flags,
