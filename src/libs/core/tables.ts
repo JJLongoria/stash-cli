@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperties, Branch, ClusterNode, Comment, Commit, CommitDiff, Group, License, Line, Logger, MailHostConfiguration, Participant, PermissionGroups, PermissionUserOutput, PermissionUsersOutput, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, Task, TaskCountOutput, User } from "stash-connector";
+import { ApplicationProperties, Branch, ClusterNode, Comment, Commit, CommitDiff, Group, License, Line, Logger, MailHostConfiguration, Participant, PermissionGroups, PermissionUserOutput, PermissionUsersOutput, PermittedOutput, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, Task, TaskCountOutput, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -714,6 +714,12 @@ export const PermissionUsersColumns: CliUx.Table.table.Columns<Record<string, Pe
     },
     permission: {
         header: 'Permission'
+    }
+}
+
+export const PermittedColumns: CliUx.Table.table.Columns<Record<string, PermittedOutput>> = {
+    permitted: {
+        header: 'Permitted'
     }
 }
 
