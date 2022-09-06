@@ -1,4 +1,4 @@
-[**Stash CLI Application**]()
+[**Stash CLI Application - BETA -**]()
 =================
 
 [![Version](https://img.shields.io/npm/v/cli-stash?logo=npm)](https://www.npmjs.com/package/cli-stash)
@@ -24,13 +24,17 @@ Supported Operative Systems:
 - Linux
 - Mac OS X
 
+Now Stil in BETA Version because is not fully tested.
+
 --- 
 
-- [**Stash CLI Application**](#stash-cli-application)
+- [**Stash CLI Application - BETA -**](#stash-cli-application---beta--)
 - [**Installation Guide**](#installation-guide)
   - [**NPM**](#npm)
   - [**Windows Standalone**](#windows-standalone)
 - [**Usage**](#usage)
+- [**CLI Responses**](#cli-responses)
+- [**Paginated API**](#paginated-api)
 - [**Core CLI Commands**](#core-cli-commands)
   - [**`stash help [COMMAND]`**](#stash-help-command)
   - [**`stash update`**](#stash-update)
@@ -145,6 +149,10 @@ running command...
 $ stash --help [COMMAND]
 ...
 ```
+
+# [**CLI Responses**]()
+
+# [**Paginated API**]()
 
 # [**Core CLI Commands**]()
 
