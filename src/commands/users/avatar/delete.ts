@@ -4,7 +4,7 @@ import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../libs/core/stashResponse";
 
 export default class Delete extends BaseCommand {
-    static description = 'Delete the avatar associated to a user.');
+    static description = 'Delete the avatar associated to a user.';
     static examples = [
         `$ stash users:avatar:delete -a MyStashAlias --slug "userslug" --json`,
         `$ stash users:avatar:delete -a MyStashAlias --slug "userslug" --csv`,
