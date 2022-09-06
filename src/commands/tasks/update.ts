@@ -8,9 +8,9 @@ import { UX } from "../../libs/core/ux";
 export default class Update extends BaseCommand {
     static description = 'Update a existing task. ' + UX.processDocumentation('<doc:Task>');
     static examples = [
-        `$ stash tasks:create -a MyStashAlias --task 1234 --data "{ 'text': 'NewTaskTest', 'state': 'RESOLVED' }" --json`,
-        `$ stash tasks:create -a MyStashAlias --task 1234 --file "path/to/json/data/file" --csv`,
-        `$ stash tasks:create -a MyStashAlias --task 1234 --data "{ 'text': 'NewTaskTest' }" --csv`,
+        `$ stash tasks:update -a MyStashAlias --task 1234 --data "{ 'text': 'NewTaskTest', 'state': 'RESOLVED' }" --json`,
+        `$ stash tasks:update -a MyStashAlias --task 1234 --file "path/to/json/data/file" --csv`,
+        `$ stash tasks:update -a MyStashAlias --task 1234 --data "{ 'text': 'NewTaskTest' }" --csv`,
     ];
     static flags = {
         ...BaseCommand.flags,

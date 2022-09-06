@@ -96,6 +96,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**TaskInput**](#taskinput)
   - [**TaskCountOutput**](#taskcountoutput)
   - [**User**](#user-1)
+  - [**UserInput**](#userinput)
 
 * [Usage](#usage)
 * [Commands](#commands)
@@ -1073,6 +1074,21 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "active": "boolean",
     "slug": "string",
     "type": "string",
+    "directoryName?": "string",
+    "deletable?": "boolean",
+    "lastAuthenticationTimestamp?": "number",
+    "mutableDetails?": "boolean",
+    "mutableGroups?": "boolean",
+}
+```
+---
+## [**UserInput**]()
+```json
+{
+    "name?": "string",
+    "emailAddress?": "string",
+    "displayName?": "string",
+    "type?": "string",
     "directoryName?": "string",
     "deletable?": "boolean",
     "lastAuthenticationTimestamp?": "number",
