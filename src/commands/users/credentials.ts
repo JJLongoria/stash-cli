@@ -1,5 +1,5 @@
 import { Flags } from "@oclif/core";
-import { ChangeUserPasswordInput, StashConnector } from "stash-connector";
+import { ChangePasswordInput, ChangeUserPasswordInput, StashConnector } from "stash-connector";
 import { BaseCommand, BuildFlags } from "../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../libs/core/stashResponse";
 
@@ -12,8 +12,8 @@ export default class Update extends BaseCommand {
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
-        data: BuildFlags.input.jsonData('<doc:ChangeUserPasswordInput>', false, ['password', 'confirm', 'old']),
-        file: BuildFlags.input.jsonFile('<doc:ChangeUserPasswordInput>', false, ['password', 'confirm', 'old']),
+        data: BuildFlags.input.jsonData('<doc:ChangePasswordInput>', false, ['password', 'confirm', 'old']),
+        file: BuildFlags.input.jsonFile('<doc:ChangePasswordInput>', false, ['password', 'confirm', 'old']),
         password: Flags.string({
             description: 'The new password',
             required: false,
@@ -40,7 +40,7 @@ export default class Update extends BaseCommand {
         const response = new StashCLIResponse<any>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            let inputData: ChangeUserPasswordInput;
+            let inputData: ChangePasswordInput;
             if(this.hasInputData()){
                 inputData = this.getInputData();
             } else {

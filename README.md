@@ -16,6 +16,7 @@ To learn more or read a full documentation of the Stash CLI Application, go to t
 This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria/stash-connector) library to connect and work with stash. 
 
 - [**Stash CLI Application**](#stash-cli-application)
+- [**Installation**](#installation)
 - [**Usage**](#usage)
 - [**Core CLI Commands**](#core-cli-commands)
   - [**`stash help [COMMAND]`**](#stash-help-command)
@@ -26,7 +27,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**`stash plugins:inspect PLUGIN...`**](#stash-pluginsinspect-plugin)
   - [**`stash plugins:link PLUGIN`**](#stash-pluginslink-plugin)
   - [**`stash plugins:uninstall PLUGIN...`**](#stash-pluginsuninstall-plugin)
-- [**CLI Main Topics**](#cli-main-topics)
+- [**Main CLI Topics**](#main-cli-topics)
   - [**Auth**](#auth)
   - [**Admin**](#admin)
   - [**App**](#app)
@@ -100,21 +101,18 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**User**](#user-1)
   - [**UserInput**](#userinput)
 
-* [Usage](#usage)
-* [Commands](#commands)
+
+# [**Installation**]()
 
 # [**Usage**]()
 ```sh-session
-$ npm install -g cli-stash
-$ stash COMMAND
+$ stash COMMAND [args] [flags]
 running command...
-$ stash (--version)
-cli-stash/0.1.0 win32-x64 node-v16.10.0
+
 $ stash --help [COMMAND]
-USAGE
-  $ stash COMMAND
 ...
 ```
+
 # [**Core CLI Commands**]()
 
 ## **`stash help [COMMAND]`**
@@ -350,7 +348,7 @@ ALIASES
 ```
 
 
-# [**CLI Main Topics**]()
+# [**Main CLI Topics**]()
 
 The [**Stash CLI Application**]() has to many commands to handle all Stash features. All commands are grouped in **topics**, any many topics has **subtopics** to better organization of commands (and better to learn and understand).
 
@@ -358,28 +356,53 @@ The main topics are listed below.
 
 ## [**Auth**]()
 
+Topic with all auth related matters like **list** authorized **stash instances** and **login** and **logout** from Stash instances. 
+
 ## [**Admin**]()
+
+Topic to work with all administration related tasks like **Create groups** or **users**, **grant** or **revoke** general **permissions**, get or update de **license**, manage the **mail server** or see the Stash **clusters**
 
 ## [**App**]()
 
+Topic to view the **application properties**
+
 ## [**Groups**]()
+
+Topic to **search groups** on Stash. To create or manage groups use the [**Admin groups commands (admin:groups:...)**](#admin).
 
 ## [**Hooks**]()
 
+Topic to work with **Hook's Avatars**. To work with Hooks (list, update...) use the [**Project Repo settings (projects:repos:settings:hooks...)**](#projects).
+
 ## [**Logs**]()
+
+Topic with all matters related to the Stash **Logs** like **view** or **change** **log levels** from any logger, including root logger.
 
 ## [**Markup**]()
 
+Topic to **preview as HTML** (and save) **markdown files** (or markdown content). 
+
 ## [**Profile**]()
+
+Topic with all profile commands. **List** all **recent viewed repositories** by the logged user.
 
 ## [**Projects**]()
 
+The **bigger topic** of Stash CLI because contains all commands to work with the **Stash Projects**. You can *create*, *update* *delete*... any **project**, can work with **project repositories**, make **pull request** to any branch for any repository, **list** *commits*, *changes*, handle **project** and **repository** **permissions** and to much more.
+
+Also can work with personal repository if use the user slug like **"~userSlug"** instead the prokect key on all commands that support it on the **--project** flag.
+
 ## [**Repos**]()
+
+This topic contains operations to **search repositories**, to work with repositories, use [**Project Repository commands (projects:repos:settings:hooks...)**](#projects).
 
 ## [**Tasks**]()
 
+Topic to work with **Tasks** like *create*, *update*, *list* or *delete*.
+
 ## [**User**]()
 
+Topic with all commands related to **the users** (and the **logged user**). List or search users or update information about the logged user like details or avatar.
 
 
 # [**JSON Objects Schemes**]()
@@ -993,7 +1016,7 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "links": "{ [key: string]: LinkRef[] }",
 }
 ```
-- See [`Project`](#project) Definition
+- See [`Project`](#projects) Definition
 - See [`Link`](#link) Definition.
 - See [`LinkRef`](#linkref) Definition
 
@@ -1117,5 +1140,3 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 }
 ```
 ---
-
-
