@@ -60,6 +60,8 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**CreateUserInput**](#createuserinput)
   - [**FilePath**](#filepath)
   - [**ForkRepoInput**](#forkrepoinput)
+  - [**HookOutput**](#hookoutput)
+  - [**HookDetails**](#hookdetails)
   - [**Group**](#group)
   - [**Instance**](#instance)
   - [**License**](#license)
@@ -616,6 +618,29 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "project?": {
         "key": "string",
     },
+}
+```
+---
+## [**HookOutput**]()
+```json
+{
+    "details": "HookDetails",
+    "enabled": "boolean",
+    "configured": "boolean",
+}
+```
+- See [`HookDetails`](#hookdetails) Definition
+
+---
+## [**HookDetails**]()
+```json
+{
+    "key": "string",
+    "name": "string",
+    "type": "'PRE_RECEIVE' | 'POST_RECEIVE'",
+    "description": "string",
+    "version": "string",
+    "configFormKey?": "string",
 }
 ```
 ---

@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperties, Branch, ClusterNode, Comment, Commit, CommitDiff, Group, License, Line, Logger, MailHostConfiguration, Participant, PermissionGroups, PermissionUserOutput, PermissionUsersOutput, PermittedOutput, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, Task, TaskCountOutput, User } from "stash-connector";
+import { ApplicationProperties, Branch, ClusterNode, Comment, Commit, CommitDiff, Group, HookOutput, License, Line, Logger, MailHostConfiguration, Participant, PermissionGroups, PermissionUserOutput, PermissionUsersOutput, PermittedOutput, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, Task, TaskCountOutput, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -723,4 +723,51 @@ export const PermittedColumns: CliUx.Table.table.Columns<Record<string, Permitte
     }
 }
 
+export const HookColumns: CliUx.Table.table.Columns<Record<string, HookOutput>> = {
+    key: {
+        header: 'Key',
+        get: (row: any) => {
+            return row.details.key;
+        }
+    },
+    name: {
+        header: 'Name',
+        get: (row: any) => {
+            return row.details.name;
+        }
+    },
+    type: {
+        header: 'Type',
+        get: (row: any) => {
+            return row.details.type;
+        }
+    },
+    description: {
+        header: 'Description',
+        get: (row: any) => {
+            return row.details.key;
+        }
+    },
+    version: {
+        header: 'Version',
+        get: (row: any) => {
+            return row.details.key;
+        },
+        extended: true,
+    },
+    configFormKey: {
+        header: 'Config Form key',
+        get: (row: any) => {
+            return row.details.configFormKey;
+        },
+        extended: true,
+    },
+    enabled: {
+        header: 'Enabled'
+    },
+    configured: {
+        header: 'Configured',
+        extended: true,
+    },
+}
 
