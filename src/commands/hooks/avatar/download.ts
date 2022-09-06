@@ -5,23 +5,23 @@ import { StashCLIResponse } from "../../../libs/core/stashResponse";
 import { FileChecker, FileWriter, PathUtils } from "../../../libs/fileSystem";
 
 export default class Download extends BaseCommand {
-    static description = 'Retrieve the project matching the supplied projectKey. If not selected output folder, return the raw image data';
+    static description = 'Retrieve the avatar for the project matching the supplied moduleKey. If not selected output folder, return the raw image data';
     static examples = [
-        `$ stash projects:avatar:download -a MyStashAlias --key "ProjectKey"`,
-        `$ stash projects:avatar:download -a MyStashAlias --output-folder "path/to/the/output/folder" --key "ProjectKey" --json`,
+        `$ stash hooks:avatar:download -a MyStashAlias --hook "HookKey"`,
+        `$ stash hooks:avatar:download -a MyStashAlias --output-folder "path/to/the/output/folder" --hook "HookKey" --json`,
     ];
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
-        key: Flags.string({
-            description: 'The Project key to retrieve the avatar',
+        hook: Flags.string({
+            description: 'The Hook key to retrieve the avatar',
             required: true,
-            name: 'Key'
+            name: 'Hook'
         }),
-        size: Flags.integer({
-            description: 'The desired image size',
+        version: Flags.integer({
+            description: 'Optional version used for HTTP caching only - any non-blank version will result in a large max-age Cache-Control header. Note that this does not affect the Last-Modified header.',
             required: false,
-            name: 'Size'
+            name: 'Version'
         }),
         'output-folder': BuildFlags.output.file('', false),
     };
@@ -29,10 +29,10 @@ export default class Download extends BaseCommand {
         const response = new StashCLIResponse<any>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const avatar = await connector.projects.avatar(this.flags.key).get(this.flags.size);
+            const avatar = await connector.hooks.avatar(this.flags.hook).get(this.flags.version);
             response.result = avatar;
             response.status = 0;
-            response.message = this.getRecordRetrievedText('Project Avatar');
+            response.message = this.getRecordRetrievedText('Hook Avatar');
             if(!this.flags.outputFolder){
                 this.flags.json = false;
                 this.ux.log(avatar);
@@ -41,7 +41,7 @@ export default class Download extends BaseCommand {
                 if(!FileChecker.isExists(absolutePath)){
                     FileWriter.createFolderSync(absolutePath);
                 }
-                FileWriter.createFileSync(absolutePath + '/Project_' + this.flags.key + '_avatar.png', avatar);
+                FileWriter.createFileSync(absolutePath + '/Hook' + this.flags.hook + '_avatar.png', avatar);
             }
         } catch (error) {
             this.processError(response, error);
