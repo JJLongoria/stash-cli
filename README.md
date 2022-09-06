@@ -9,14 +9,27 @@
 [![Code Size](https://img.shields.io/github/languages/code-size/jjlongoria/stash-cli)](https://github.com/JJLongoria/stash-cli)
 [![License](https://img.shields.io/github/license/jjlongoria/stash-cli?logo=github)](https://github.com/JJLongoria/stash-cli/blob/master/LICENSE)
 
-CLI application to manage and work with Atlassian Stash. Work with your Stash project and repositories from Command lines.
+**CLI application** to manage and work with **Atlassian Stash**. Work with your Stash *projects* and *repositories* from Command lines. The benefits of a CLI applications are both, able to the users to **handle Stash repositories outside Stash**, and more important, can **automate** Tasks against Stash like merge pull requests for example. This tool are designed to be really easy to learn and use because group topics and commands with a semantic names.
+
+**Stash CLI** allow to any user to work with **Stash outside Stash** from a command line. Admin Stash with the Administration commands or updated your user details easy from the command line. You can Watch or Unwatch commits and pull request with a simple command, even test to merge or merge the pull request easy. Add comments to a commit or pull request or respond a command. Grant or Revoke app, project or repository permissions in a few steps and every what you want with Stash.
+
+**Automate** every task from the command line easy to make many things automatically. There are many posibilities.
 
 To learn more or read a full documentation of the Stash CLI Application, go to the [**Official Documentation Site**](https://github.com/JJLongoria/stash-cli/wiki).
 
 This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria/stash-connector) library to connect and work with stash. 
 
+Supported Operative Systems:
+- Windows
+- Linux
+- Mac OS X
+
+--- 
+
 - [**Stash CLI Application**](#stash-cli-application)
-- [**Installation**](#installation)
+- [**Installation Guide**](#installation-guide)
+  - [**NPM**](#npm)
+  - [**Windows Standalone**](#windows-standalone)
 - [**Usage**](#usage)
 - [**Core CLI Commands**](#core-cli-commands)
   - [**`stash help [COMMAND]`**](#stash-help-command)
@@ -102,7 +115,27 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**UserInput**](#userinput)
 
 
-# [**Installation**]()
+# [**Installation Guide**]()
+
+## [**NPM**]()
+
+Installation with NPM manager is, at the moment, the unique way to install Stash CLI on Linux and MacOs systems. 
+
+Install Node JS on your computer:
+
+To install NodeJS on Windows systems go to [Node JS Webpage](https://nodejs.org/) and download the latest version for Windows.
+
+To install NodeJS on Linux systems go to ["Installing Node.js via package manager"](https://nodejs.org/en/download/package-manager/) and choose the correct option according your linux system.
+
+With NodeJS installed on your system, now open a terminal (CMD, Bash, Power Shell...) and run the next command:
+
+    npm install -g cli-stash
+
+## [**Windows Standalone**]()
+
+If you don't want to install NPM on your windows system to install Stash CLI, can download the installer and install it without node on windows systemas.
+
+  - [**Windows x64**](https://github.com/JJLongoria/stash-cli/raw/main/installers/stash-cli_win_x64.exe)
 
 # [**Usage**]()
 ```sh-session
