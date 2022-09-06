@@ -4,22 +4,21 @@ import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../../libs/core/stashResponse";
 
 export default class Update extends BaseCommand {
-    static description = 'Promote or demote a group\'s permission level for the specified project.';
+    static description = 'Promote or demote a user\'s permission level for the specified project.';
     static examples = [
-        `$ stash projects:permissions:groups:update -a MyStashAlias --project "ProjectKey" --name groupName --permission 'PROJECT_READ'`,
-        `$ stash projects:permissions:groups:update -a MyStashAlias --project "ProjectKey" --name groupName --permission 'PROJECT_WRITE' --json`,
-        `$ stash projects:permissions:groups:update -a MyStashAlias --project "ProjectKey" --name otherGroup --permission PROJECT_ADMIN --csv`,
+        `$ stash projects:permissions:users:update -a MyStashAlias --project "ProjectKey" --name Username --permission 'PROJECT_READ' --json`,
+        `$ stash projects:permissions:users:update -a MyStashAlias --project "ProjectKey" --name Username --permission 'PROJECT_ADMIN'`,
     ];
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to update permission groups',
+            description: 'The Project key to revoke user permissions',
             required: true,
             name: 'Project'
         }),
         name: Flags.string({
-            description: 'The name of the group',
+            description: 'The name of the user',
             required: true,
             name: 'Name'
         }),
@@ -35,9 +34,9 @@ export default class Update extends BaseCommand {
         const response = new StashCLIResponse<any>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            await connector.admin.permissions().groups().update(this.flags.name, this.flags.permission);
+            await connector.projects.permissions(this.flags.project).users().update(this.flags.name, this.flags.permission);
             response.status = 0;
-            response.message = this.getRecordUpdatedText('Group Permissions');
+            response.message = this.getRecordUpdatedText('User Permissions');
             this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);

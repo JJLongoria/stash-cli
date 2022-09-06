@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { ApplicationProperties, Branch, ClusterNode, Comment, Commit, CommitDiff, Group, License, Line, Logger, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, Task, TaskCountOutput, User } from "stash-connector";
+import { ApplicationProperties, Branch, ClusterNode, Comment, Commit, CommitDiff, Group, License, Line, Logger, MailHostConfiguration, Participant, PermissionGroups, PermissionUserOutput, PermissionUsersOutput, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, Task, TaskCountOutput, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -584,7 +584,7 @@ export const CommitColumns: CliUx.Table.table.Columns<Record<string, Commit>> = 
     author: {
         header: 'Author',
         get: (row: any) => {
-            return row.user.name;
+            return row.author.name;
         },
     },
     authorTimestamp: {
@@ -691,6 +691,30 @@ export const LoggerColumns: CliUx.Table.table.Columns<Record<string, Logger>> = 
     logLevel: {
         header: 'Log Level',
     },
+}
+
+export const PermissionUserColumns: CliUx.Table.table.Columns<Record<string, PermissionUserOutput>> = {
+    user: {
+        header: 'User',
+        get: (row: any) => {
+            return row.user.name;
+        },
+    },
+    deletable: {
+        header: 'Deletable',
+    }
+}
+
+export const PermissionUsersColumns: CliUx.Table.table.Columns<Record<string, PermissionUsersOutput>> = {
+    user: {
+        header: 'User',
+        get: (row: any) => {
+            return row.user.name;
+        },
+    },
+    permission: {
+        header: 'Permission'
+    }
 }
 
 
