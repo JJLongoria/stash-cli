@@ -42,6 +42,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
 - [**JSON Objects Schemes**](#json-objects-schemes)
   - [**AddGroupInput**](#addgroupinput)
   - [**AddUsersInput**](#addusersinput)
+  - [**ApplicationProperties**](#applicationproperties)
   - [**Avatar**](#avatar)
   - [**Branch**](#branch)
   - [**ClusterOutput**](#clusteroutput)
@@ -395,6 +396,16 @@ All JSON Schemes used by the Stash CLI application as response or data input are
 {
     "group": "string",
     "users": "string[]",
+}
+```
+---
+## [**ApplicationProperties**]()
+```json
+{
+  "version": "string",
+  "buildNumber": "number",
+  "buildDate": "number",
+  "displayName": "string",
 }
 ```
 ---

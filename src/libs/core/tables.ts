@@ -1,5 +1,5 @@
 import { CliUx } from "@oclif/core";
-import { Branch, ClusterNode, Comment, Commit, CommitDiff, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, Task, TaskCountOutput, User } from "stash-connector";
+import { ApplicationProperties, Branch, ClusterNode, Comment, Commit, CommitDiff, Group, License, Line, MailHostConfiguration, Participant, PermissionGroups, Project, PullRequest, PullRequestActivity, RepoChangesOutput, Repository, Task, TaskCountOutput, User } from "stash-connector";
 import { Instance } from "../types";
 
 export const InstanceColumns: CliUx.Table.table.Columns<Record<string, Instance>> = {
@@ -669,3 +669,20 @@ export const TaskCountColumns: CliUx.Table.table.Columns<Record<string, TaskCoun
         header: 'Resolved',
     },
 }
+
+
+export const AppPropertiesColumns: CliUx.Table.table.Columns<Record<string, ApplicationProperties>> = {
+    displayName: {
+        header: 'Display Name',
+    },
+    version: {
+        header: 'Version',
+    },
+    buildNumber: {
+        header: 'Build Number',
+    },
+    buildDate: {
+        header: 'Build Date',
+    },
+}
+
