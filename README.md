@@ -45,6 +45,8 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**ApplicationProperties**](#applicationproperties)
   - [**Avatar**](#avatar)
   - [**Branch**](#branch)
+  - [**ChangePasswordInput**](#changepasswordinput)
+  - [**ChangeUserPasswordInput**](#changeuserpasswordinput)
   - [**ClusterOutput**](#clusteroutput)
   - [**ClusterNode**](#clusternode)
   - [**ClusterAddress**](#clusteraddress)
@@ -434,6 +436,24 @@ All JSON Schemes used by the Stash CLI application as response or data input are
     "latestChangeset": "string",
     "latestCommit": "string",
     "isDefault": "boolean",
+}
+```
+---
+## [**ChangePasswordInput**]()
+```json
+{
+    "password": "string",
+    "passwordConfirm": "string",
+    "name": "string",
+}
+```
+---
+## [**ChangeUserPasswordInput**]()
+```json
+{
+    "password": "string",
+    "passwordConfirm": "string",
+    "oldPassword": "string",
 }
 ```
 ---
