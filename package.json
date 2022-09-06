@@ -1,5 +1,6 @@
 {
   "name": "cli-stash",
+  "displayName": "Stash CLI",
   "version": "0.1.0",
   "description": "CLI application to manage and work with Atlassian Stash. Work with your Stash project and repositories from Command lines.",
   "author": "Juan José Longoria @JJLongoria",
