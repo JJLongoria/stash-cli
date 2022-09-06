@@ -6,9 +6,8 @@ import { StashCLIResponse } from "../../libs/core/stashResponse";
 export default class Update extends BaseCommand {
     static description = 'Update the currently authenticated user\'s password.';
     static examples = [
-        `$ stash users:credentials -a MyStashAlias --data "{'name':'jcitizen','displayName':'Jane Citizen','email':'jane@example.com'}" --json`,
-        `$ stash users:credentials -a MyStashAlias --file "path/to/json/data/file" --csv`,
-        `$ stash users:credentials -a MyStashAlias --data "{'displayName':'Jane Citizen','email':'jane@example.com'}" --csv`,
+        `$ stash users:credentials -a MyStashAlias --data "{'password':'newPass','passwordConfirm':'newPass','oldPassword':'oldPass'}" --json`,
+        `$ stash users:credentials -a MyStashAlias --file "path/to/json/data/file"`,
     ];
     static flags = {
         ...BaseCommand.flags,
