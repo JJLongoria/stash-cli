@@ -5,7 +5,7 @@ import { StashCLIResponse } from "../../../../libs/core/stashResponse";
 import { RepoChangesColumns } from "../../../../libs/core/tables";
 import { UX } from "../../../../libs/core/ux";
 
-export default class List extends BaseCommand {
+export default class Changes extends BaseCommand {
     static description = 'Gets the file changes available in the from changeset but not in the to changeset. If either the from or to changeset are not specified, they will be replaced by the default branch of their containing repository. ' + UX.processDocumentation('<doc:RepoChangesOutput>');
     static examples = [
         `$ stash projects:repos:compare:changes -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --all --csv`,

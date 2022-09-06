@@ -5,7 +5,7 @@ import { StashCLIResponse } from "../../../../libs/core/stashResponse";
 import { CommitColumns } from "../../../../libs/core/tables";
 import { UX } from "../../../../libs/core/ux";
 
-export default class List extends BaseCommand {
+export default class Commits extends BaseCommand {
     static description = 'Gets the commits accessible from the from changeset but not in the to changeset. If either the from or to changeset are not specified, they will be replaced by the default branch of their containing repository. ' + UX.processDocumentation('<doc:Commit>');
     static examples = [
         `$ stash projects:repos:compare:commits -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --all --csv`,
