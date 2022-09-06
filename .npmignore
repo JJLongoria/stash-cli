@@ -3,6 +3,7 @@
 .vscode
 /coverage
 /src
+/tmp
 /dist/test
 .tsconfig.json
 .eslintrc.json
