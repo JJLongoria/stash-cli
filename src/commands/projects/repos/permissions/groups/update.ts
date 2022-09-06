@@ -1,14 +1,14 @@
 import { Flags } from "@oclif/core";
 import { StashConnector } from "stash-connector";
-import { BaseCommand, BuildFlags } from "../../../../libs/core/baseCommand";
-import { StashCLIResponse } from "../../../../libs/core/stashResponse";
+import { BaseCommand, BuildFlags } from "../../../../../libs/core/baseCommand";
+import { StashCLIResponse } from "../../../../../libs/core/stashResponse";
 
 export default class Update extends BaseCommand {
-    static description = 'Promote or demote a group\'s permission level for the specified project.';
+    static description = 'Promote or demote a group\'s permission level for the specified repository.';
     static examples = [
-        `$ stash projects:permissions:groups:update -a MyStashAlias --project "ProjectKey" --name groupName --permission 'PROJECT_READ'`,
-        `$ stash projects:permissions:groups:update -a MyStashAlias --project "ProjectKey" --name groupName --permission 'PROJECT_WRITE' --json`,
-        `$ stash projects:permissions:groups:update -a MyStashAlias --project "ProjectKey" --name otherGroup --permission PROJECT_ADMIN --csv`,
+        `$ stash projects:repos:permissions:groups:update -a MyStashAlias --project "ProjectKey" --name groupName --permission 'PROJECT_READ'`,
+        `$ stash projects:repos:permissions:groups:update -a MyStashAlias --project "ProjectKey" --name groupName --permission 'PROJECT_WRITE' --json`,
+        `$ stash projects:repos:permissions:groups:update -a MyStashAlias --project "ProjectKey" --name otherGroup --permission PROJECT_ADMIN --csv`,
     ];
     static flags = {
         ...BaseCommand.flags,
@@ -18,6 +18,11 @@ export default class Update extends BaseCommand {
             required: true,
             name: 'Project'
         }),
+        slug: Flags.string({
+            description: 'The Repository to updatte permission groups',
+            required: true,
+            name: 'Slug'
+        }),
         name: Flags.string({
             description: 'The name of the group',
             required: true,
@@ -26,7 +31,7 @@ export default class Update extends BaseCommand {
         permission: Flags.string({
             description: 'The permission to grant',
             type: "option",
-            options: ['PROJECT_READ', 'PROJECT_WRITE', 'PROJECT_ADMIN'],
+            options: ['REPO_READ', 'REPO_WRITE', 'REPO_ADMIN'],
             required: true,
             name: 'Permission'
         }),
@@ -35,7 +40,7 @@ export default class Update extends BaseCommand {
         const response = new StashCLIResponse<any>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            await connector.projects.permissions(this.flags.project).groups().update(this.flags.name, this.flags.permission);
+            await connector.projects.repos(this.flags.project).permissions(this.flags.slug).groups().update(this.flags.name, this.flags.permission);
             response.status = 0;
             response.message = this.getRecordUpdatedText('Group Permissions');
             this.ux.log(response.message);

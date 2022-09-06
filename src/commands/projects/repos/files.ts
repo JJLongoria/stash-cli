@@ -2,7 +2,6 @@ import { Flags } from "@oclif/core";
 import { Page, StashConnector } from "stash-connector";
 import { BaseCommand, BuildFlags } from "../../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../../libs/core/stashResponse";
-import { UX } from "../../../libs/core/ux";
 
 export default class Files extends BaseCommand {
     static description = 'Retrieve a page of files from particular directory of a repository. The search is done recursively, so all files from any sub-directory of the specified directory will be returned.';
