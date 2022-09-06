@@ -1,7 +1,6 @@
 import { Page, StashConnector } from "stash-connector";
 import { BaseCommand, BuildFlags } from "../../libs/core/baseCommand";
 import { StashCLIResponse } from "../../libs/core/stashResponse";
-import { UX } from "../../libs/core/ux";
 
 export default class List extends BaseCommand {
     static description = 'Retrieve a page of group names.';
