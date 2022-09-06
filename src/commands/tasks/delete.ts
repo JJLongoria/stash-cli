@@ -27,15 +27,10 @@ export default class Delete extends BaseCommand {
         const response = new StashCLIResponse<Task>();
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
-            const task = await connector.tasks.get(this.flags.task);
-            response.result = task;
+            await connector.tasks.delete(this.flags.task);
             response.status = 0;
             response.message = this.getRecordDeletedText('Task');
             this.ux.log(response.message);
-            this.ux.table<Task>([task], TaskColumns, {
-                csv: this.flags.csv,
-                extended: this.flags.extended || this.flags.csv
-            });
         } catch (error) {
             this.processError(response, error);
         }
