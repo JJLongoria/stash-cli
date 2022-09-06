@@ -15,7 +15,7 @@
 
 **Automate** every task from the command line easy to make many things automatically. There are many posibilities.
 
-To learn more or read a full documentation of the Stash CLI Application, go to the [**Official Documentation Site**](https://github.com/JJLongoria/stash-cli/wiki).
+To learn more or read a full documentation of the **Stash CLI Application**, go to the [**Official Documentation Site**](https://github.com/JJLongoria/stash-cli/wiki).
 
 This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria/stash-connector) library to connect and work with stash. 
 
@@ -34,7 +34,15 @@ Now Stil in BETA Version because is not fully tested.
   - [**Windows Standalone**](#windows-standalone)
 - [**Usage**](#usage)
 - [**CLI Responses**](#cli-responses)
+  - [**StashCLIResponse<T>**](#stashcliresponset)
+  - [**StashCLIError**](#stashclierror)
+  - [**StashCLIErrorData**](#stashclierrordata)
 - [**Paginated API**](#paginated-api)
+  - [**Pagination Flags**](#pagination-flags)
+- [**CLI Output Format**](#cli-output-format)
+  - [**Table**](#table)
+  - [**JSON**](#json)
+  - [**CSV**](#csv)
 - [**Core CLI Commands**](#core-cli-commands)
   - [**`stash help [COMMAND]`**](#stash-help-command)
   - [**`stash update`**](#stash-update)
@@ -152,7 +160,92 @@ $ stash --help [COMMAND]
 
 # [**CLI Responses**]()
 
+All commands **except Core CLI Commands** return the same response JSON Object for a better reponse handling and standarization. The JSON response definition is the next:
+
+## [**StashCLIResponse<T>**]()
+
+```js
+{
+	status: 0 | -1 = 0;		// Returned status. 0 OK, -1 KO
+	message?: string;		// General execution status message
+	result?: T;				// Response data when status is 0. (Not all Ok responses return data)
+	error?: StashCLIError;	// Error data when status is -1.
+}
+```
+
+The **`StashCLIResponse`** `result` property has **Generic type** (`T`), that means the result can be of any type defined in [**JSON Objects Schemes**](#json-objects-schemes) or primitive types likes `string` or `string[]` among others.
+
+## [**StashCLIError**]()
+
+The **`StashCLIResponse`** object contains the `StashCLIError` on `error` property to return the errors data. This object has the next definition:
+
+```js
+{
+	statusCode?: number;			// The status code of execution
+    status?: string;				// The error status
+    statusText?: string;			// The error status text
+    errors?: StashCLIErrorData[];	// Error details
+}
+```
+
+## [**StashCLIErrorData**]()
+
+The error object **`StashCLIError`** has a collection of errors with detailed error data, the JSON object is the next:
+
+```js
+{
+	context?: string;		// Context of the error
+    message: string;		// Error message
+    exceptionName: string;	// Error exception name
+}
+```
+
+
 # [**Paginated API**]()
+
+The **Stash API Rest** work with **paginated results**, this means that the most of list commands return a **`Page<T>`** whith a collection of values of the requested data types. For example, when retrieve projects, get a **`Page<Project>`** with the paginated values.
+
+The **`Page<T>`** object has the page data, size, limit and next page start among other data to use the paginated API. 
+
+```ts
+{
+    size: number;               // The page size
+    limit: number;              // The page limit
+    isLastPage: boolean;     	// True if is the last page, false in otherwise
+    values: T[];               	// Returned values collection.
+    start: number;              // First page record
+    filter?: any;               // Page filter
+    nextPageStart?: number;     // First record of the next page
+}
+```
+
+**IMPORTANT**: If more than one page exists (i.e. the response contains "isLastPage": false), the response object will also contain a **nextPageStart** attribute which must be used by the client as the start parameter on the next request. Identifiers of adjacent objects in a page may not be contiguous, so the start of the next page is not necessarily the start of the last page plus the last page's size. A client should always use **nextPageStart** to avoid unexpected results from a paged API.
+
+## [**Pagination Flags**]()
+
+All commands that support paginations (the most of list commands) has the same flags to support and user the paginated api, this flags are listed below:
+| Name      | flag      | Type          | Description                                                                  |
+| --------- | --------- | ------------- | ---------------------------------------------------------------------------- |
+| **All**   | `--all`   | [`Boolean`]() | Return all records on the same page (instead paginate results)               |
+| **Limit** | `--limit` | [`Integer`]() | Indicates how many results to return per page                                |
+| **Start** | `--start` | [`Boolean`]() | Indicates which item should be used as the first item in the page of results |
+
+# [**CLI Output Format**]()
+
+The Stash CLI support to return the output in different formats, CSV, JSON and Table. All commands support the JSON Output. All commands that return data into the `result` property support Table and CSV outputs. All commands that support tables, support also CSV output.
+
+## [**Table**]()
+
+Is the standard output if not select any other type, this is the best human readable response. All commands that support CSV output, support tables output too. To many commands has the `--extended` flag. This flag is for show more columns on the tables (By default, not show all columns in many commands).
+
+## [**JSON**]()
+
+Is the most complete response and the best to work with the command, but is not human readable like a table. The flag to return a JSON output is `--json`
+
+## [**CSV**]()
+
+To many commands support to format the output as JSON (the same with output as table). This response contains the same information of an extended table but in different format. The flag to format as csv is `--csv`.
+
 
 # [**Core CLI Commands**]()
 
