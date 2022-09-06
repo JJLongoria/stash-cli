@@ -91,6 +91,7 @@ This CLI Application use the [**Stash Connector**](https://github.com/JJLongoria
   - [**Repository**](#repository)
   - [**RepoChangesOutput**](#repochangesoutput)
   - [**UpdateRepoInput**](#updaterepoinput)
+  - [**TagOutput**](#tagoutput)
   - [**Task**](#task)
   - [**TaskCountOutput**](#taskcountoutput)
   - [**User**](#user-1)
@@ -1007,6 +1008,17 @@ All JSON Schemes used by the Stash CLI application as response or data input are
         "key": "string",
     },
     "public?": "boolean",
+}
+```
+---
+## [**TagOutput**]()
+```json
+{
+    "id": "string",
+    "displayId": "string",
+    "latestChangeset": "string",
+    "latestCommit": "string",
+    "hash": "string",
 }
 ```
 ---

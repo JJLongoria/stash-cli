@@ -8,7 +8,7 @@ import { UX } from "../../../../../libs/core/ux";
 export default class Update extends BaseCommand {
     static description = 'Modify the settings for a repository hook for this repositories. ' + UX.processDocumentation('<doc:HookOutput>');
     static examples = [
-        `$ stash projects:repos:settings:hooks:update -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --hook "TheHook" --data "{'details':{'key':'com.atlassian.stash.plugin.example:example-repository-hook','name':'Example repository hook','type':'PRE_RECEIVE','description':'An example description for an example hook.','version':'1.2.4','configFormKey':null},'enabled':true,'configured':true}" --csv`,
+        `$ stash projects:repos:settings:hooks:update -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --hook "TheHook" --data "{'details':{'key':'hookKey','name':'HookName','type':'PRE_RECEIVE','description':'Description.','version':'1.0.0','configFormKey':null},'enabled':true,'configured':true}" --csv`,
         `$ stash projects:repos:settings:hooks:update -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --hook "TheHook" --file "Path/to/data/json/file" --json`,
         `$ stash projects:repos:settings:hooks:update -a MyStashAlias --project "ProjectKey" --slug "MyRepoSlug" --hook "TheHook" --file "Path/to/data/json/file"`,
     ];
