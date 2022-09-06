@@ -5,11 +5,12 @@ import { StashCLIResponse } from "../../libs/core/stashResponse";
 import { TaskColumns } from "../../libs/core/tables";
 import { UX } from "../../libs/core/ux";
 
-export default class Create extends BaseCommand {
+export default class Update extends BaseCommand {
     static description = 'Update a existing task. ' + UX.processDocumentation('<doc:Task>');
     static examples = [
-        `$ stash tasks:create -a MyStashAlias --data "{ 'text': 'NewTaskTest', 'state': 'RESOLVED' }" --json`,
-        `$ stash tasks:create -a MyStashAlias --file "path/to/json/data/file" --csv`,
+        `$ stash tasks:create -a MyStashAlias --task 1234 --data "{ 'text': 'NewTaskTest', 'state': 'RESOLVED' }" --json`,
+        `$ stash tasks:create -a MyStashAlias --task 1234 --file "path/to/json/data/file" --csv`,
+        `$ stash tasks:create -a MyStashAlias --task 1234 --data "{ 'text': 'NewTaskTest' }" --csv`,
     ];
     static flags = {
         ...BaseCommand.flags,
@@ -31,7 +32,7 @@ export default class Create extends BaseCommand {
             const task = await connector.tasks.update(this.flags.task, this.getJSONInputData());
             response.result = task;
             response.status = 0;
-            response.message = this.getRecordCreatedText('Project');
+            response.message = this.getRecordUpdatedText('Task');
             this.ux.log(response.message);
             this.ux.table<Task>([task], TaskColumns, {
                 csv: this.flags.csv,
