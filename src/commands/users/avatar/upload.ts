@@ -5,18 +5,18 @@ import { StashCLIResponse } from "../../../libs/core/stashResponse";
 import { FileChecker, PathUtils } from "../../../libs/fileSystem";
 
 export default class Upload extends BaseCommand {
-    static description = 'Update the avatar for the project matching the supplied projectKey.';
+    static description = 'Update the avatar for the user with the supplied slug.';
     static examples = [
-        `$ stash projects:avatar:upload -a MyStashAlias --key "ProjectKey" --file "path/to/the/avatar/file"`,
-        `$ stash projects:avatar:upload -a MyStashAlias --key "ProjectKey" --file "path/to/the/avatar/file" --json`,
+        `$ stash projects:avatar:upload -a MyStashAlias --slug "userslug" --file "path/to/the/avatar/file"`,
+        `$ stash projects:avatar:upload -a MyStashAlias --slug "userslug" --file "path/to/the/avatar/file" --json`,
     ];
     static flags = {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
-        key: Flags.string({
-            description: 'The Project key to update the avatar',
+        slug: Flags.string({
+            description: 'The user slug to update the avatar',
             required: true,
-            name: 'Key'
+            name: 'User Slug'
         }),
         file: BuildFlags.input.file('', true),
     };
@@ -34,9 +34,9 @@ export default class Upload extends BaseCommand {
                     throw new Error('File path ' + absoluePath + ' does not exists');
                 }
             }
-            await connector.projects.avatar(this.flags.key).update(this.flags.file);
+            await connector.users.avatar(this.flags.slug).update(this.flags.file);
             response.status = 0;
-            response.message = 'Project Avatar Uploaded successfully';
+            response.message = 'User Avatar Uploaded successfully';
             this.ux.log(response.message);
         } catch (error) {
             this.processError(response, error);
