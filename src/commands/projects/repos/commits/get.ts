@@ -18,7 +18,7 @@ export default class Get extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to retrieve the commit',
+            description: 'The Project Key (or user slug like ~userSlug) to retrieve the commit',
             required: true,
             name: 'Project'
         }),

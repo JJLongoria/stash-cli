@@ -18,7 +18,7 @@ export default class Browse extends BaseCommand {
         alias: BuildFlags.alias,
         ...BuildFlags.pagination,
         project: Flags.string({
-            description: 'The Project key to browse into the repository',
+            description: 'The Project Key (or user slug like ~userSlug) to browse into the repository',
             required: true,
             name: 'Project'
         }),

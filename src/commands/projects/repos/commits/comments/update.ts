@@ -18,7 +18,7 @@ export default class Create extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to update the commit comment',
+            description: 'The Project Key (or user slug like ~userSlug) to update the commit comment',
             required: true,
             name: 'Project'
         }),

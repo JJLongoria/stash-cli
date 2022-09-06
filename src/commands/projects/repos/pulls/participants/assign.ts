@@ -17,7 +17,7 @@ export default class Assign extends BaseCommand {
         csv: BuildFlags.csv,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to assign participant to the pull request',
+            description: 'The Project Key (or user slug like ~userSlug) to assign participant to the pull request',
             required: true,
             name: 'Project'
         }),

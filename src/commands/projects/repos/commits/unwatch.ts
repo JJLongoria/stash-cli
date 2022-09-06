@@ -13,7 +13,7 @@ export default class Unwatch extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to unwatch the commit',
+            description: 'The Project Key (or user slug like ~userSlug) to unwatch the commit',
             required: true,
             name: 'Project'
         }),

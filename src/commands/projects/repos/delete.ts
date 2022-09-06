@@ -13,7 +13,7 @@ export default class Delete extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to delete the repository',
+            description: 'The Project Key (or user slug like ~userSlug) to delete the repository',
             required: true,
             name: 'Project'
         }),

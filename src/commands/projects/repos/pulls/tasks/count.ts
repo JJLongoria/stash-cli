@@ -19,7 +19,7 @@ export default class Count extends BaseCommand {
         alias: BuildFlags.alias,
         ...BuildFlags.pagination,
         project: Flags.string({
-            description: 'The Project key to count repository pull requests Tasks',
+            description: 'The Project Key (or user slug like ~userSlug) to count repository pull requests Tasks',
             required: true,
             name: 'Project'
         }),

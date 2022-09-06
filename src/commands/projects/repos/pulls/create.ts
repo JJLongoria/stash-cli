@@ -20,7 +20,7 @@ export default class Create extends BaseCommand {
         data: BuildFlags.input.jsonData('<doc:PullRequestInput>', false, ['from', 'target', 'title', 'description', 'from', 'reviewers']),
         file: BuildFlags.input.jsonFile('<doc:PullRequestInput>', false, ['from', 'target', 'title', 'description', 'from', 'reviewers']),
         project: Flags.string({
-            description: 'The Project key to create the pull request',
+            description: 'The Project Key (or user slug like ~userSlug) to create the pull request',
             required: true,
             name: 'Project'
         }),

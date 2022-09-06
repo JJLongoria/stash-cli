@@ -18,7 +18,7 @@ export default class Create extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to create the repository',
+            description: 'The Project Key (or user slug like ~userSlug) to create the repository',
             required: true,
             name: 'Project'
         }),

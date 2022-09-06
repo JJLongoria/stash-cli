@@ -17,7 +17,7 @@ export default class Diffs extends BaseCommand {
         csv: BuildFlags.csv,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to compare diffs',
+            description: 'The Project Key (or user slug like ~userSlug) to compare diffs',
             required: true,
             name: 'Project'
         }),
@@ -37,7 +37,7 @@ export default class Diffs extends BaseCommand {
             name: 'To'
         }),
         'from-repo': Flags.string({
-            description: 'An optional parameter specifying the source repository containing the source changeset if that changeset is not present in the current repository; the repository can be specified by either its ID 42 or by its project key plus its repo slug separated by a slash: projectKey/repoSlug',
+            description: 'An optional parameter specifying the source repository containing the source changeset if that changeset is not present in the current repository; the repository can be specified by either its ID 42 or by its Project Key (or user slug like ~userSlug) plus its repo slug separated by a slash: projectKey/repoSlug',
             required: false,
             name: 'From Repo'
         }),

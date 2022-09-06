@@ -18,7 +18,7 @@ export default class Update extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to update the pull request comment',
+            description: 'The Project Key (or user slug like ~userSlug) to update the pull request comment',
             required: true,
             name: 'Project'
         }),

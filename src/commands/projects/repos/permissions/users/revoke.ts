@@ -13,7 +13,7 @@ export default class Revoke extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to revoke user permissions',
+            description: 'The Project Key (or user slug like ~userSlug) to revoke user permissions',
             required: true,
             name: 'Project'
         }),

@@ -17,7 +17,7 @@ export default class Delete extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to delete the commit comment',
+            description: 'The Project Key (or user slug like ~userSlug) to delete the commit comment',
             required: true,
             name: 'Project'
         }),

@@ -17,7 +17,7 @@ export default class List extends BaseCommand {
         csv: BuildFlags.csv,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to retrieve repository commit diffs',
+            description: 'The Project Key (or user slug like ~userSlug) to retrieve repository commit diffs',
             required: true,
             name: 'Project'
         }),

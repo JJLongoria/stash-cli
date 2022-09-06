@@ -13,7 +13,7 @@ export default class Watch extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to watch the commit',
+            description: 'The Project Key (or user slug like ~userSlug) to watch the commit',
             required: true,
             name: 'Project'
         }),

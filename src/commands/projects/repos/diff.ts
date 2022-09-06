@@ -17,7 +17,7 @@ export default class Diff extends BaseCommand {
         csv: BuildFlags.csv,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to compare diffs',
+            description: 'The Project Key (or user slug like ~userSlug) to compare diffs',
             required: true,
             name: 'Project'
         }),

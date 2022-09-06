@@ -18,7 +18,7 @@ export default class Fork extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Origin Project key to fork the repository',
+            description: 'The Origin Project Key (or user slug like ~userSlug) to fork the repository',
             required: true,
             name: 'Project'
         }),
@@ -33,7 +33,7 @@ export default class Fork extends BaseCommand {
             name: 'Target Slug'
         }),
         'target-project': Flags.string({
-            description: 'The Target Project key to fork the repository. Defaults to the current user\'s personal project if not specified',
+            description: 'The Target Project Key (or user slug like ~userSlug) to fork the repository. Defaults to the current user\'s personal project if not specified',
             required: false,
             name: 'Target Project'
         }),

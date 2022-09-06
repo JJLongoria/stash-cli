@@ -20,7 +20,7 @@ export default class Update extends BaseCommand {
         data: BuildFlags.input.jsonData('<doc:PullRequestInput>', false, ['from', 'title', 'description', 'reviewers']),
         file: BuildFlags.input.jsonFile('<doc:PullRequestInput>', false, ['from', 'title', 'description', 'reviewers']),
         project: Flags.string({
-            description: 'The Project key to update the pull request',
+            description: 'The Project Key (or user slug like ~userSlug) to update the pull request',
             required: true,
             name: 'Project'
         }),

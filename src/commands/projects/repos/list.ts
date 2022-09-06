@@ -19,7 +19,7 @@ export default class List extends BaseCommand {
         alias: BuildFlags.alias,
         ...BuildFlags.pagination,
         project: Flags.string({
-            description: 'The Project key to retrieve repositories',
+            description: 'The Project Key (or user slug like ~userSlug) to retrieve repositories',
             required: true,
             name: 'Project'
         }),

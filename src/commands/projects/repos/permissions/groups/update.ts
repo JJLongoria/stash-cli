@@ -14,7 +14,7 @@ export default class Update extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to update permission groups',
+            description: 'The Project Key (or user slug like ~userSlug) to update permission groups',
             required: true,
             name: 'Project'
         }),

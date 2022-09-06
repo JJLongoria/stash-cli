@@ -17,7 +17,7 @@ export default class Approve extends BaseCommand {
         csv: BuildFlags.csv,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to unapprove the pull request',
+            description: 'The Project Key (or user slug like ~userSlug) to unapprove the pull request',
             required: true,
             name: 'Project'
         }),

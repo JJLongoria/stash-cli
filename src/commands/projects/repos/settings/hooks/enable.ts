@@ -18,7 +18,7 @@ export default class Enable extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to enable hook',
+            description: 'The Project Key (or user slug like ~userSlug) to enable hook',
             required: true,
             name: 'Project'
         }),

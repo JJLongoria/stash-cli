@@ -14,7 +14,7 @@ export default class Decline extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to decline the pull request',
+            description: 'The Project Key (or user slug like ~userSlug) to decline the pull request',
             required: true,
             name: 'Project'
         }),

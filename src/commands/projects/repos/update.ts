@@ -19,7 +19,7 @@ export default class Update extends BaseCommand {
         data: BuildFlags.input.jsonData('<doc:UpdateRepoInput>', false),
         file: BuildFlags.input.jsonFile('<doc:UpdateRepoInput>', false),
         project: Flags.string({
-            description: 'The Project key to update repository',
+            description: 'The Project Key (or user slug like ~userSlug) to update repository',
             required: true,
             name: 'Project'
         }),

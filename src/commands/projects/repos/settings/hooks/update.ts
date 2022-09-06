@@ -20,7 +20,7 @@ export default class Update extends BaseCommand {
         data: BuildFlags.input.jsonData('<doc:HookInput>', false),
         file: BuildFlags.input.jsonFile('<doc:HookInput>', false),
         project: Flags.string({
-            description: 'The Project key to update hook',
+            description: 'The Project Key (or user slug like ~userSlug) to update hook',
             required: true,
             name: 'Project'
         }),

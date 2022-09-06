@@ -18,7 +18,7 @@ export default class Disable extends BaseCommand {
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to disable hook',
+            description: 'The Project Key (or user slug like ~userSlug) to disable hook',
             required: true,
             name: 'Project'
         }),

@@ -13,7 +13,7 @@ export default class Update extends BaseCommand {
         ...BaseCommand.flags,
         alias: BuildFlags.alias,
         project: Flags.string({
-            description: 'The Project key to retrieve the default branch',
+            description: 'The Project Key (or user slug like ~userSlug) to retrieve the default branch',
             required: true,
             name: 'Project'
         }),
