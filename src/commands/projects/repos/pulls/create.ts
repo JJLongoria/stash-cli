@@ -40,7 +40,6 @@ export default class Create extends BaseCommand {
             description: 'The Pull Request Description',
             required: false,
             name: 'Description',
-            exclusive: ['data', 'file'],
             dependsOn: ['to', 'from', 'title']
         }),
         from: Flags.string({
@@ -61,7 +60,6 @@ export default class Create extends BaseCommand {
             description: 'Comma separated pull requests reviewers names',
             required: false,
             name: 'Reviewers',
-            exclusive: ['data', 'file'],
             dependsOn: ['from', 'description', 'title', 'to'],
             parse: (input): any => {
                 return BuildFlags.parseArray(input);
