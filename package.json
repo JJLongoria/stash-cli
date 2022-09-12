@@ -1,16 +1,17 @@
 {
   "name": "cli-stash",
   "displayName": "Stash CLI",
-  "version": "0.0.1",
+  "productName": "Stash CLI",
+  "version": "0.0.2",
   "description": "CLI application to manage and work with Atlassian Stash. Work with your Stash project and repositories from Command lines.",
-  "author": "Juan José Longoria @JJLongoria",
+  "author": "Juan José Longoria López <Kanko>",
   "bin": {
     "stash": "./bin/run"
   },
-  "homepage": "https://github.com/JJLongoria/hello-world",
+  "homepage": "https://github.com/JJLongoria/stash-cli",
   "license": "GPLv3",
   "main": "dist/index.js",
-  "repository": "JJLongoria/hello-world",
+  "repository": "JJLongoria/stash-cli",
   "files": [
     "/bin",
     "/dist",
@@ -106,7 +107,7 @@
   "engines": {
     "node": ">=12.0.0"
   },
-  "bugs": "https://github.com/JJLongoria/hello-world/issues",
+  "bugs": "https://github.com/JJLongoria/stash-cli/issues",
   "keywords": [
     "Atlassian Stash REST",
     "Atlassian Stash REST CLI",

@@ -17,8 +17,8 @@ export default class Create extends BaseCommand {
         csv: BuildFlags.csv,
         extended: BuildFlags.extended,
         alias: BuildFlags.alias,
-        data: BuildFlags.input.jsonData('<doc:PullRequestInput>', false, ['from', 'target', 'title', 'description', 'from', 'reviewers']),
-        file: BuildFlags.input.jsonFile('<doc:PullRequestInput>', false, ['from', 'target', 'title', 'description', 'from', 'reviewers']),
+        data: BuildFlags.input.jsonData('<doc:PullRequestInput>', false, ['from', 'to', 'title', 'description', 'from', 'reviewers']),
+        file: BuildFlags.input.jsonFile('<doc:PullRequestInput>', false, ['from', 'to', 'title', 'description', 'from', 'reviewers']),
         project: Flags.string({
             description: 'The Project Key (or user slug like ~userSlug) to create the pull request',
             required: true,
@@ -34,35 +34,35 @@ export default class Create extends BaseCommand {
             required: false,
             name: 'Title',
             exclusive: ['data', 'file'],
-            dependsOn: ['target', 'description', 'from']
+            dependsOn: ['to', 'description', 'from']
         }),
         description: Flags.string({
             description: 'The Pull Request Description',
             required: false,
             name: 'Description',
             exclusive: ['data', 'file'],
-            dependsOn: ['target', 'from', 'title']
+            dependsOn: ['to', 'from', 'title']
         }),
         from: Flags.string({
             description: 'The source (from ref) branch to create tthe pull request',
             required: false,
             name: 'From',
             exclusive: ['data', 'file'],
-            dependsOn: ['target', 'description', 'title']
+            dependsOn: ['to', 'description', 'title']
         }),
-        target: Flags.string({
+        to: Flags.string({
             description: 'The target (to ref) branch to create the pull request',
             required: false,
-            name: 'Target',
+            name: 'To',
             exclusive: ['data', 'file'],
             dependsOn: ['from', 'description', 'title']
         }),
         reviewers: Flags.string({
             description: 'Comma separated pull requests reviewers names',
             required: false,
-            name: 'Target',
+            name: 'Reviewers',
             exclusive: ['data', 'file'],
-            dependsOn: ['from', 'description', 'title', 'target'],
+            dependsOn: ['from', 'description', 'title', 'to'],
             parse: (input): any => {
                 return BuildFlags.parseArray(input);
             }
@@ -112,19 +112,19 @@ export default class Create extends BaseCommand {
                 if(fromBranchResult.values.length > 1){
                     throw new Error('Found more than one branch as from with name (' + this.flags.from + ')');
                 }
-                const targetBranchResult = await connector.projects.repos(this.flags.project).branches(this.flags.slug).list({
-                    filterText: this.flags.target,
+                const toBranchResult = await connector.projects.repos(this.flags.project).branches(this.flags.slug).list({
+                    filterText: this.flags.to,
                 });
-                if (targetBranchResult.values.length === 0) {
+                if (toBranchResult.values.length === 0) {
                     throw new Error('From branch not found (' + this.flags.from + ')');
                 }
-                if(targetBranchResult.values.length > 1){
-                    throw new Error('Found more than one branch as target with name (' + this.flags.target + ')');
+                if(toBranchResult.values.length > 1){
+                    throw new Error('Found more than one branch as to with name (' + this.flags.to + ')');
                 }
                 const fromBranch = fromBranchResult.values[0];
-                const targetBranch = targetBranchResult.values[0];
+                const toBranch = toBranchResult.values[0];
                 inputData.fromRef.id = fromBranch.id;
-                inputData.toRef.id = targetBranch.id;
+                inputData.toRef.id = toBranch.id;
             }
             const pullRequest = await connector.projects.repos(this.flags.project).pullRequests(this.flags.slug).create(inputData);
             response.result = pullRequest;

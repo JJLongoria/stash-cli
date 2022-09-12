@@ -228,7 +228,7 @@ All commands that support paginations (the most of list commands) has the same f
 | --------- | --------- | ------------- | ---------------------------------------------------------------------------- |
 | **All**   | `--all`   | [`Boolean`]() | Return all records on the same page (instead paginate results)               |
 | **Limit** | `--limit` | [`Integer`]() | Indicates how many results to return per page                                |
-| **Start** | `--start` | [`Boolean`]() | Indicates which item should be used as the first item in the page of results |
+| **Start** | `--start` | [`Integer`]() | Indicates which item should be used as the first item in the page of results |
 
 # [**CLI Output Format**]()
 
