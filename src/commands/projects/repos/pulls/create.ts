@@ -104,23 +104,43 @@ export default class Create extends BaseCommand {
                 const fromBranchResult = await connector.projects.repos(this.flags.project).branches(this.flags.slug).list({
                     filterText: this.flags.from,
                 });
+                let fromBranch;
+                let toBranch;
                 if (fromBranchResult.values.length === 0) {
-                    throw new Error('From branch not found (' + this.flags.from + ')');
-                } 
-                if(fromBranchResult.values.length > 1){
-                    throw new Error('Found more than one branch as from with name (' + this.flags.from + ')');
+
+                }
+                if (fromBranchResult.values.length > 1) {
+                    for (const branch of fromBranchResult.values) {
+                        if (branch.displayId === this.flags.from || branch.id === this.flags.from) {
+                            fromBranch = branch;
+                            break;
+                        }
+                    }
+                    if (!fromBranch) {
+                        throw new Error('From branch not found (' + this.flags.from + ')');
+                    }
+                } else {
+                    fromBranch = fromBranchResult.values[0];
                 }
                 const toBranchResult = await connector.projects.repos(this.flags.project).branches(this.flags.slug).list({
                     filterText: this.flags.to,
                 });
                 if (toBranchResult.values.length === 0) {
-                    throw new Error('From branch not found (' + this.flags.from + ')');
+                    throw new Error('To branch not found (' + this.flags.from + ')');
                 }
-                if(toBranchResult.values.length > 1){
-                    throw new Error('Found more than one branch as to with name (' + this.flags.to + ')');
+                if (toBranchResult.values.length > 1) {
+                    for (const branch of toBranchResult.values) {
+                        if (branch.displayId === this.flags.to || branch.id === this.flags.to) {
+                            toBranch = branch;
+                            break;
+                        }
+                    }
+                    if (!toBranch) {
+                        throw new Error('To branch not found (' + this.flags.from + ')');
+                    }
+                } else {
+                    toBranch = toBranchResult.values[0];
                 }
-                const fromBranch = fromBranchResult.values[0];
-                const toBranch = toBranchResult.values[0];
                 inputData.fromRef.id = fromBranch.id;
                 inputData.toRef.id = toBranch.id;
             }
