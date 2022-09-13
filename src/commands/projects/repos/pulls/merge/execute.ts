@@ -44,6 +44,7 @@ export default class Execute extends BaseCommand {
         const connector = new StashConnector(this.localConfig.getConnectorOptions(this.flags.alias));
         try {
             const pullRequest = await connector.projects.repos(this.flags.project).pullRequests(this.flags.slug).merge(this.flags.pull).execute(this.flags.version);
+            response.result = pullRequest;
             response.status = 0;
             response.message = 'Pull Request Merged successfully';
             this.ux.log(response.message);

@@ -2,7 +2,7 @@
   "name": "cli-stash",
   "displayName": "Stash CLI",
   "productName": "Stash CLI",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "CLI application to manage and work with Atlassian Stash. Work with your Stash project and repositories from Command lines.",
   "author": "Juan José Longoria López <Kanko>",
   "bin": {
