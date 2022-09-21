@@ -2,7 +2,7 @@
   "name": "cli-stash",
   "displayName": "Stash CLI",
   "productName": "Stash CLI",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "CLI application to manage and work with Atlassian Stash. Work with your Stash project and repositories from Command lines.",
   "author": "Juan José Longoria López <Kanko>",
   "bin": {
@@ -27,7 +27,7 @@
     "@oclif/plugin-update": "^3.0.0",
     "@oclif/plugin-warn-if-update-available": "^2.0.4",
     "node-notifier": "^10.0.1",
-    "stash-connector": "^0.0.2"
+    "stash-connector": "^0.0.4"
   },
   "devDependencies": {
     "@oclif/test": "^2",
